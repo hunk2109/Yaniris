@@ -175,6 +175,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button15 = new System.Windows.Forms.Button();
             this.lbpfi = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
@@ -214,7 +215,6 @@
             this.button14 = new System.Windows.Forms.Button();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
-            this.button15 = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -279,7 +279,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1013, 757);
+            this.tabPage5.Size = new System.Drawing.Size(987, 346);
             this.tabPage5.TabIndex = 8;
             this.tabPage5.Text = "Cuentas";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -607,7 +607,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1013, 757);
+            this.tabPage7.Size = new System.Drawing.Size(987, 346);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Clientes";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1257,7 +1257,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1013, 757);
+            this.tabPage2.Size = new System.Drawing.Size(987, 346);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Factura";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1587,7 +1587,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button7.Location = new System.Drawing.Point(30, 267);
+            this.button7.Location = new System.Drawing.Point(30, 268);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(131, 62);
             this.button7.TabIndex = 12;
@@ -1752,6 +1752,17 @@
             this.groupBox14.TabIndex = 1;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Cotizacion";
+            // 
+            // button15
+            // 
+            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button15.Location = new System.Drawing.Point(91, 278);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(132, 23);
+            this.button15.TabIndex = 22;
+            this.button15.Text = "Quitar de la Cotizacion";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.Button15_Click);
             // 
             // lbpfi
             // 
@@ -2105,17 +2116,6 @@
             // printDocument3
             // 
             this.printDocument3.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument3_PrintPage);
-            // 
-            // button15
-            // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button15.Location = new System.Drawing.Point(91, 278);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(132, 23);
-            this.button15.TabIndex = 22;
-            this.button15.Text = "Quitar de la Cotizacion";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.Button15_Click);
             // 
             // Form1
             // 

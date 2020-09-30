@@ -865,7 +865,7 @@ namespace sistgre
             printDocument1 = new PrintDocument();
             PrinterSettings ps = new PrinterSettings();
             printDocument1.PrinterSettings = ps;
-            //printDocument1.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            //printDocument1.PrinterSettings.PrinterName = "Thermal Printe";
             printDocument1.PrintPage += printDocument1_PrintPage;
             printDocument1.Print();
 
