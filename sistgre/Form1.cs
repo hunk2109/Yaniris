@@ -59,7 +59,7 @@ namespace sistgre
             dgvinv.DataSource = cns.cosnsultaconresultado("Select * from inventario");
             dgvcli.DataSource = cns.cosnsultaconresultado("select * from cliente");
             dgvfact.DataSource = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total  from ventas   join inventario on id_cod = inventario_id_cod ");
-            dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID,id_supli as Suplidor, monto as Monto, fecha as Fecha,precio as Precio ,nombre as Nombre,(monto*precio) as Total, comp as Compañia from cp join Suplidor on id_supli = id_supli_cp ");
+            dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID,id_supli as Suplidor, monto_o as Monto, fecha as Fecha,mont_pag as Precio ,nombre as Nombre, comp as Compañia from cp join Suplidor on id_supli = id_supli_cp ");
             dgvdatcredi.DataSource = cns.cosnsultaconresultado("select   id_p as ID,nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o-monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where Restante > 0");
 
             double sum = 0;
@@ -244,22 +244,59 @@ namespace sistgre
                     else
                     {
 
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                        /* using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                         {
+                             conn.Open();
+                             codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+
+                         }
+                         cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
+                         cns.consultasinreaultado("insert into cp(monto,fecha,precio,id_supli_cp)values('" + txtinvcant.Text + "','" + dtpv.Text + "','" + txtpre.Text + "','" + codigo + "')");
+                         carga();
+                         conn.Close();
+                         cargtot();*/
+
+
+                        string nomb = txtnombprod.Text;
+                        string tip = txttipprod.Text;
+                        string cant = txtinvcant.Text;
+                        string pre = txtpre.Text;
+                        string cod = null;
+                      
+                        
+
+
+                        try
                         {
-                            conn.Open();
-                            codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+                            string total;
+                            double p, c, pf;
+                            p = Convert.ToDouble(pre);
+                            c = Convert.ToDouble(cant);
+                            pf = p * c;
+                            total = pf.ToString();
+
+
+
+
+                            string[] row = { cod, nomb, tip, cant, pre, total };
+                            dgvinlist.Rows.Add(row);
+                            pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+
+                            double sum = 0;
+                            for (int i = 0; i < dgvinlist.Rows.Count; ++i)
+                            {
+                                sum += Convert.ToDouble(dgvinlist.Rows[i].Cells[5].Value);
+                            }
+                            label47.Text = sum.ToString();
 
                         }
-                        cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
-                        cns.consultasinreaultado("insert into cp(monto,fecha,precio,id_supli_cp)values('" + txtinvcant.Text + "','" + dtpv.Text + "','" + txtpre.Text + "','" + codigo + "')");
-                        carga();
-                        conn.Close();
-                        cargtot();
-                        pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                        catch (Exception ex)
+                        {
 
-
+                        }
                     }
                 }
+            
 
                 else if (rbefec.Checked == true)
                 {
@@ -744,15 +781,10 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-
-                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1662,15 +1694,11 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-
-                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                VENTA A CREDITO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1860,14 +1888,11 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Fecha: "+date+"", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1958,6 +1983,61 @@ namespace sistgre
             button16.Visible = true;
             button17.Visible = false;
 
+        }
+
+        private void Rbcred_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBox19.Visible = true;
+        }
+
+        private void Rbefec_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBox19.Visible = false;
+
+        }
+
+        private void Button18_Click(object sender, EventArgs e)
+        {
+            int codigo;
+            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+            {
+                conn.Open();
+                codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+                conn.Close();
+
+            }
+            string StrQuery1;
+            string StrQuery2;
+            try
+            {
+                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                {
+                    using (SQLiteCommand comm = new SQLiteCommand())
+                    {
+                        comm.Connection = conn;
+                        conn.Open();
+                        for (int i = 0; i < dgvinlist.Rows.Count; i++)
+                        {
+                            StrQuery1 = "insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli) VALUES ('"
+                                + dgvinlist.Rows[i].Cells[1].Value.ToString() + "', '"
+                                + dgvinlist.Rows[i].Cells[2].Value.ToString() + "','"
+                                + dgvinlist.Rows[i].Cells[3].Value.ToString() + "','"
+                                + dgvinlist.Rows[i].Cells[4].Value.ToString() + "','"+codigo+"')";                             
+                            comm.CommandText = StrQuery1;
+                            comm.ExecuteNonQuery();
+                            cns.consultasinreaultado("insert into cp(monto_o,fecha,mont_pag,id_supli_cp)values('" + label47.Text + "','" + DateTime.Now + "','0','" + codigo + "')");
+                            carga();
+
+
+
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 
