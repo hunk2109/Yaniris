@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Yaniris"
+"ProjectName" = "8:Noemi"
 "LanguageId" = "3:3082"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:3082"
@@ -225,12 +225,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_71FBF16BAE1F4587B9341B65970BBE7F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_73F7A289427F400ABCFBE58EAAE5F870"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -431,6 +425,12 @@
         {
         "MsmKey" = "8:_BDF005E5C34F5D33175CDC9158A815EB"
         "OwnerKey" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C37CBBDDBB5E451BA0814ED5089661FA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1186,26 +1186,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71FBF16BAE1F4587B9341B65970BBE7F"
-            {
-            "SourcePath" = "8:C:\\bdd\\factura.s3db"
-            "TargetName" = "8:factura.s3db"
-            "Tag" = "8:"
-            "Folder" = "8:_3D5BB02F245B44A08C42D1003D084064"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_73F7A289427F400ABCFBE58EAAE5F870"
             {
             "SourcePath" = "8:..\\sistgre\\bin\\Debug\\x86\\SQLite.Interop.dll"
@@ -1536,6 +1516,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C37CBBDDBB5E451BA0814ED5089661FA"
+            {
+            "SourcePath" = "8:..\\..\\..\\Desktop\\m_OPs_1.ico"
+            "TargetName" = "8:m_OPs_1.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_FCD31A1809774A52902050D8DACB183A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C530FE6A9EC53905FFA00B8E604EA4EB"
             {
             "AssemblyRegister" = "3:1"
@@ -1811,9 +1811,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Tu Estilo"
+        "ProductName" = "8:Mi Closet"
         "ProductCode" = "8:{6773ACE3-8ED5-45F9-A557-AB720121E0E6}"
-        "PackageCode" = "8:{E3124E3F-3518-4302-BDE4-BE9FC89E0E59}"
+        "PackageCode" = "8:{BE422F15-A1C7-41F3-ABAD-DA95E35C1EAC}"
         "UpgradeCode" = "8:{BF651266-B523-44C2-B429-877E4A733226}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1824,7 +1824,7 @@
         "Manufacturer" = "8:HYC Alianza"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Tu estilo2.0"
+        "Title" = "8:Mi Closet 1.0"
         "Subject" = "8:"
         "ARPCONTACT" = "8:HYC Alianza"
         "Keywords" = "8:"
@@ -1935,7 +1935,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4CEE87BAD39F40ACA53C09DC9B35F871"
             {
-            "Name" = "8:Tu Estilo"
+            "Name" = "8:MI CLOSET"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1944,7 +1944,7 @@
             "Target" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
             "Folder" = "8:_8B9A558469914C7FBA18D799D7B3DDAB"
             "WorkingFolder" = "8:_FCD31A1809774A52902050D8DACB183A"
-            "Icon" = "8:_470D474B9A0D42FEB7C69DCF2545B0E5"
+            "Icon" = "8:_C37CBBDDBB5E451BA0814ED5089661FA"
             "Feature" = "8:"
             }
         }

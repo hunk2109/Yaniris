@@ -215,6 +215,8 @@
             this.button14 = new System.Windows.Forms.Button();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -1738,6 +1740,8 @@
             this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.button17);
+            this.groupBox14.Controls.Add(this.button16);
             this.groupBox14.Controls.Add(this.button15);
             this.groupBox14.Controls.Add(this.lbpfi);
             this.groupBox14.Controls.Add(this.label36);
@@ -2117,6 +2121,27 @@
             // 
             this.printDocument3.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument3_PrintPage);
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(90, 161);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 23;
+            this.button16.Text = "Libre";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.Button16_Click);
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(90, 152);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(119, 33);
+            this.button17.TabIndex = 24;
+            this.button17.Text = "Mostrar Clientes";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Visible = false;
+            this.button17.Click += new System.EventHandler(this.Button17_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2125,7 +2150,7 @@
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Tu Estilo";
+            this.Text = "Mi Closet";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -2373,6 +2398,8 @@
         private System.Windows.Forms.TextBox txtbusd;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }
 

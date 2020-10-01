@@ -730,6 +730,8 @@ namespace sistgre
 
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
             {
+                string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
 
                 SQLiteCommand sqlCmd = new SQLiteCommand("select id_cod as Codigo, produc as Producto, precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod  join factura on id_fact = ven_id_fac   where  ven_id_fac ='" + txtidstore.Text + "'  ", conn);
 
@@ -742,11 +744,16 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                TU ESTILO ALQUILER Y EVENTOS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                AV. MANUEL TAVARES #29", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-602-0307", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
+                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                    Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1644,6 +1651,7 @@ namespace sistgre
             {
 
                 SQLiteCommand sqlCmd = new SQLiteCommand("select id_cod as Codigo, produc as Producto, precio as Precio, cant as Cantidad,Cliente_id_client as Cliente, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod  join factura on id_fact = ven_id_fac   where  ven_id_fac ='" + txtidstore.Text + "'  ", conn);
+                string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
                 conn.Open();
                 SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
@@ -1654,11 +1662,16 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                TU ESTILO ALQUILER Y EVENTOS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                AV. MANUEL TAVARES #29", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-602-0307", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA A CREDITO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
+                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                VENTA A CREDITO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                 Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1835,9 +1848,9 @@ namespace sistgre
         {
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
             {
-
+                
                 SQLiteCommand sqlCmd = new SQLiteCommand(" select  id_p as ID, nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o - monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where id_p='"+txtidpag.Text+"'", conn);
-
+                  string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 conn.Open();
                 SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
 
@@ -1847,9 +1860,14 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 15, FontStyle.Bold);
                 int ancho = 750;
                 int y = 20;
-                e.Graphics.DrawString("                                TU ESTILO ALQUILER Y EVENTOS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                AV. MANUEL TAVARES #29", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-602-0307", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                MI CLOSET", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Fecha: "+date+"", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                DONDE LA TENDECIA ERES TU", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                C/MELLA PLAZA KIMBERLY ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SEGUNDO NIVEL. SAN JOSE DE LAS MATAS", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                 SANTIAGO R.D ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                Tel 829-781-4474", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                                INSTAGRAM: _MICLOSET_", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -1905,7 +1923,7 @@ namespace sistgre
 
         private void TextBox1_TextChanged_3(object sender, EventArgs e)
         {
-            dgvdatcredi.DataSource = cns.cosnsultaconresultado("select   id_p as ID,nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o-monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where Restante > 0 and where nombre = '"+txtbusd.Text+"'");
+            dgvdatcredi.DataSource = cns.cosnsultaconresultado("select   id_p as ID,nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o-monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where Restante > 0 and  nombre like '%"+txtbusd.Text+"%'");
         }
 
         private void Button15_Click(object sender, EventArgs e)
@@ -1922,6 +1940,24 @@ namespace sistgre
             {
 
             }
+        }
+
+        private void Button16_Click(object sender, EventArgs e)
+        {
+            lvclicot.Visible = false;
+            lvcoprod.Visible = true;
+            button16.Visible = false;
+            button17.Visible = true;
+
+        }
+
+        private void Button17_Click(object sender, EventArgs e)
+        {
+            lvclicot.Visible = true;
+            lvcoprod.Visible = false;
+            button16.Visible = true;
+            button17.Visible = false;
+
         }
     }
 
