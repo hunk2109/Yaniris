@@ -59,7 +59,7 @@ namespace sistgre
             dgvinv.DataSource = cns.cosnsultaconresultado("Select * from inventario");
             dgvcli.DataSource = cns.cosnsultaconresultado("select * from cliente");
             dgvfact.DataSource = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total  from ventas   join inventario on id_cod = inventario_id_cod ");
-            dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID,id_supli as Suplidor, monto_o as Monto, fecha as Fecha,mont_pag as Precio ,nombre as Nombre, comp as Compañia from cp join Suplidor on id_supli = id_supli_cp ");
+            dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 ");
             dgvdatcredi.DataSource = cns.cosnsultaconresultado("select   id_p as ID,nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o-monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where Restante > 0");
 
             double sum = 0;
@@ -1295,8 +1295,10 @@ namespace sistgre
         private void dgvcp_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow act = dgvcp.Rows[e.RowIndex];
-            txtidcp.Text = act.Cells["Suplidor"].Value.ToString();
+            txtidcp.Text = act.Cells["ID"].Value.ToString();
             txtnomcp.Text = act.Cells["Nombre"].Value.ToString();
+            txtmontcp.Text = act.Cells["Monto"].Value.ToString();
+            txtmpagcp.Text = act.Cells["Pagado"].Value.ToString();
 
         }
 
@@ -1892,7 +1894,6 @@ namespace sistgre
                 e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -2038,6 +2039,96 @@ namespace sistgre
             {
 
             }
+        }
+
+        private void Button20_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtidcp.Text))
+            {
+                MessageBox.Show("Seleccione una deuda");
+            }
+
+            else
+            {
+                cns.consultasinreaultado("update cp set mont_pag = (mont_pag +'" + txtmotpacp.Text + "') where id_cp = '"+txtidcp.Text+"'");
+                printDocument4 = new PrintDocument();
+                PrinterSettings ps = new PrinterSettings();
+                printDocument3.PrinterSettings = ps;
+                //printDocument4.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+                printDocument4.PrintPage += PrintDocument4_PrintPage;
+                printDocument4.Print();
+                cargtot();
+                txtidcp.Clear();
+                txtnomcp.Clear();
+                txtnomcp.Clear();
+            }
+        }
+
+        private void TextBox1_TextChanged_4(object sender, EventArgs e)
+        {
+            dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 and nombre like '%"+textBox1.Text+"%' ");
+
+        }
+
+        private void PrintDocument4_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            SQLiteCommand sqlCmd = new SQLiteCommand("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 and ID ='" + txtidcp.Text + "'", conn);
+            string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            conn.Open();
+            SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            var format = new StringFormat() { Alignment = StringAlignment.Far };
+            var rect = new RectangleF(0, 20, 20, 20);
+            Font ft = new Font("Arial", 14, FontStyle.Bold);
+            Font ft2 = new Font("Arial", 15, FontStyle.Bold);
+            int ancho = 750;
+            int y = 20;
+            e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("                                Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
+            e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            e.Graphics.DrawString("Suplidor:  " + txtnomcp.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            e.Graphics.DrawString("-------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString("Deuda Original                    Pagado hasta la Fecha                       Monto Pagado", ft, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+            e.Graphics.DrawString("        " +txtmontcp.Text+ "                              "+txtmpagcp.Text+"                                                       "+ txtmotpacp.Text + "", ft, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+
+
+            e.Graphics.DrawString("-------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
+
+
+            while (sqlReader.Read())
+            {
+
+
+
+
+
+
+                e.Graphics.DrawString("Monto Restante: " + sqlReader["Restante"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+
+
+
+
+            }
+            e.Graphics.DrawString("-------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+
+
+
+
+
+
+
+        
+    }
+
+        private void GroupBox12_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 

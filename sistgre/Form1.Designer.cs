@@ -42,7 +42,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtnomcp = new System.Windows.Forms.TextBox();
             this.btnpagcp = new System.Windows.Forms.Button();
-            this.dgvpag = new System.Windows.Forms.DataGridView();
             this.txtmotpacp = new System.Windows.Forms.TextBox();
             this.txtidcp = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -230,11 +229,18 @@
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.printDocument4 = new System.Drawing.Printing.PrintDocument();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtmontcp = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.txtmpagcp = new System.Windows.Forms.TextBox();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvpag)).BeginInit();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcp)).BeginInit();
             this.tabPage9.SuspendLayout();
@@ -296,7 +302,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1312, 490);
+            this.tabPage5.Size = new System.Drawing.Size(1312, 608);
             this.tabPage5.TabIndex = 8;
             this.tabPage5.Text = "Cuentas";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -311,7 +317,7 @@
             this.tabControl2.Location = new System.Drawing.Point(6, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1063, 813);
+            this.tabControl2.Size = new System.Drawing.Size(1063, 931);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage8
@@ -321,7 +327,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1055, 787);
+            this.tabPage8.Size = new System.Drawing.Size(1055, 905);
             this.tabPage8.TabIndex = 0;
             this.tabPage8.Text = "Cuentas  por Pagar";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -330,20 +336,25 @@
             // 
             this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox12.Controls.Add(this.txtmpagcp);
+            this.groupBox12.Controls.Add(this.label53);
+            this.groupBox12.Controls.Add(this.txtmontcp);
+            this.groupBox12.Controls.Add(this.label49);
+            this.groupBox12.Controls.Add(this.button20);
             this.groupBox12.Controls.Add(this.label26);
             this.groupBox12.Controls.Add(this.txtnomcp);
             this.groupBox12.Controls.Add(this.btnpagcp);
-            this.groupBox12.Controls.Add(this.dgvpag);
             this.groupBox12.Controls.Add(this.txtmotpacp);
             this.groupBox12.Controls.Add(this.txtidcp);
             this.groupBox12.Controls.Add(this.label25);
             this.groupBox12.Controls.Add(this.label13);
             this.groupBox12.Location = new System.Drawing.Point(714, 6);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(335, 699);
+            this.groupBox12.Size = new System.Drawing.Size(335, 817);
             this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Pagos";
+            this.groupBox12.Enter += new System.EventHandler(this.GroupBox12_Enter);
             // 
             // label26
             // 
@@ -356,16 +367,17 @@
             // 
             // txtnomcp
             // 
-            this.txtnomcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnomcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtnomcp.Location = new System.Drawing.Point(58, 62);
             this.txtnomcp.Name = "txtnomcp";
+            this.txtnomcp.ReadOnly = true;
             this.txtnomcp.Size = new System.Drawing.Size(100, 26);
             this.txtnomcp.TabIndex = 6;
             // 
             // btnpagcp
             // 
             this.btnpagcp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnpagcp.Location = new System.Drawing.Point(9, 649);
+            this.btnpagcp.Location = new System.Drawing.Point(9, 767);
             this.btnpagcp.Name = "btnpagcp";
             this.btnpagcp.Size = new System.Drawing.Size(75, 41);
             this.btnpagcp.TabIndex = 5;
@@ -373,29 +385,18 @@
             this.btnpagcp.UseVisualStyleBackColor = true;
             this.btnpagcp.Click += new System.EventHandler(this.btnpagcp_Click);
             // 
-            // dgvpag
-            // 
-            this.dgvpag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvpag.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvpag.Location = new System.Drawing.Point(9, 144);
-            this.dgvpag.Name = "dgvpag";
-            this.dgvpag.Size = new System.Drawing.Size(320, 499);
-            this.dgvpag.TabIndex = 4;
-            // 
             // txtmotpacp
             // 
-            this.txtmotpacp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmotpacp.Location = new System.Drawing.Point(89, 101);
+            this.txtmotpacp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmotpacp.Location = new System.Drawing.Point(96, 183);
             this.txtmotpacp.Name = "txtmotpacp";
             this.txtmotpacp.Size = new System.Drawing.Size(100, 26);
             this.txtmotpacp.TabIndex = 3;
             // 
             // txtidcp
             // 
-            this.txtidcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtidcp.Location = new System.Drawing.Point(89, 30);
+            this.txtidcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtidcp.Location = new System.Drawing.Point(89, 25);
             this.txtidcp.Name = "txtidcp";
             this.txtidcp.ReadOnly = true;
             this.txtidcp.Size = new System.Drawing.Size(100, 26);
@@ -404,7 +405,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(8, 109);
+            this.label25.Location = new System.Drawing.Point(15, 191);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(76, 13);
             this.label25.TabIndex = 1;
@@ -415,19 +416,21 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 33);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(76, 13);
+            this.label13.Size = new System.Drawing.Size(79, 13);
             this.label13.TabIndex = 0;
-            this.label13.Text = "ID del Suplidor";
+            this.label13.Text = "ID de la Deuda";
             // 
             // groupBox11
             // 
             this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox11.Controls.Add(this.label48);
+            this.groupBox11.Controls.Add(this.textBox1);
             this.groupBox11.Controls.Add(this.dgvcp);
             this.groupBox11.Location = new System.Drawing.Point(6, 6);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(702, 696);
+            this.groupBox11.Size = new System.Drawing.Size(702, 814);
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Deudas";
@@ -438,10 +441,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvcp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvcp.Location = new System.Drawing.Point(6, 19);
+            this.dgvcp.Location = new System.Drawing.Point(6, 44);
             this.dgvcp.Name = "dgvcp";
             this.dgvcp.ReadOnly = true;
-            this.dgvcp.Size = new System.Drawing.Size(690, 671);
+            this.dgvcp.Size = new System.Drawing.Size(690, 764);
             this.dgvcp.TabIndex = 0;
             this.dgvcp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvcp_CellContentClick);
             // 
@@ -452,7 +455,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(730, 643);
+            this.tabPage9.Size = new System.Drawing.Size(1055, 905);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Cuentas por Cobrar ";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -467,7 +470,7 @@
             this.groupBox17.Controls.Add(this.dgvdatcredi);
             this.groupBox17.Location = new System.Drawing.Point(280, 6);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(444, 621);
+            this.groupBox17.Size = new System.Drawing.Size(769, 883);
             this.groupBox17.TabIndex = 1;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Datos Credito";
@@ -498,7 +501,7 @@
             this.dgvdatcredi.Location = new System.Drawing.Point(6, 67);
             this.dgvdatcredi.Name = "dgvdatcredi";
             this.dgvdatcredi.ReadOnly = true;
-            this.dgvdatcredi.Size = new System.Drawing.Size(432, 548);
+            this.dgvdatcredi.Size = new System.Drawing.Size(757, 810);
             this.dgvdatcredi.TabIndex = 0;
             this.dgvdatcredi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvdatcredi_CellContentClick);
             // 
@@ -2280,6 +2283,73 @@
             this.label47.TabIndex = 4;
             this.label47.Text = "0";
             // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(17, 228);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(121, 23);
+            this.button20.TabIndex = 8;
+            this.button20.Text = "Realizar Pago";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.Button20_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(52, 18);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged_4);
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(6, 22);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(43, 13);
+            this.label48.TabIndex = 2;
+            this.label48.Text = "Buscar:";
+            // 
+            // printDocument4
+            // 
+            this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(12, 115);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(42, 13);
+            this.label49.TabIndex = 9;
+            this.label49.Text = "Original";
+            // 
+            // txtmontcp
+            // 
+            this.txtmontcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmontcp.Location = new System.Drawing.Point(60, 112);
+            this.txtmontcp.Name = "txtmontcp";
+            this.txtmontcp.ReadOnly = true;
+            this.txtmontcp.Size = new System.Drawing.Size(100, 26);
+            this.txtmontcp.TabIndex = 10;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(15, 154);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(44, 13);
+            this.label53.TabIndex = 17;
+            this.label53.Text = "Pagado";
+            // 
+            // txtmpagcp
+            // 
+            this.txtmpagcp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmpagcp.Location = new System.Drawing.Point(58, 151);
+            this.txtmpagcp.Name = "txtmpagcp";
+            this.txtmpagcp.ReadOnly = true;
+            this.txtmpagcp.Size = new System.Drawing.Size(100, 26);
+            this.txtmpagcp.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2295,8 +2365,8 @@
             this.tabPage8.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvpag)).EndInit();
             this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcp)).EndInit();
             this.tabPage9.ResumeLayout(false);
             this.groupBox17.ResumeLayout(false);
@@ -2366,7 +2436,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtnomcp;
         private System.Windows.Forms.Button btnpagcp;
-        private System.Windows.Forms.DataGridView dgvpag;
         private System.Windows.Forms.TextBox txtmotpacp;
         private System.Windows.Forms.TextBox txtidcp;
         private System.Windows.Forms.Label label25;
@@ -2554,6 +2623,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Drawing.Printing.PrintDocument printDocument4;
+        private System.Windows.Forms.TextBox txtmontcp;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox txtmpagcp;
+        private System.Windows.Forms.Label label53;
     }
 }
 
