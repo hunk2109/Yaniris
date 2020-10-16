@@ -175,7 +175,7 @@ namespace sistgre
 
         private void cargtot()
         {
-            combo();
+            rbnom.Checked = true;
             carga();
             prod();
             carhora();
@@ -198,6 +198,7 @@ namespace sistgre
         private void Form1_Load(object sender, EventArgs e)
         {
             cargtot();
+            combo();
 
         }
 
@@ -256,12 +257,12 @@ namespace sistgre
                          conn.Close();
                          cargtot();*/
 
-
+                        
                         string nomb = txtnombprod.Text;
                         string tip = txttipprod.Text;
                         string cant = txtinvcant.Text;
                         string pre = txtpre.Text;
-                        string cod = null;
+                        string cod = txtcodprod.Text;
                       
                         
 
@@ -306,7 +307,7 @@ namespace sistgre
                         codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
 
                     }
-                    cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
+                    cns.consultasinreaultado("insert into inventario(id_cod,produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('"+ txtcodprod.Text+ "','" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
                     carga();
                     conn.Close();
                     cargtot();
@@ -457,6 +458,7 @@ namespace sistgre
 
         private void updatelv()
         {
+            if (rbnom.Checked == true) { 
             try
             {
                 SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
@@ -494,6 +496,53 @@ namespace sistgre
                 MessageBox.Show(ex.Message);
             }
         }
+
+            else if(rbcod.Checked == true)
+            {
+                try
+                {
+                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    {
+                        SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod like '%" + txtbuspord.Text + "'and canti_disp > 0", conn);
+                        conn.Open();
+                        SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                        lvprod.Columns.Clear(); // Clear previously added columns
+                        lvprod.Items.Clear(); // Clear previously populated items
+                        lvprod.View = View.Details;
+
+                        lvprod.Columns.Add("Codigo");
+                        lvprod.Columns.Add("Producto");
+                        lvprod.Columns.Add("Categoria");
+                        lvprod.Columns.Add("Precio");
+                        lvprod.Columns.Add("Disponible");
+
+
+                        while (sqlReader.Read())
+                        {
+                            ListViewItem lv = new ListViewItem(sqlReader[0].ToString());
+                            lv.SubItems.Add(sqlReader[1].ToString());
+                            lv.SubItems.Add(sqlReader[2].ToString());
+                            lv.SubItems.Add(sqlReader[3].ToString());
+                            lv.SubItems.Add(sqlReader[4].ToString());
+                            lvprod.Items.Add(lv);
+
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione una Opcion de buesqueda");
+            }
+        }
+        
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -789,6 +838,8 @@ namespace sistgre
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                    Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
 
 
@@ -797,9 +848,7 @@ namespace sistgre
                 {
 
 
-                    e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                    e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-
+                    
 
 
                     e.Graphics.DrawString(sqlReader["Producto"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
@@ -1706,6 +1755,8 @@ namespace sistgre
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                 Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                 Cliente: " + txtcleivent.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
 
 
@@ -1714,9 +1765,7 @@ namespace sistgre
                 {
 
 
-                    e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                    e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-
+                    
 
 
                     e.Graphics.DrawString(sqlReader["Producto"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
@@ -2019,7 +2068,8 @@ namespace sistgre
                         conn.Open();
                         for (int i = 0; i < dgvinlist.Rows.Count; i++)
                         {
-                            StrQuery1 = "insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli) VALUES ('"
+                            StrQuery1 = "insert into inventario(id_cod,produc,tipo_prod,precio,canti_disp,Suplidor_id_supli) VALUES ('"
+                                + dgvinlist.Rows[i].Cells[0].Value.ToString() + "', '"
                                 + dgvinlist.Rows[i].Cells[1].Value.ToString() + "', '"
                                 + dgvinlist.Rows[i].Cells[2].Value.ToString() + "','"
                                 + dgvinlist.Rows[i].Cells[3].Value.ToString() + "','"
@@ -2028,6 +2078,7 @@ namespace sistgre
                             comm.ExecuteNonQuery();
                             cns.consultasinreaultado("insert into cp(monto_o,fecha,mont_pag,id_supli_cp)values('" + label47.Text + "','" + DateTime.Now + "','0','" + codigo + "')");
                             carga();
+                            dgvinlist.Rows.Clear();
 
 
 
@@ -2061,6 +2112,10 @@ namespace sistgre
                 txtidcp.Clear();
                 txtnomcp.Clear();
                 txtnomcp.Clear();
+                txtmpagcp.Clear();
+                txtmotpacp.Clear();
+                txtmontcp.Clear();
+
             }
         }
 
@@ -2127,6 +2182,236 @@ namespace sistgre
     }
 
         private void GroupBox12_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Txtbuspord_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(txtidstore.Text))
+                    {
+                        DateTime date = DateTime.Now;
+                        var shortDate = date.ToString("dd/MM/yyyy");
+                        cns.consultasinreaultado("INSERT INTO factura (fecha,fec_c) values('" + dtpv.Text + "','" + shortDate + "')");
+
+                        ListViewItem listViewItem1 = new ListViewItem();
+                        ListViewItem lv2 = new ListViewItem();
+                        listViewItem1 = lvprod.SelectedItems[0];
+                        string codigo, codvent;
+
+
+                        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                        {
+                            conn.Open();
+                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
+                            {
+                                codigo = Convert.ToString(dataCommand1.ExecuteScalar());
+
+                            }
+
+                            using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                            {
+                                codvent = Convert.ToString(dataCommand2.ExecuteScalar());
+                                txtidstore.Text = codvent;
+
+                            }
+
+                            conn.Close();
+
+
+                        }
+
+
+        ;
+
+
+
+                        try
+                        {
+                            double p, c, pf;
+                            p = Convert.ToDouble(txtprev.Text);
+                            c = Convert.ToDouble(txtprodcant.Text);
+                            pf = p * c;
+                            txtprfin.Text = pf.ToString();
+
+
+
+
+                            string firstColum = listViewItem1.Text;
+                            string secondColum = codigo;
+                            string tr3 = txtprev.Text;
+                            string tr4 = txtprodcant.Text;
+                            string tr5 = pf.ToString();
+                            string tr1 = codvent.ToString();
+
+                            string[] row = { tr1, firstColum, secondColum, tr3, tr4, tr5 };
+                            dgvventa.Rows.Add(row);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        //if (string.IsNullOrEmpty(txtidstore.Text))
+                        //{
+                        //    txtidstore.Text = dtpv.Text;
+                        //    cns.consultasinreaultado("insert into Ventas (cant,inventario_id_cod,ven_id_fac)values('" + txtprodcant.Text + "','" + listViewItem.Text + "','" + txtidstore.Text + "')");
+                        cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtprodcant.Text + "') where id_cod = '" + listViewItem1.Text + "'");
+                        updatelv();
+
+                        //    cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha) values('" + txtidstore.Text + "','" + dtpv.Text + "')");
+                        //    dgvventa.DataSource = cns.cosnsultaconresultado("select id_cod as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod     where ven_id_fac = '" + txtidstore.Text + "'");
+                        //   updatelv();
+
+
+                        //}
+                        //else
+                        //{
+
+                        //    cns.consultasinreaultado("insert into ventas (cant,inventario_id_cod,ven_id_fac)values('" + txtprodcant.Text + "','" + listViewItem.Text + "','" + txtidstore.Text + "')");
+                        //    cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtprodcant.Text + "') where id_cod = '" + listViewItem.Text + "'");
+                        //    dgvventa.DataSource = cns.cosnsultaconresultado("select id_cod as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod     where ven_id_fac = '" + txtidstore.Text + "'");
+
+                        carga();
+
+
+                        //}
+
+                        double sum = 0;
+                        for (int i = 0; i < dgvventa.Rows.Count; ++i)
+                        {
+                            sum += Convert.ToDouble(dgvventa.Rows[i].Cells[5].Value);
+                        }
+                        txttp.Text = sum.ToString();
+
+                        txtprev.Clear();
+                        txtprodcant.Clear();
+                        txtprfin.Clear();
+
+                    }
+
+                    else
+                    {
+                        ListViewItem listViewItem1 = new ListViewItem();
+                        ListViewItem lv2 = new ListViewItem();
+                        listViewItem1 = lvprod.SelectedItems[0];
+                        string codigo, codvent;
+                        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                        {
+                            conn.Open();
+                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
+                            {
+                                codigo = Convert.ToString(dataCommand1.ExecuteScalar());
+
+                            }
+
+                            using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                            {
+                                codvent = Convert.ToString(dataCommand2.ExecuteScalar());
+
+                            }
+
+                            conn.Close();
+
+
+                        }
+
+
+        ;
+
+
+
+                        try
+                        {
+                            double p, c, pf;
+                            p = Convert.ToDouble(txtprev.Text);
+                            c = Convert.ToDouble(txtprodcant.Text);
+                            pf = p * c;
+                            txtprfin.Text = pf.ToString();
+
+
+
+
+                            string firstColum = listViewItem1.Text;
+                            string secondColum = codigo;
+                            string tr3 = txtprev.Text;
+                            string tr4 = txtprodcant.Text;
+                            string tr5 = pf.ToString();
+                            string tr1 = codvent.ToString();
+
+                            string[] row = { tr1, firstColum, secondColum, tr3, tr4, tr5 };
+                            dgvventa.Rows.Add(row);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        //if (string.IsNullOrEmpty(txtidstore.Text))
+                        //{
+                        //    txtidstore.Text = dtpv.Text;
+                        //    cns.consultasinreaultado("insert into Ventas (cant,inventario_id_cod,ven_id_fac)values('" + txtprodcant.Text + "','" + listViewItem.Text + "','" + txtidstore.Text + "')");
+                        //    cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtprodcant.Text + "') where id_cod = '" + listViewItem.Text + "'");
+                        //    cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha) values('" + txtidstore.Text + "','" + dtpv.Text + "')");
+                        //    dgvventa.DataSource = cns.cosnsultaconresultado("select id_cod as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod     where ven_id_fac = '" + txtidstore.Text + "'");
+
+                        carga();
+
+                        //}
+                        //else
+                        //{
+
+                        //    cns.consultasinreaultado("insert into ventas (cant,inventario_id_cod,ven_id_fac)values('" + txtprodcant.Text + "','" + listViewItem.Text + "','" + txtidstore.Text + "')");
+                        cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtprodcant.Text + "') where id_cod = '" + listViewItem1.Text + "'");
+                        updatelv();
+                        //    dgvventa.DataSource = cns.cosnsultaconresultado("select id_cod as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod     where ven_id_fac = '" + txtidstore.Text + "'");
+                        //    updatelv();
+
+
+                        //}
+
+                        double sum = 0;
+                        for (int i = 0; i < dgvventa.Rows.Count; ++i)
+                        {
+                            sum += Convert.ToDouble(dgvventa.Rows[i].Cells[5].Value);
+                        }
+                        txttp.Text = sum.ToString();
+
+                        txtprev.Clear();
+                        txtprodcant.Clear();
+                        txtprfin.Clear();
+                    }
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        private void Txtpag_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double t, p, d;
+                t = Convert.ToDouble(txttp.Text);
+                p = Convert.ToDouble(txtpag.Text);
+                d = (t - p)*-1;
+                txtdev.Text = d.ToString();
+            }
+            catch(Exception ex)
+            {
+                
+            }
+        }
+
+        private void Btnborrsup_Click(object sender, EventArgs e)
         {
 
         }
