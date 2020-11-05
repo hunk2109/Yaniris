@@ -503,7 +503,7 @@ namespace sistgre
                 {
                     SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
                     {
-                        SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod like '%" + txtbuspord.Text + "'and canti_disp > 0", conn);
+                        SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod like '" + txtbuspord.Text + "%'and canti_disp > 0", conn);
                         conn.Open();
                         SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
 
@@ -826,20 +826,20 @@ namespace sistgre
 
                 var format = new StringFormat() { Alignment = StringAlignment.Far };
                 var rect = new RectangleF(0, 20, 20, 20);
-                Font ft = new Font("Arial", 14, FontStyle.Bold);
-                Font ft2 = new Font("Arial", 15, FontStyle.Bold);
-                int ancho = 750;
+                Font ft = new Font("Arial", 5, FontStyle.Bold);
+                Font ft2 = new Font("Arial", 6, FontStyle.Bold);
+                int ancho = 203;
                 int y = 20;
-                e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("               Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                       VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                    Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("                    Numero de Factura: " + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("DESCRIPCION         PRECIO         Cantidad       Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
 
 
@@ -852,9 +852,9 @@ namespace sistgre
 
 
                     e.Graphics.DrawString(sqlReader["Producto"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                    e.Graphics.DrawString("                                                " + sqlReader["Precio"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                                                     " + sqlReader["Cantidad"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                                                                                          " + sqlReader["Total"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                   " + sqlReader["Precio"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                                            " + sqlReader["Cantidad"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                                                                 " + sqlReader["Total"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
 
 
 
@@ -871,6 +871,9 @@ namespace sistgre
 
             }
 
+
+            
+          
 
         }
 
@@ -1741,22 +1744,20 @@ namespace sistgre
 
                 var format = new StringFormat() { Alignment = StringAlignment.Far };
                 var rect = new RectangleF(0, 20, 20, 20);
-                Font ft = new Font("Arial", 14, FontStyle.Bold);
-                Font ft2 = new Font("Arial", 15, FontStyle.Bold);
-                int ancho = 750;
+                Font ft = new Font("Arial", 5, FontStyle.Bold);
+                Font ft2 = new Font("Arial", 6, FontStyle.Bold);
+                int ancho = 203;
                 int y = 20;
-                e.Graphics.DrawString("                               VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                                VENTA A CREDITO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                      AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("               Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                       VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                                 Numero de Factura:" + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                                 Cliente: " + txtcleivent.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("DESCRIPCION                       PRECIO                    Cantidad                     Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                    Numero de Factura: " + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("                   Cliente: " + txtcleivent.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("-------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("DESCRIPCION         PRECIO         Cantidad       Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
 
 
@@ -1765,21 +1766,25 @@ namespace sistgre
                 {
 
 
-                    
+
 
 
                     e.Graphics.DrawString(sqlReader["Producto"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                    e.Graphics.DrawString("                                                " + sqlReader["Precio"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                                                     " + sqlReader["Cantidad"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                                                                                          " + sqlReader["Total"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                   " + sqlReader["Precio"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                                            " + sqlReader["Cantidad"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
+                    e.Graphics.DrawString("                                                                                 " + sqlReader["Total"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
 
 
 
 
                 }
-                e.Graphics.DrawString("-------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+                e.Graphics.DrawString("-------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
 
                 e.Graphics.DrawString("Total:" + txttp.Text, ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                 ", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                 ", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("HYC                  ", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
 
 
 
@@ -2412,6 +2417,19 @@ namespace sistgre
         }
 
         private void Btnborrsup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Txtnc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtnnp.Focus();
+            }
+            }
+
+        private void Txtnnp_KeyDown(object sender, KeyEventArgs e)
         {
 
         }

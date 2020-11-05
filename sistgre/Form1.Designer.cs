@@ -245,6 +245,16 @@
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
             this.label52 = new System.Windows.Forms.Label();
             this.txtcodsu = new System.Windows.Forms.TextBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtnc = new System.Windows.Forms.TextBox();
+            this.txtnnp = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtnp = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtnca = new System.Windows.Forms.Label();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -288,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage6.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // printDocument1
@@ -1573,7 +1584,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1312, 608);
+            this.tabPage1.Size = new System.Drawing.Size(1442, 806);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Venta";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1582,6 +1593,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.groupBox20);
+            this.groupBox2.Controls.Add(this.button21);
             this.groupBox2.Controls.Add(this.txtdev);
             this.groupBox2.Controls.Add(this.txtpag);
             this.groupBox2.Controls.Add(this.label51);
@@ -1604,7 +1617,7 @@
             this.groupBox2.Controls.Add(this.txtbuspord);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(489, 596);
+            this.groupBox2.Size = new System.Drawing.Size(489, 794);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Productos";
@@ -1827,7 +1840,7 @@
             this.groupBox1.Controls.Add(this.dgvventa);
             this.groupBox1.Location = new System.Drawing.Point(501, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(805, 596);
+            this.groupBox1.Size = new System.Drawing.Size(935, 794);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Venta";
@@ -1835,7 +1848,7 @@
             // button9
             // 
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button9.Location = new System.Drawing.Point(167, 533);
+            this.button9.Location = new System.Drawing.Point(167, 731);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(97, 58);
             this.button9.TabIndex = 15;
@@ -1847,7 +1860,7 @@
             // button8
             // 
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button8.Location = new System.Drawing.Point(167, 529);
+            this.button8.Location = new System.Drawing.Point(167, 727);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(140, 63);
             this.button8.TabIndex = 13;
@@ -1869,7 +1882,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button7.Location = new System.Drawing.Point(30, 530);
+            this.button7.Location = new System.Drawing.Point(30, 728);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(131, 62);
             this.button7.TabIndex = 12;
@@ -1900,7 +1913,7 @@
             // button3
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.Location = new System.Drawing.Point(381, 567);
+            this.button3.Location = new System.Drawing.Point(446, 765);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(84, 23);
             this.button3.TabIndex = 9;
@@ -1911,7 +1924,7 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button2.Location = new System.Drawing.Point(264, 567);
+            this.button2.Location = new System.Drawing.Point(329, 765);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 23);
             this.button2.TabIndex = 8;
@@ -1944,7 +1957,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvventa.Size = new System.Drawing.Size(793, 483);
+            this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
             // 
@@ -2443,6 +2456,107 @@
             this.txtcodsu.Size = new System.Drawing.Size(183, 20);
             this.txtcodsu.TabIndex = 12;
             // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(15, 373);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 42);
+            this.button21.TabIndex = 26;
+            this.button21.Text = "Producto Nuevo";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.textBox6);
+            this.groupBox20.Controls.Add(this.txtnca);
+            this.groupBox20.Controls.Add(this.txtnp);
+            this.groupBox20.Controls.Add(this.label56);
+            this.groupBox20.Controls.Add(this.txtnnp);
+            this.groupBox20.Controls.Add(this.label55);
+            this.groupBox20.Controls.Add(this.txtnc);
+            this.groupBox20.Controls.Add(this.label54);
+            this.groupBox20.Location = new System.Drawing.Point(9, 39);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(474, 187);
+            this.groupBox20.TabIndex = 27;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Nuevo";
+            this.groupBox20.Visible = false;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(6, 20);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(65, 20);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Codigo";
+            // 
+            // txtnc
+            // 
+            this.txtnc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnc.Location = new System.Drawing.Point(76, 19);
+            this.txtnc.Name = "txtnc";
+            this.txtnc.Size = new System.Drawing.Size(100, 26);
+            this.txtnc.TabIndex = 1;
+            this.txtnc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtnc_KeyDown);
+            // 
+            // txtnnp
+            // 
+            this.txtnnp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnnp.Location = new System.Drawing.Point(76, 50);
+            this.txtnnp.Name = "txtnnp";
+            this.txtnnp.Size = new System.Drawing.Size(100, 26);
+            this.txtnnp.TabIndex = 3;
+            this.txtnnp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtnnp_KeyDown);
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(6, 51);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(71, 20);
+            this.label55.TabIndex = 2;
+            this.label55.Text = "Nombre";
+            // 
+            // txtnp
+            // 
+            this.txtnp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnp.Location = new System.Drawing.Point(76, 82);
+            this.txtnp.Name = "txtnp";
+            this.txtnp.Size = new System.Drawing.Size(100, 26);
+            this.txtnp.TabIndex = 5;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(6, 83);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(59, 20);
+            this.label56.TabIndex = 4;
+            this.label56.Text = "Precio";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(93, 117);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 26);
+            this.textBox6.TabIndex = 7;
+            // 
+            // txtnca
+            // 
+            this.txtnca.AutoSize = true;
+            this.txtnca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnca.Location = new System.Drawing.Point(6, 120);
+            this.txtnca.Name = "txtnca";
+            this.txtnca.Size = new System.Drawing.Size(81, 20);
+            this.txtnca.TabIndex = 6;
+            this.txtnca.Text = "Cantidad";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2513,6 +2627,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage6.ResumeLayout(false);
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2732,6 +2848,16 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.TextBox txtcodsu;
         private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label txtnca;
+        private System.Windows.Forms.TextBox txtnp;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox txtnnp;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox txtnc;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Button button21;
     }
 }
 
