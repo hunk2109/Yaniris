@@ -236,6 +236,11 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.dgvcot = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -248,11 +253,8 @@
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtidcred = new System.Windows.Forms.TextBox();
+            this.dtpcot = new System.Windows.Forms.DateTimePicker();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -2152,6 +2154,7 @@
             this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.txtidcred);
             this.groupBox14.Controls.Add(this.button17);
             this.groupBox14.Controls.Add(this.button16);
             this.groupBox14.Controls.Add(this.button15);
@@ -2171,7 +2174,7 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(90, 152);
+            this.button17.Location = new System.Drawing.Point(90, 157);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(119, 33);
             this.button17.TabIndex = 24;
@@ -2186,7 +2189,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 23;
-            this.button16.Text = "Libre";
+            this.button16.Text = "Efectivo";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.Button16_Click);
             // 
@@ -2197,7 +2200,7 @@
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(132, 23);
             this.button15.TabIndex = 22;
-            this.button15.Text = "Quitar de la Cotizacion";
+            this.button15.Text = "Quitar de la Venta";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.Button15_Click);
             // 
@@ -2415,10 +2418,36 @@
             this.dgvcot.Size = new System.Drawing.Size(886, 224);
             this.dgvcot.TabIndex = 2;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Codigo";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Producto";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Precio";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Cantidad";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Total ";
+            this.Column8.Name = "Column8";
+            // 
             // groupBox13
             // 
             this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox13.Controls.Add(this.dtpcot);
             this.groupBox13.Controls.Add(this.pictureBox4);
             this.groupBox13.Controls.Add(this.pictureBox3);
             this.groupBox13.Controls.Add(this.lvcoprod);
@@ -2456,7 +2485,7 @@
             this.lvcoprod.HideSelection = false;
             this.lvcoprod.Location = new System.Drawing.Point(9, 200);
             this.lvcoprod.Name = "lvcoprod";
-            this.lvcoprod.Size = new System.Drawing.Size(381, 417);
+            this.lvcoprod.Size = new System.Drawing.Size(317, 417);
             this.lvcoprod.TabIndex = 3;
             this.lvcoprod.UseCompatibleStateImageBehavior = false;
             this.lvcoprod.Visible = false;
@@ -2527,30 +2556,21 @@
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
             // 
-            // Column4
+            // txtidcred
             // 
-            this.Column4.HeaderText = "Codigo";
-            this.Column4.Name = "Column4";
+            this.txtidcred.Location = new System.Drawing.Point(109, 11);
+            this.txtidcred.Name = "txtidcred";
+            this.txtidcred.ReadOnly = true;
+            this.txtidcred.Size = new System.Drawing.Size(100, 20);
+            this.txtidcred.TabIndex = 9;
             // 
-            // Column5
+            // dtpcot
             // 
-            this.Column5.HeaderText = "Producto";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Precio";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Cantidad";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Total ";
-            this.Column8.Name = "Column8";
+            this.dtpcot.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpcot.Location = new System.Drawing.Point(158, 10);
+            this.dtpcot.Name = "dtpcot";
+            this.dtpcot.Size = new System.Drawing.Size(82, 20);
+            this.dtpcot.TabIndex = 6;
             // 
             // Form1
             // 
@@ -2851,6 +2871,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.TextBox txtidcred;
+        private System.Windows.Forms.DateTimePicker dtpcot;
     }
 }
 

@@ -1464,7 +1464,7 @@ namespace sistgre
 
                     while (sqlReader.Read())
                     {
-
+                        txtidcred.Text = sqlReader["id_client"].ToString();
                         txtcocli.Text = (sqlReader["nombre"].ToString() + " " + sqlReader["apell"].ToString());
                         txtcedcot.Text = sqlReader["cedula"].ToString();
                         txtdireccot.Text = sqlReader["direcc"].ToString();
@@ -1655,6 +1655,7 @@ namespace sistgre
             DataSet ds = new DataSet();
             ds.Tables.Add(dt);
 
+           
             XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
             CrystalReport1 objRpt = new CrystalReport1();
             ds.WriteXml(xmlSave);
@@ -1668,7 +1669,7 @@ namespace sistgre
             //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrdirecc"];
             //TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrtel"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
-
+            vent();
 
             text.Text = txtcocli.Text;
             //text1.Text = txtcedcot.Text;
@@ -1679,10 +1680,69 @@ namespace sistgre
             cr.PrintToPrinter(1, false, 0, 0);
             cr.Close();
             cr.Dispose();
+            dgvcot.Rows.Clear();
+            txtidcred.Clear();
+            txtcocli.Clear();
+            txtcedcli.Clear();
+            txtcedcot.Clear();
+            txtdireccot.Clear();
+            txtcttel.Clear();
+            txtprecot.Clear();
+            txtcantcot.Clear();
+            txtprfcot.Clear();
+            lbpfi.Text = "";
 
 
         }
 
+        private void vent()
+        {
+            string StrQuery;
+
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            {
+
+                try
+                {
+
+
+
+
+                    using (SQLiteCommand comm = new SQLiteCommand())
+                    {
+                        string cod = Convert.ToString(txtidcred.Text);
+                        comm.Connection = conn;
+                        conn.Open();
+                        for (int i = 0; i < dgvcot.Rows.Count; i++)
+                        {
+                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                                + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                                + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                                + cod.ToString() + "','"
+                                + cod.ToString() + "','2')";
+                            comm.CommandText = StrQuery;
+                            comm.ExecuteNonQuery();
+                            carga();
+                            conn.Close();
+                            cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
+
+
+
+
+                        }
+                    }
+                }
+
+
+
+
+
+                catch (Exception ex)
+                {
+                    
+
+                }
+            } }
         private void PictureBox2_Click(object sender, EventArgs e)
         {
             PictureBox pb = pictureBox2 as PictureBox;
@@ -2008,11 +2068,8 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 6, FontStyle.Bold);
                 int ancho = 203;
                 int y = 20;
-                e.Graphics.DrawString("                    VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                    Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                    AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                    Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                    Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                    EZ-Print", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                    Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));                e.Graphics.DrawString("                    Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
