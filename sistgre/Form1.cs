@@ -200,7 +200,7 @@ namespace sistgre
         {
             cargtot();
             combo();
-
+            tabControl1.TabPages.Remove(tabPage1);
         }
 
         public void carhora()
@@ -1612,10 +1612,10 @@ namespace sistgre
                 string tr3 = txtprecot.Text;
                 string tr4 = txtcantcot.Text;
                 string tr5 = pf.ToString();
-                string tr6 = txtcocli.Text;
+                
 
 
-                string[] row = { firstColum, secondColum, tr3, tr4, tr5, tr6 };
+                string[] row = { firstColum, secondColum, tr3, tr4, tr5 };
                 dgvcot.Rows.Add(row);
 
 
@@ -1663,20 +1663,22 @@ namespace sistgre
 
             cotiz f = new cotiz();
             CrystalReport1 cr = new CrystalReport1();
-            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtnombrcr"];
-            TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
-            TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrdirecc"];
-            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrtel"];
+            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrdirecc"];
+            //TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrtel"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
 
 
             text.Text = txtcocli.Text;
-            text1.Text = txtcedcot.Text;
-            text2.Text = txtdireccot.Text;
-            text3.Text = txtcttel.Text;
+            //text1.Text = txtcedcot.Text;
+            //text2.Text = txtdireccot.Text;
+            //text3.Text = txtcttel.Text;
             text4.Text = lbpfi.Text;
-            f.crystalReportViewer1.ReportSource = cr;
-            f.Show();
+            f.crystalReportViewer1.ReportSource = cr;            
+            cr.PrintToPrinter(1, false, 0, 0);
+            cr.Close();
+            cr.Dispose();
 
 
         }
