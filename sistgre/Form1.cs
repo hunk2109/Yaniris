@@ -1635,6 +1635,16 @@ namespace sistgre
 
         private void button13_Click(object sender, EventArgs e)
         {
+            groupBox21.Visible = true;
+            txttpag.Text = lbpfi.Text;
+            txtpagado.Text = "0";
+
+
+
+        }
+
+        private void generar()
+        {
             DataTable dt = new DataTable();
             for (int i = 1; i < dgvcot.Columns.Count + 1; i++)
             {
@@ -1655,7 +1665,7 @@ namespace sistgre
             DataSet ds = new DataSet();
             ds.Tables.Add(dt);
 
-           
+
             XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
             CrystalReport1 objRpt = new CrystalReport1();
             ds.WriteXml(xmlSave);
@@ -1666,17 +1676,17 @@ namespace sistgre
             CrystalReport1 cr = new CrystalReport1();
             TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
-            //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrdirecc"];
-            //TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrtel"];
+            TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
             vent();
 
             text.Text = txtcocli.Text;
             //text1.Text = txtcedcot.Text;
-            //text2.Text = txtdireccot.Text;
-            //text3.Text = txtcttel.Text;
+            text2.Text = txtpagado.Text;
+            text3.Text = txtdevuelta.Text;
             text4.Text = lbpfi.Text;
-            f.crystalReportViewer1.ReportSource = cr;            
+            f.crystalReportViewer1.ReportSource = cr;
             cr.PrintToPrinter(1, false, 0, 0);
             cr.Close();
             cr.Dispose();
@@ -1691,10 +1701,7 @@ namespace sistgre
             txtcantcot.Clear();
             txtprfcot.Clear();
             lbpfi.Text = "";
-
-
         }
-
         private void vent()
         {
             string StrQuery;
@@ -2672,6 +2679,31 @@ namespace sistgre
                 }
             }
 
+        }
+
+        private void Txtpagado_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double ttp, mot, debp;
+                ttp = Convert.ToDouble(txttpag.Text);
+                mot = Convert.ToDouble(txtpagado.Text);
+                debp = mot - ttp;
+                txtdevuelta.Text = debp.ToString();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Btnpag_Click(object sender, EventArgs e)
+        {
+            generar();
+            groupBox21.Visible = false;
+            txttpag.Clear();
+            txtpagado.Clear();
+            txtdevuelta.Clear();
         }
     }
 }
