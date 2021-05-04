@@ -52,7 +52,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "imgt";
-            this.Text = "Tu Estilo";
+            this.Text = "IMG";
             this.Load += new System.EventHandler(this.Imgt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -211,6 +211,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.cbdesc = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.btnpag = new System.Windows.Forms.Button();
+            this.txtdevuelta = new System.Windows.Forms.TextBox();
+            this.txtpagado = new System.Windows.Forms.TextBox();
+            this.txttpag = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txtnfact = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
+            this.txtidcred = new System.Windows.Forms.TextBox();
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -242,27 +256,19 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.dtpcot = new System.Windows.Forms.DateTimePicker();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lvcoprod = new System.Windows.Forms.ListView();
             this.lvclicot = new System.Windows.Forms.ListView();
             this.txtbusclicot = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button14 = new System.Windows.Forms.Button();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
-            this.txtidcred = new System.Windows.Forms.TextBox();
-            this.dtpcot = new System.Windows.Forms.DateTimePicker();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.txttpag = new System.Windows.Forms.TextBox();
-            this.txtpagado = new System.Windows.Forms.TextBox();
-            this.txtdevuelta = new System.Windows.Forms.TextBox();
-            this.btnpag = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -300,6 +306,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcot)).BeginInit();
@@ -307,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage6.SuspendLayout();
-            this.groupBox21.SuspendLayout();
             this.SuspendLayout();
             // 
             // printDocument1
@@ -2079,14 +2085,14 @@
             this.dgvventa.Location = new System.Drawing.Point(6, 39);
             this.dgvventa.Name = "dgvventa";
             this.dgvventa.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
@@ -2133,6 +2139,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
@@ -2148,7 +2155,6 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.groupBox21);
             this.tabPage10.Controls.Add(this.groupBox14);
             this.tabPage10.Controls.Add(this.groupBox13);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
@@ -2164,6 +2170,10 @@
             this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.groupBox21);
+            this.groupBox14.Controls.Add(this.label60);
+            this.groupBox14.Controls.Add(this.txtnfact);
+            this.groupBox14.Controls.Add(this.button22);
             this.groupBox14.Controls.Add(this.txtidcred);
             this.groupBox14.Controls.Add(this.button17);
             this.groupBox14.Controls.Add(this.button16);
@@ -2175,12 +2185,160 @@
             this.groupBox14.Controls.Add(this.button12);
             this.groupBox14.Controls.Add(this.button13);
             this.groupBox14.Controls.Add(this.dgvcot);
-            this.groupBox14.Location = new System.Drawing.Point(408, 15);
+            this.groupBox14.Location = new System.Drawing.Point(418, 22);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(898, 469);
             this.groupBox14.TabIndex = 1;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Cotizacion";
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.cbdesc);
+            this.groupBox21.Controls.Add(this.label61);
+            this.groupBox21.Controls.Add(this.btnpag);
+            this.groupBox21.Controls.Add(this.txtdevuelta);
+            this.groupBox21.Controls.Add(this.txtpagado);
+            this.groupBox21.Controls.Add(this.txttpag);
+            this.groupBox21.Controls.Add(this.label59);
+            this.groupBox21.Controls.Add(this.label58);
+            this.groupBox21.Controls.Add(this.label57);
+            this.groupBox21.Location = new System.Drawing.Point(6, 0);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(571, 190);
+            this.groupBox21.TabIndex = 25;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Devuelta";
+            this.groupBox21.Visible = false;
+            // 
+            // cbdesc
+            // 
+            this.cbdesc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbdesc.FormattingEnabled = true;
+            this.cbdesc.Items.AddRange(new object[] {
+            "5",
+            "7",
+            "10",
+            "15",
+            "20",
+            "0"});
+            this.cbdesc.Location = new System.Drawing.Point(342, 40);
+            this.cbdesc.Name = "cbdesc";
+            this.cbdesc.Size = new System.Drawing.Size(121, 21);
+            this.cbdesc.TabIndex = 8;
+            this.cbdesc.SelectedIndexChanged += new System.EventHandler(this.Cbdesc_SelectedIndexChanged);
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(267, 37);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(110, 48);
+            this.label61.TabIndex = 7;
+            this.label61.Text = "Aplicar \r\nDescuento";
+            this.label61.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // btnpag
+            // 
+            this.btnpag.Location = new System.Drawing.Point(250, 132);
+            this.btnpag.Name = "btnpag";
+            this.btnpag.Size = new System.Drawing.Size(75, 23);
+            this.btnpag.TabIndex = 6;
+            this.btnpag.Text = "Pagar";
+            this.btnpag.UseVisualStyleBackColor = true;
+            this.btnpag.Click += new System.EventHandler(this.Btnpag_Click);
+            // 
+            // txtdevuelta
+            // 
+            this.txtdevuelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdevuelta.Location = new System.Drawing.Point(111, 126);
+            this.txtdevuelta.Name = "txtdevuelta";
+            this.txtdevuelta.Size = new System.Drawing.Size(123, 29);
+            this.txtdevuelta.TabIndex = 5;
+            // 
+            // txtpagado
+            // 
+            this.txtpagado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtpagado.Location = new System.Drawing.Point(97, 81);
+            this.txtpagado.Name = "txtpagado";
+            this.txtpagado.Size = new System.Drawing.Size(133, 29);
+            this.txtpagado.TabIndex = 4;
+            this.txtpagado.TextChanged += new System.EventHandler(this.Txtpagado_TextChanged);
+            // 
+            // txttpag
+            // 
+            this.txttpag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttpag.Location = new System.Drawing.Point(161, 35);
+            this.txttpag.Name = "txttpag";
+            this.txttpag.Size = new System.Drawing.Size(100, 29);
+            this.txttpag.TabIndex = 3;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(14, 129);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(91, 24);
+            this.label59.TabIndex = 2;
+            this.label59.Text = "Devuelta";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(16, 84);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(81, 24);
+            this.label58.TabIndex = 1;
+            this.label58.Text = "Pagado";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(16, 38);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(139, 24);
+            this.label57.TabIndex = 0;
+            this.label57.Text = "Total  a Pagar";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(574, 166);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(68, 13);
+            this.label60.TabIndex = 27;
+            this.label60.Text = "# de Factura";
+            // 
+            // txtnfact
+            // 
+            this.txtnfact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnfact.Location = new System.Drawing.Point(648, 161);
+            this.txtnfact.Name = "txtnfact";
+            this.txtnfact.ReadOnly = true;
+            this.txtnfact.Size = new System.Drawing.Size(100, 22);
+            this.txtnfact.TabIndex = 28;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(230, 422);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(101, 23);
+            this.button22.TabIndex = 26;
+            this.button22.Text = "Cotizacion";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.Button22_Click);
+            // 
+            // txtidcred
+            // 
+            this.txtidcred.Location = new System.Drawing.Point(109, 11);
+            this.txtidcred.Name = "txtidcred";
+            this.txtidcred.ReadOnly = true;
+            this.txtidcred.Size = new System.Drawing.Size(100, 20);
+            this.txtidcred.TabIndex = 9;
             // 
             // button17
             // 
@@ -2340,7 +2498,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(26, 37);
+            this.label31.Location = new System.Drawing.Point(37, 33);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(37, 13);
             this.label31.TabIndex = 11;
@@ -2471,6 +2629,14 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Datos";
             // 
+            // dtpcot
+            // 
+            this.dtpcot.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpcot.Location = new System.Drawing.Point(158, 10);
+            this.dtpcot.Name = "dtpcot";
+            this.dtpcot.Size = new System.Drawing.Size(82, 20);
+            this.dtpcot.TabIndex = 6;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Location = new System.Drawing.Point(6, 32);
@@ -2533,6 +2699,15 @@
             this.label27.TabIndex = 1;
             this.label27.Text = "Buscar";
             // 
+            // tabPage11
+            // 
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage11.TabIndex = 10;
+            this.tabPage11.Text = "Cotizacion";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.button14);
@@ -2565,104 +2740,6 @@
             // printDocument4
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
-            // 
-            // txtidcred
-            // 
-            this.txtidcred.Location = new System.Drawing.Point(109, 11);
-            this.txtidcred.Name = "txtidcred";
-            this.txtidcred.ReadOnly = true;
-            this.txtidcred.Size = new System.Drawing.Size(100, 20);
-            this.txtidcred.TabIndex = 9;
-            // 
-            // dtpcot
-            // 
-            this.dtpcot.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpcot.Location = new System.Drawing.Point(158, 10);
-            this.dtpcot.Name = "dtpcot";
-            this.dtpcot.Size = new System.Drawing.Size(82, 20);
-            this.dtpcot.TabIndex = 6;
-            // 
-            // groupBox21
-            // 
-            this.groupBox21.Controls.Add(this.btnpag);
-            this.groupBox21.Controls.Add(this.txtdevuelta);
-            this.groupBox21.Controls.Add(this.txtpagado);
-            this.groupBox21.Controls.Add(this.txttpag);
-            this.groupBox21.Controls.Add(this.label59);
-            this.groupBox21.Controls.Add(this.label58);
-            this.groupBox21.Controls.Add(this.label57);
-            this.groupBox21.Location = new System.Drawing.Point(408, 16);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(581, 190);
-            this.groupBox21.TabIndex = 25;
-            this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Devuelta";
-            this.groupBox21.Visible = false;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(16, 38);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(139, 24);
-            this.label57.TabIndex = 0;
-            this.label57.Text = "Total  a Pagar";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.Location = new System.Drawing.Point(16, 84);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(81, 24);
-            this.label58.TabIndex = 1;
-            this.label58.Text = "Pagado";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(14, 129);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(91, 24);
-            this.label59.TabIndex = 2;
-            this.label59.Text = "Devuelta";
-            // 
-            // txttpag
-            // 
-            this.txttpag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttpag.Location = new System.Drawing.Point(161, 35);
-            this.txttpag.Name = "txttpag";
-            this.txttpag.Size = new System.Drawing.Size(100, 29);
-            this.txttpag.TabIndex = 3;
-            // 
-            // txtpagado
-            // 
-            this.txtpagado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpagado.Location = new System.Drawing.Point(97, 81);
-            this.txtpagado.Name = "txtpagado";
-            this.txtpagado.Size = new System.Drawing.Size(133, 29);
-            this.txtpagado.TabIndex = 4;
-            this.txtpagado.TextChanged += new System.EventHandler(this.Txtpagado_TextChanged);
-            // 
-            // txtdevuelta
-            // 
-            this.txtdevuelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdevuelta.Location = new System.Drawing.Point(111, 126);
-            this.txtdevuelta.Name = "txtdevuelta";
-            this.txtdevuelta.Size = new System.Drawing.Size(123, 29);
-            this.txtdevuelta.TabIndex = 5;
-            // 
-            // btnpag
-            // 
-            this.btnpag.Location = new System.Drawing.Point(250, 132);
-            this.btnpag.Name = "btnpag";
-            this.btnpag.Size = new System.Drawing.Size(75, 23);
-            this.btnpag.TabIndex = 6;
-            this.btnpag.Text = "Pagar";
-            this.btnpag.UseVisualStyleBackColor = true;
-            this.btnpag.Click += new System.EventHandler(this.Btnpag_Click);
             // 
             // Form1
             // 
@@ -2725,6 +2802,8 @@
             this.tabPage10.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);
@@ -2735,8 +2814,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2975,6 +3052,12 @@
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox txtnfact;
+        private System.Windows.Forms.ComboBox cbdesc;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TabPage tabPage11;
     }
 }
 

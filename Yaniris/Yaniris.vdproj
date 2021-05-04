@@ -453,6 +453,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DC25AF51C5434905ABD4D4E249416BC3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E786DDAC51D4F8651EA0C8F9B67ED969"
         "OwnerKey" = "8:_89ACAB244295D0A51F7AD170E52E93EF"
         "MsmSig" = "8:_UNDEFINED"
@@ -1584,6 +1590,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC25AF51C5434905ABD4D4E249416BC3"
+            {
+            "SourcePath" = "8:..\\..\\..\\Desktop\\screenshot_2021_04_13_ez_printt___ez_printt_pdf_krO_icon.ico"
+            "TargetName" = "8:screenshot_2021_04_13_ez_printt___ez_printt_pdf_krO_icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_3D5BB02F245B44A08C42D1003D084064"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E786DDAC51D4F8651EA0C8F9B67ED969"
             {
             "AssemblyRegister" = "3:1"
@@ -1830,7 +1856,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VANESSA"
         "ProductCode" = "8:{7D662B88-E0E5-4126-B53E-28107FB78559}"
-        "PackageCode" = "8:{7DAF87CA-648D-4991-98D1-93DD8F5F957B}"
+        "PackageCode" = "8:{0029B532-5D5C-463B-B737-8438433CFD31}"
         "UpgradeCode" = "8:{BF651266-B523-44C2-B429-877E4A733226}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1952,7 +1978,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4CEE87BAD39F40ACA53C09DC9B35F871"
             {
-            "Name" = "8:Variedades Nathalie"
+            "Name" = "8:E-Z Print"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1961,7 +1987,7 @@
             "Target" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
             "Folder" = "8:_8B9A558469914C7FBA18D799D7B3DDAB"
             "WorkingFolder" = "8:_FCD31A1809774A52902050D8DACB183A"
-            "Icon" = "8:"
+            "Icon" = "8:_DC25AF51C5434905ABD4D4E249416BC3"
             "Feature" = "8:"
             }
         }

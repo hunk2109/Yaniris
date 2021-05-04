@@ -201,6 +201,7 @@ namespace sistgre
             cargtot();
             combo();
             tabControl1.TabPages.Remove(tabPage1);
+            cbdesc.Text = "0";
         }
 
         public void carhora()
@@ -610,7 +611,7 @@ namespace sistgre
                 {
                     DateTime date = DateTime.Now;
                     var shortDate = date.ToString("dd/MM/yyyy");
-                    cns.consultasinreaultado("INSERT INTO factura (fecha,fec_c) values('" + dtpv.Text + "','" + shortDate + "')");
+                    cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c) values('"+txtnfact.Text+"','" + dtpcot.Text + "','" + shortDate + "')");
 
                     ListViewItem listViewItem1 = new ListViewItem();
                     ListViewItem lv2 = new ListViewItem();
@@ -627,7 +628,7 @@ namespace sistgre
 
                         }
 
-                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(id_fac) FROM factura);'", conn))
                         {
                             codvent = Convert.ToString(dataCommand2.ExecuteScalar());
                             txtidstore.Text = codvent;
@@ -1567,7 +1568,8 @@ namespace sistgre
             ListViewItem listViewItem1 = new ListViewItem();
             ListViewItem lv2 = new ListViewItem();
             listViewItem1 = lvcoprod.SelectedItems[0];
-            string codigo, codvent;
+            string codigo;
+            int codvent;
 
 
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
@@ -1579,10 +1581,18 @@ namespace sistgre
 
                 }
 
-                using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                if (string.IsNullOrEmpty(txtnfact.Text))
                 {
-                    codvent = Convert.ToString(dataCommand2.ExecuteScalar());
+                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE id_fact IN(SELECT max(id_fact) FROM factura);;'", conn))
+                    {
+                        codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
+                        txtnfact.Text = (codvent + 1).ToString();
 
+
+                    }
+                }
+                else
+                {
 
                 }
 
@@ -1625,9 +1635,53 @@ namespace sistgre
                     sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
                 }
                 lbpfi.Text = sum.ToString();
+                cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtcantcot.Text + "') where id_cod = '" + listViewItem1.Text + "'");
+                ACTPROD();
             }
 
+
             catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void ACTPROD()
+        {
+
+            try
+            {
+                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                {
+                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where  canti_disp > 0", conn);
+                    conn.Open();
+                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    lvcoprod.Columns.Clear(); // Clear previously added columns
+                    lvcoprod.Items.Clear(); // Clear previously populated items
+                    lvcoprod.View = View.Details;
+
+                    lvcoprod.Columns.Add("Codigo");
+                    lvcoprod.Columns.Add("Producto");
+                    lvcoprod.Columns.Add("Categoria");
+                    lvcoprod.Columns.Add("Precio");
+                    lvcoprod.Columns.Add("Disponible");
+
+
+                    while (sqlReader.Read())
+                    {
+                        ListViewItem lv = new ListViewItem(sqlReader[0].ToString());
+                        lv.SubItems.Add(sqlReader[1].ToString());
+                        lv.SubItems.Add(sqlReader[2].ToString());
+                        lv.SubItems.Add(sqlReader[3].ToString());
+                        lv.SubItems.Add(sqlReader[4].ToString());
+                        lvcoprod.Items.Add(lv);
+
+
+                    }
+                }
+            }
+            catch 
             {
 
             }
@@ -1674,6 +1728,7 @@ namespace sistgre
 
             cotiz f = new cotiz();
             CrystalReport1 cr = new CrystalReport1();
+
             TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
             TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
@@ -1685,11 +1740,18 @@ namespace sistgre
             //text1.Text = txtcedcot.Text;
             text2.Text = txtpagado.Text;
             text3.Text = txtdevuelta.Text;
-            text4.Text = lbpfi.Text;
+            double des, tot, resul;
+            tot = Convert.ToDouble(lbpfi.Text);
+            des = Convert.ToDouble(cbdesc.Text);
+            resul = tot - tot * (des / 100);
+            text4.Text = resul.ToString();
             f.crystalReportViewer1.ReportSource = cr;
             cr.PrintToPrinter(1, false, 0, 0);
+            DateTime date = DateTime.Now;
+            var shortDate = date.ToString("dd/MM/yyyy");
+            cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c) values('" + txtnfact.Text + "','" + dtpcot.Text + "','" + shortDate + "')");
             cr.Close();
-            cr.Dispose();
+            cr.Dispose();            
             dgvcot.Rows.Clear();
             txtidcred.Clear();
             txtcocli.Clear();
@@ -1701,6 +1763,30 @@ namespace sistgre
             txtcantcot.Clear();
             txtprfcot.Clear();
             lbpfi.Text = "";
+
+        }
+
+        private void copia()
+        {
+            cotiz f = new cotiz();
+            CrystalReport3 cr = new CrystalReport3();
+
+            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
+            TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+            
+
+            text.Text = txtcocli.Text;
+            //text1.Text = txtcedcot.Text;
+            text2.Text = txtpagado.Text;
+            text3.Text = txtdevuelta.Text;
+            text4.Text = lbpfi.Text;
+            f.crystalReportViewer1.ReportSource = cr;
+            cr.PrintToPrinter(1, false, 0, 0);
+            cr.Close();
+            cr.Dispose();
         }
         private void vent()
         {
@@ -1711,7 +1797,60 @@ namespace sistgre
 
                 try
                 {
+                    if (string.IsNullOrEmpty(txtidcred.Text))
+                    {
+                        using (SQLiteCommand comm = new SQLiteCommand())
+                        {
+                            string cod = Convert.ToString(txtidcred.Text);
+                            comm.Connection = conn;
+                            conn.Open();
+                            for (int i = 0; i < dgvcot.Rows.Count; i++)
+                            {
+                                StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                                    + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                                    + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                                    + cod.ToString() + "','"
+                                    + txtnfact.Text + "','1')";
+                                comm.CommandText = StrQuery;
+                                comm.ExecuteNonQuery();
+                                carga();
+                                conn.Close();
+                                
 
+
+
+
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        using (SQLiteCommand comm = new SQLiteCommand())
+                        {
+                            string cod = Convert.ToString(txtidcred.Text);
+                            comm.Connection = conn;
+                            conn.Open();
+                            for (int i = 0; i < dgvcot.Rows.Count; i++)
+                            {
+                                StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                                    + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                                    + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                                    + cod.ToString() + "','"
+                                    + txtnfact.Text + "','2')";
+                                comm.CommandText = StrQuery;
+                                comm.ExecuteNonQuery();
+                                carga();
+                                conn.Close();
+                                cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
+
+
+
+
+                            }
+                        }
+                        
+                    }
 
 
 
@@ -1726,7 +1865,7 @@ namespace sistgre
                                 + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                 + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
                                 + cod.ToString() + "','"
-                                + cod.ToString() + "','2')";
+                                + txtnfact.Text + "','2')";
                             comm.CommandText = StrQuery;
                             comm.ExecuteNonQuery();
                             carga();
@@ -2704,6 +2843,69 @@ namespace sistgre
             txttpag.Clear();
             txtpagado.Clear();
             txtdevuelta.Clear();
+            txtnfact.Clear();
+        }
+
+        private void Button22_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            for (int i = 1; i < dgvcot.Columns.Count + 1; i++)
+            {
+                DataColumn column = new DataColumn(dgvcot.Columns[i - 1].HeaderText);
+                dt.Columns.Add(column);
+            }
+            int columnCount = dgvcot.Columns.Count;
+            foreach (DataGridViewRow dr in dgvcot.Rows)
+            {
+                DataRow dataRow = dt.NewRow();
+                for (int i = 0; i < columnCount; i++)
+                {
+                    //returns checkboxes and dropdowns as string with .value..... nearly got it
+                    dataRow[i] = dr.Cells[i].Value;
+                }
+                dt.Rows.Add(dataRow);
+            }
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+
+
+            XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
+            CrystalReport1 objRpt = new CrystalReport1();
+            ds.WriteXml(xmlSave);
+            xmlSave.Close();
+
+
+            cotiz f = new cotiz();
+            CrystalReport1 cr = new CrystalReport1();
+            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
+            TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+            vent();
+
+            text.Text = txtcocli.Text;
+            //text1.Text = txtcedcot.Text;
+            text2.Text = txtpagado.Text;
+            text3.Text = txtdevuelta.Text;
+            text4.Text = lbpfi.Text;
+        }
+
+        private void Cbdesc_SelectedIndexChanged(object sender, EventArgs e)
+        { int val;
+            val = Convert.ToInt32(cbdesc.Text);
+            if(val >= 10)
+            {
+                MessageBox.Show("Necesitas Permsisos de admistrador, consulta a Vanesa");
+                cbdesc.Text = "0";
+
+            }
+
+            else
+            {
+
+            }
+
         }
     }
 }
