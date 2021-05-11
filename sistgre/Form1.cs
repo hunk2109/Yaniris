@@ -303,29 +303,46 @@ namespace sistgre
 
                 else if (rbefec.Checked == true)
                 {
-                    using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                    SQLiteDataAdapter ad;
+                    DataTable dt = new DataTable();
+                    SQLiteCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = "select id_Cod from inventario where id_Cod = '" + txtcodprod.Text + "'";
+                    ad = new SQLiteDataAdapter(cmd);
+
+                    DataSet ds = new DataSet();
+                    ad.Fill(dt);
+                    ds.Tables.Add(dt);
+                    if (dt.Rows.Count > 0)
                     {
-                        conn.Open();
-                        codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+                        MessageBox.Show("Este Codigo existe");
+                    }
+
+                    else
+                    {
+                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                        {
+                            conn.Open();
+                            codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+
+                        }
+                        cns.consultasinreaultado("insert into inventario(id_cod,produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtcodprod.Text + "','" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
+                        carga();
+                        conn.Close();
+                        cargtot();
+                        pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                        txtcodprod.Clear();
+                        txtnombprod.Clear();
+                        txttipprod.Clear();
+                        txtprodcant.Clear();
+                        txtpre.Clear();
+                        txtinvcant.Clear();
+
 
                     }
-                    cns.consultasinreaultado("insert into inventario(id_cod,produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtcodprod.Text + "','" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
-                    carga();
-                    conn.Close();
-                    cargtot();
-                    pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
-                    txtcodprod.Clear();
-                    txtnombprod.Clear();
-                    txttipprod.Clear();
-                    txtprodcant.Clear();
-                    txtpre.Clear();
-                    txtinvcant.Clear();
-
-
                 }
             }
-        }
 
+        }
         private void lxbprod_SelectedIndexChanged(object sender, EventArgs e)
         {
             fillda();
@@ -1728,12 +1745,19 @@ namespace sistgre
 
             cotiz f = new cotiz();
             CrystalReport1 cr = new CrystalReport1();
+            CrystalReport3 cr2 = new CrystalReport3();
 
             TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
             TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
             TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+
+            TextObject text5 = (TextObject)cr2.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            TextObject text6 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text7 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
+            TextObject text8 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
             vent();
 
             text.Text = txtcocli.Text;
@@ -2280,6 +2304,12 @@ namespace sistgre
                 if (this.dgvcot.SelectedRows.Count > 0)
                 {
                     dgvcot.Rows.RemoveAt(this.dgvcot.SelectedRows[0].Index);
+                    double sum = 0;
+                    for (int i = 0; i < dgvcot.Rows.Count; ++i)
+                    {
+                        sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
+                    }
+                    lbpfi.Text = sum.ToString();
                 }
 
             }
