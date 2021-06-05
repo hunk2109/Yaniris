@@ -1,6 +1,6 @@
 ﻿namespace sistgre
 {
-    partial class cotiz
+    partial class reimpre
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.CrystalReport51 = new sistgre.CrystalReport5();
+            this.CrystalReport61 = new sistgre.CrystalReport6();
+            this.crystalReportViewer2 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.CrystalReport62 = new sistgre.CrystalReport6();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -40,26 +42,40 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.CrystalReport51;
+            this.crystalReportViewer1.ReportSource = this.CrystalReport61;
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
-            this.crystalReportViewer1.Load += new System.EventHandler(this.CrystalReportViewer1_Load);
             // 
-            // cotiz
+            // crystalReportViewer2
+            // 
+            this.crystalReportViewer2.ActiveViewIndex = 0;
+            this.crystalReportViewer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.crystalReportViewer2.Location = new System.Drawing.Point(0, 0);
+            this.crystalReportViewer2.Name = "crystalReportViewer2";
+            this.crystalReportViewer2.ReportSource = this.CrystalReport62;
+            this.crystalReportViewer2.Size = new System.Drawing.Size(800, 450);
+            this.crystalReportViewer2.TabIndex = 1;
+            // 
+            // reimpre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.crystalReportViewer2);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "cotiz";
-            this.Text = "cotiz";
+            this.Name = "reimpre";
+            this.Text = "reimpre";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private CrystalReport5 CrystalReport51;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private CrystalReport6 CrystalReport61;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer2;
+        private CrystalReport6 CrystalReport62;
     }
 }

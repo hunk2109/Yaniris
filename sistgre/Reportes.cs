@@ -59,6 +59,27 @@ namespace sistgre
                 lbto.Text = sum.ToString();
             }
 
+            else if (rbfact.Checked == true)
+            {
+               DataSet ds = new DataSet();
+
+                DataTable dt = cns.cosnsultaconresultado("select id_fact as ID,fecha as Fecha,ttdv as Total from factura where fecha  >= '" + dateTimePicker1.Text + "' and  fecha <='" + dateTimePicker2.Text + "'");
+
+                ds.Tables.Add(dt);
+                double sum = 0;
+                ds.WriteXml(@"C:\bdd\factura.xml");
+                dgvrepor.DataSource = dt;
+                for (int i = 0; i < dgvrepor.Rows.Count; ++i)
+                {
+                    sum += Convert.ToDouble(dgvrepor.Rows[i].Cells[2].Value);
+                }
+                lbto.Text = sum.ToString();
+                button3.Visible = true;
+                button4.Visible = true;
+                label3.Visible = true;
+
+            }
+
             else
             {
                 MessageBox.Show("Seleccione un tipo de entrada");
@@ -85,6 +106,11 @@ namespace sistgre
                 enc = "Reporte de entradas en efectivo hasta la Fecha";
                 TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["Text9"];
                 text1.Text = enc;
+                TextObject text = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["Text8"];
+                text.Text = lbto.Text;
+
+                f.crystalReportViewer1.ReportSource = cr;
+                f.Show();
             }
             else if (rbcred.Checked)
             {
@@ -92,13 +118,93 @@ namespace sistgre
                 enc = "Reporte de entradas a Credito hasta la Fecha";
                 TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["Text9"];
                 text1.Text = enc;
+                TextObject text = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["Text8"];
+                text.Text = lbto.Text;
+
+                f.crystalReportViewer1.ReportSource = cr;
+                f.Show();
             }
             
-            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["Text8"];
-            text.Text = lbto.Text;
+           
 
-            f.crystalReportViewer1.ReportSource = cr;
-            f.Show();
+            else if(rbfact.Checked == true)
+            {
+
+            }
+        }
+
+        private void Dgvrepor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(rbfact.Checked == true)
+            {
+                DataGridViewRow act =dgvrepor.Rows[e.RowIndex];
+                label3.Text = act.Cells["ID"].Value.ToString();
+
+
+
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (label3.Text == "Factura")
+            {
+
+            }
+            else
+            {
+                DataSet ds = new DataSet();
+
+                DataTable dt = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total,fecha from ventas   join inventario on id_cod = inventario_id_cod   INNER JOIN factura on id_fact = ven_id_fac where  id_fact = '" + label3.Text + "'");
+                ds.Tables.Add(dt);               
+                ds.WriteXml(@"C:\bdd\reipre.xml");
+                label3.Text = "Factura";
+                reimpre f = new reimpre();
+                f.Show();
+            }
+            
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label3_TextChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+
+            DataTable dt = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total,fecha from ventas   join inventario on id_cod = inventario_id_cod   INNER JOIN factura on id_fact = ven_id_fac where  ven_id_fac = '"+label3.Text+"'");
+
+            ds.Tables.Add(dt);
+            double sum = 0;
+            ds.WriteXml(@"C:\bdd\reporte.xml");
+            dgvrepor.DataSource = dt;
+            for (int i = 0; i < dgvrepor.Rows.Count; ++i)
+            {
+                sum += Convert.ToDouble(dgvrepor.Rows[i].Cells[4].Value);
+            }
+            lbto.Text = sum.ToString();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            if (label3.Text == "Factura")
+            {
+
+            }
+            else
+            {
+
+
+                if (MessageBox.Show("Seguro desea Borrar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cns.consultasinreaultado("delete from Factura where id_fact = '" + label3.Text + "'");
+                    cns.consultasinreaultado("delete from ventas where ven_id_fac = '" + label3.Text + "'");
+                    label3.Text = "Factura";
+
+                }
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using System.Drawing.Drawing2D;
+using Microsoft.VisualBasic;
 
 namespace sistgre
 {
@@ -62,7 +63,7 @@ namespace sistgre
             dgvfact.DataSource = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total  from ventas   join inventario on id_cod = inventario_id_cod ");
             dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 ");
             dgvdatcredi.DataSource = cns.cosnsultaconresultado("select   id_p as ID,nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o-monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where Restante > 0");
-
+            dgvdencar.DataSource = cns.cosnsultaconresultado("select id_client as ID,nombre as Nombre,apell as Apellido,Cedula,direcc as Direccion,tel as Telefono from cliente");
             double sum = 0;
             for (int i = 0; i < dgvfact.Rows.Count; ++i)
             {
@@ -198,10 +199,14 @@ namespace sistgre
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             cargtot();
             combo();
             tabControl1.TabPages.Remove(tabPage1);
             cbdesc.Text = "0";
+            lbpfi.Text = "0";
+            textBox6.Text = "0";
+            textBox5.Text = "No";
         }
 
         public void carhora()
@@ -314,7 +319,7 @@ namespace sistgre
                     ds.Tables.Add(dt);
                     if (dt.Rows.Count > 0)
                     {
-                        MessageBox.Show("Este Codigo existe");
+                        MessageBox.Show("Este Codigo Existe");
                     }
 
                     else
@@ -325,7 +330,7 @@ namespace sistgre
                             codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
 
                         }
-                        cns.consultasinreaultado("insert into inventario(id_cod,produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtcodprod.Text + "','" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
+                        cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
                         carga();
                         conn.Close();
                         cargtot();
@@ -628,7 +633,7 @@ namespace sistgre
                 {
                     DateTime date = DateTime.Now;
                     var shortDate = date.ToString("dd/MM/yyyy");
-                    cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c) values('"+txtnfact.Text+"','" + dtpcot.Text + "','" + shortDate + "')");
+                    cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c) values('" + txtnfact.Text + "','" + dtpcot.Text + "','" + shortDate + "')");
 
                     ListViewItem listViewItem1 = new ListViewItem();
                     ListViewItem lv2 = new ListViewItem();
@@ -834,15 +839,7 @@ namespace sistgre
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
-            {
-                string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-
-                SQLiteCommand sqlCmd = new SQLiteCommand("select id_cod as Codigo, produc as Producto, precio as Precio, cant as Cantidad, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod  join factura on id_fact = ven_id_fac   where  ven_id_fac ='" + txtidstore.Text + "'  ", conn);
-
-                conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+            
 
                 var format = new StringFormat() { Alignment = StringAlignment.Far };
                 var rect = new RectangleF(0, 20, 20, 20);
@@ -850,113 +847,16 @@ namespace sistgre
                 Font ft2 = new Font("Arial", 8, FontStyle.Bold);
                 int ancho = 290;
                 int y = 20;
-                string filepath = "C:\\factura\\logo.png";
-                System.Drawing.Image image = Image.FromFile(filepath);
+               
+
                 
-                //e.Graphics.DrawImage(image, 0, 0);
 
-                // Make the destination rectangle 30 percent wider and
-                // 30 percent taller than the original image.
-                // Put the upper-left corner of the destination
-                // rectangle at (150, 20).
-                int width = image.Width;
-                int height = image.Height;
-                RectangleF destinationRect = new RectangleF(
-                    150,
-                    20,
-                    1.3f * width,
-                    1.3f * height);
-
-                // Draw a portion of the image. Scale that portion of the image
-                // so that it fills the destination rectangle.
-                RectangleF sourceRect = new RectangleF(0, 0, .75f * width, .75f * height);
-                //e.Graphics.DrawImage(
-                //    image,
-                //    destinationRect,
-                //    sourceRect,
-                //    GraphicsUnit.Pixel);
-                e.Graphics.DrawString("                      VARIEDADES NATHALIE", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                      Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                      AV.DR.MORILLO #29 ", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("               Tel 829-781-4474          RNC. 036001734", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                       VENTA AL CONTADO", ft2, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
-                e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("                    Numero de Factura: " + txtidstore.Text, ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("---------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-                e.Graphics.DrawString("DESCRIPCION         PRECIO         Cantidad       Importe", ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 40));
-
-
-
-
-                while (sqlReader.Read())
-                {
-
-
-
-
-
-                    e.Graphics.DrawString(sqlReader["Producto"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                    e.Graphics.DrawString("                                   " + sqlReader["Precio"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                            " + sqlReader["Cantidad"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 20));
-                    e.Graphics.DrawString("                                                                                 " + sqlReader["Total"].ToString(), ft, Brushes.Black, new RectangleF(0, y += 0, ancho, 40));
-
-
-
-
-                }
-                e.Graphics.DrawString("-------------------------------------------------------------------------------------------------", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
-
-                e.Graphics.DrawString("Total:" + txttp.Text, ft, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-
-
-
-
-
+                e.Graphics.DrawString("ESC d", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
             }
+        
 
-
-
-
-        }
-        private void resizeImage(string path, string originalFilename,
-                     /* note changed names */
-                     int canvasWidth, int canvasHeight,
-                     /* new */
-                     int originalWidth, int originalHeight)
-        {
-            Image image = Image.FromFile(path + originalFilename);
-
-            System.Drawing.Image thumbnail =
-                new Bitmap(canvasWidth, canvasHeight); // changed parm names
-            System.Drawing.Graphics graphic =
-                         System.Drawing.Graphics.FromImage(thumbnail);
-
-            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphic.SmoothingMode = SmoothingMode.HighQuality;
-            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            graphic.CompositingQuality = CompositingQuality.HighQuality;
-
-            /* ------------------ new code --------------- */
-
-            // Figure out the ratio
-            double ratioX = (double)canvasWidth / (double)originalWidth;
-            double ratioY = (double)canvasHeight / (double)originalHeight;
-            // use whichever multiplier is smaller
-            double ratio = ratioX < ratioY ? ratioX : ratioY;
-
-            // now we can get the new height and width
-            int newHeight = Convert.ToInt32(originalHeight * ratio);
-            int newWidth = Convert.ToInt32(originalWidth * ratio);
-
-            // Now calculate the X,Y position of the upper-left corner 
-            // (one of these will always be zero)
-            int posX = Convert.ToInt32((canvasWidth - (originalWidth * ratio)) / 2);
-            int posY = Convert.ToInt32((canvasHeight - (originalHeight * ratio)) / 2);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+            private void button3_Click(object sender, EventArgs e)
         {
             button7.Visible = true;
             button8.Visible = true;
@@ -1345,7 +1245,7 @@ namespace sistgre
                     {
                         comm.Connection = conn;
                         conn.Open();
-                        for (int i = 0; i < dgvventa.Rows.Count; i++)
+                        for (int i = 0; i < dgvventa.Rows.Count - 1; i++)
                         {
                             StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
                                 + dgvventa.Rows[i].Cells[4].Value.ToString() + "', '"
@@ -1582,87 +1482,91 @@ namespace sistgre
 
         private void button12_Click(object sender, EventArgs e)
         {
-            ListViewItem listViewItem1 = new ListViewItem();
-            ListViewItem lv2 = new ListViewItem();
-            listViewItem1 = lvcoprod.SelectedItems[0];
-            string codigo;
-            int codvent;
-
-
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
-            {
-                conn.Open();
-                using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
-                {
-                    codigo = Convert.ToString(dataCommand1.ExecuteScalar());
-
-                }
-
-                if (string.IsNullOrEmpty(txtnfact.Text))
-                {
-                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE id_fact IN(SELECT max(id_fact) FROM factura);;'", conn))
-                    {
-                        codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
-                        txtnfact.Text = (codvent + 1).ToString();
-
-
-                    }
-                }
-                else
-                {
-
-                }
-
-                conn.Close();
-
-
-            }
-
-
-    ;
-
-
-
             try
             {
-                double p, c, pf;
-                p = Convert.ToDouble(txtprecot.Text);
-                c = Convert.ToDouble(txtcantcot.Text);
-                pf = p * c;
-                txtprfcot.Text = pf.ToString();
+
+                ListViewItem listViewItem1 = new ListViewItem();
+                ListViewItem lv2 = new ListViewItem();
+                listViewItem1 = lvcoprod.SelectedItems[0];
+                string codigo;
+                int codvent;
 
 
-
-
-                string firstColum = listViewItem1.Text;
-                string secondColum = codigo;
-                string tr3 = txtprecot.Text;
-                string tr4 = txtcantcot.Text;
-                string tr5 = pf.ToString();
-                
-
-
-                string[] row = { firstColum, secondColum, tr3, tr4, tr5 };
-                dgvcot.Rows.Add(row);
-
-
-                double sum = 0;
-                for (int i = 0; i < dgvcot.Rows.Count; ++i)
+                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
                 {
-                    sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
+                    conn.Open();
+                    using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
+                    {
+                        codigo = Convert.ToString(dataCommand1.ExecuteScalar());
+
+                    }
+
+                    if (string.IsNullOrEmpty(txtnfact.Text))
+                    {
+                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE id_fact IN(SELECT max(id_fact) FROM factura);;'", conn))
+                        {
+                            codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
+                            txtnfact.Text = (codvent + 1).ToString();
+
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+                    conn.Close();
+
+
                 }
-                lbpfi.Text = sum.ToString();
-                cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtcantcot.Text + "') where id_cod = '" + listViewItem1.Text + "'");
-                ACTPROD();
+
+
+
+                try
+                {
+                    double p, c, pf;
+                    p = Convert.ToDouble(txtprecot.Text);
+                    c = Convert.ToDouble(txtcantcot.Text);
+                    pf = p * c;
+                    txtprfcot.Text = pf.ToString();
+
+
+
+
+                    string firstColum = listViewItem1.Text;
+                    string secondColum = codigo;
+                    string tr3 = txtprecot.Text;
+                    string tr4 = txtcantcot.Text;
+                    string tr5 = pf.ToString();
+
+
+
+                    string[] row = { firstColum, secondColum, tr3, tr4, tr5 };
+                    dgvcot.Rows.Add(row);
+
+
+                    double sum = 0;
+                    for (int i = 0; i < dgvcot.Rows.Count; ++i)
+                    {
+                        sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
+                    }
+                    lbpfi.Text = sum.ToString();
+                    cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtcantcot.Text + "') where id_cod = '" + listViewItem1.Text + "'");
+                    ACTPROD();
+                }
+
+
+                catch (Exception ex)
+                {
+
+                }
             }
-
-
             catch (Exception ex)
             {
-
+                MessageBox.Show("Seleccione un producto");
             }
         }
-
         private void ACTPROD()
         {
 
@@ -1698,7 +1602,7 @@ namespace sistgre
                     }
                 }
             }
-            catch 
+            catch
             {
 
             }
@@ -1714,6 +1618,10 @@ namespace sistgre
 
         }
 
+        private void cut2()
+        {
+            
+        }
         private void generar()
         {
             DataTable dt = new DataTable();
@@ -1752,6 +1660,9 @@ namespace sistgre
             TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
             TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+            TextObject text10 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdescr"];
+
+
 
             TextObject text5 = (TextObject)cr2.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
@@ -1764,18 +1675,21 @@ namespace sistgre
             //text1.Text = txtcedcot.Text;
             text2.Text = txtpagado.Text;
             text3.Text = txtdevuelta.Text;
+            text10.Text = cbdesc.Text;
             double des, tot, resul;
             tot = Convert.ToDouble(lbpfi.Text);
             des = Convert.ToDouble(cbdesc.Text);
             resul = tot - tot * (des / 100);
             text4.Text = resul.ToString();
             f.crystalReportViewer1.ReportSource = cr;
-            cr.PrintToPrinter(1, false, 0, 0);
-            DateTime date = DateTime.Now;
-            var shortDate = date.ToString("dd/MM/yyyy");
-            cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c) values('" + txtnfact.Text + "','" + dtpcot.Text + "','" + shortDate + "')");
+            cr.PrintToPrinter(2, false, 0, 0);
+
+
+
+            //cut();
             cr.Close();
-            cr.Dispose();            
+            cr.Dispose();
+            factdevt();
             dgvcot.Rows.Clear();
             txtidcred.Clear();
             txtcocli.Clear();
@@ -1800,7 +1714,7 @@ namespace sistgre
             TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
             TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
-            
+
 
             text.Text = txtcocli.Text;
             //text1.Text = txtcedcot.Text;
@@ -1819,17 +1733,17 @@ namespace sistgre
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
             {
 
-                try
-                {
+                
                     if (string.IsNullOrEmpty(txtidcred.Text))
                     {
                         using (SQLiteCommand comm = new SQLiteCommand())
                         {
                             string cod = Convert.ToString(txtidcred.Text);
                             comm.Connection = conn;
-                            conn.Open();
-                            for (int i = 0; i < dgvcot.Rows.Count; i++)
+                            
+                            for (int i = 0; i < dgvcot.Rows.Count -1; i++)
                             {
+                                conn.Open();
                                 StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
                                     + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                     + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
@@ -1839,7 +1753,7 @@ namespace sistgre
                                 comm.ExecuteNonQuery();
                                 carga();
                                 conn.Close();
-                                
+
 
 
 
@@ -1854,10 +1768,11 @@ namespace sistgre
                         {
                             string cod = Convert.ToString(txtidcred.Text);
                             comm.Connection = conn;
-                            conn.Open();
-                            for (int i = 0; i < dgvcot.Rows.Count; i++)
+                            
+                            for (int i = 0; i < dgvcot.Rows.Count -1; i++)
                             {
-                                StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                            conn.Open();
+                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
                                     + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                     + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
                                     + cod.ToString() + "','"
@@ -1873,46 +1788,44 @@ namespace sistgre
 
                             }
                         }
+
+                    }
+
+
+
+                    //using (SQLiteCommand comm = new SQLiteCommand())
+                    //{
+                    //    string cod = Convert.ToString(txtidcred.Text);
+                    //    comm.Connection = conn;
                         
-                    }
-
-
-
-                    using (SQLiteCommand comm = new SQLiteCommand())
-                    {
-                        string cod = Convert.ToString(txtidcred.Text);
-                        comm.Connection = conn;
-                        conn.Open();
-                        for (int i = 0; i < dgvcot.Rows.Count; i++)
-                        {
-                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
-                                + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
-                                + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
-                                + cod.ToString() + "','"
-                                + txtnfact.Text + "','2')";
-                            comm.CommandText = StrQuery;
-                            comm.ExecuteNonQuery();
-                            carga();
-                            conn.Close();
-                            cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
+                    //    for (int i = 0; i < dgvcot.Rows.Count -1; i++)
+                    //    {
+                    //    conn.Open();
+                    //    StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                    //            + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                    //            + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                    //            + cod.ToString() + "','"
+                    //            + txtnfact.Text + "','2')";
+                    //        comm.CommandText = StrQuery;
+                    //        comm.ExecuteNonQuery();
+                    //        carga();
+                    //        conn.Close();
+                    //        cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
 
 
 
 
-                        }
-                    }
-                }
+                    //    }
+                    //}
+                
 
 
 
 
 
-                catch (Exception ex)
-                {
-                    
-
-                }
-            } }
+               
+            }
+        }
         private void PictureBox2_Click(object sender, EventArgs e)
         {
             PictureBox pb = pictureBox2 as PictureBox;
@@ -2239,7 +2152,7 @@ namespace sistgre
                 int ancho = 203;
                 int y = 20;
                 e.Graphics.DrawString("                    EZ-Print", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-                e.Graphics.DrawString("                    Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));                e.Graphics.DrawString("                    Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                e.Graphics.DrawString("                    Fecha: " + date + "", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20)); e.Graphics.DrawString("                    Pago de Deuda", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
                 e.Graphics.DrawString("                                         ", ft, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
@@ -2304,12 +2217,7 @@ namespace sistgre
                 if (this.dgvcot.SelectedRows.Count > 0)
                 {
                     dgvcot.Rows.RemoveAt(this.dgvcot.SelectedRows[0].Index);
-                    double sum = 0;
-                    for (int i = 0; i < dgvcot.Rows.Count; ++i)
-                    {
-                        sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
-                    }
-                    lbpfi.Text = sum.ToString();
+                    sumtot();
                 }
 
             }
@@ -2854,18 +2762,44 @@ namespace sistgre
         {
             try
             {
-                double ttp, mot, debp;
-                ttp = Convert.ToDouble(txttpag.Text);
-                mot = Convert.ToDouble(txtpagado.Text);
-                debp = mot - ttp;
-                txtdevuelta.Text = debp.ToString();
+
+
+                double des, tot, resul, resul2, pag;
+                tot = Convert.ToDouble(lbpfi.Text);
+                des = Convert.ToDouble(cbdesc.Text);
+                pag = Convert.ToDouble(txtpagado.Text);
+                if (des == 0)
+
+                {
+                    resul = pag - tot;
+                    txtdevuelta.Text = resul.ToString();
+
+
+                }
+
+                else
+                {
+                    resul2 = tot - tot * (des / 100);
+                    resul = pag - (tot - tot * (des / 100));
+                    txtdevuelta.Text = resul.ToString();
+                    txxttcd.Text = resul2.ToString();
+
+                }
             }
             catch
             {
 
             }
         }
-
+        private void cut()
+        {
+            printDocument1 = new PrintDocument();
+            PrinterSettings ps = new PrinterSettings();
+            printDocument1.PrinterSettings = ps;
+            //printDocument2.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            printDocument1.Print();
+        }
         private void Btnpag_Click(object sender, EventArgs e)
         {
             generar();
@@ -2874,6 +2808,8 @@ namespace sistgre
             txtpagado.Clear();
             txtdevuelta.Clear();
             txtnfact.Clear();
+            cbdesc.Text = "0";
+            txxttcd.Clear();
         }
 
         private void Button22_Click(object sender, EventArgs e)
@@ -2900,47 +2836,612 @@ namespace sistgre
 
 
             XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
-            CrystalReport1 objRpt = new CrystalReport1();
             ds.WriteXml(xmlSave);
             xmlSave.Close();
 
 
             cotiz f = new cotiz();
-            CrystalReport1 cr = new CrystalReport1();
+            CrystalReport5 cr = new CrystalReport5();
             TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
-            TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
-            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
+            //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txttelcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
-            vent();
+
+
 
             text.Text = txtcocli.Text;
             //text1.Text = txtcedcot.Text;
-            text2.Text = txtpagado.Text;
-            text3.Text = txtdevuelta.Text;
+            //text2.Text = txtpagado.Text;
+            text3.Text = txtcttel.Text;
             text4.Text = lbpfi.Text;
+            f.crystalReportViewer1.ReportSource = cr;
+            f.Show();
+            dgvcot.Rows.Clear();
+            txtidcred.Clear();
+            txtcocli.Clear();
+            txtcedcli.Clear();
+            txtcedcot.Clear();
+            txtdireccot.Clear();
+            txtcttel.Clear();
+            txtprecot.Clear();
+            txtcantcot.Clear();
+            txtprfcot.Clear();
+            lbpfi.Text = "";
+
+        }
+        public static class Prompt
+        {
+            public static string ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 500,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+                textBox.PasswordChar = '*';
+                Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                prompt.Controls.Add(textBox);
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+            }
+        }
+        private void Cbdesc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int val;
+                try
+                {
+
+
+                    double des, tot, resul, resul2, pag;
+                    tot = Convert.ToDouble(lbpfi.Text);
+                    des = Convert.ToDouble(cbdesc.Text);
+                    pag = Convert.ToDouble(txtpagado.Text);
+                    if (des == 0)
+
+                    {
+                        resul = pag - tot;
+                        txtdevuelta.Text = resul.ToString();
+
+
+                    }
+
+                    else
+                    {
+                        resul2 = tot - tot * (des / 100);
+                        resul = pag - (tot - tot * (des / 100));
+                        txtdevuelta.Text = resul.ToString();
+                        txxttcd.Text = resul2.ToString();
+
+                    }
+                }
+                catch
+                {
+
+                }
+
+
+                val = Convert.ToInt32(cbdesc.Text);
+
+
+
+                if (val >= 10)
+                {
+                    string pass = "12345678";
+                    MessageBox.Show("Necesitas Permsisos de admistrador, consulta a Vanesa");
+                                       
+                    string promptValue = Prompt.ShowDialog("Administrador", "");
+                    if (promptValue == pass)
+                    {
+
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Contraseña Incorrecta!, Vulva a intentarlo");
+                        cbdesc.Text = "0";
+                    }
+                    
+
+
+                }
+
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
         }
 
-        private void Cbdesc_SelectedIndexChanged(object sender, EventArgs e)
-        { int val;
-            val = Convert.ToInt32(cbdesc.Text);
-            if(val >= 10)
-            {
-                MessageBox.Show("Necesitas Permsisos de admistrador, consulta a Vanesa");
-                cbdesc.Text = "0";
+        private void Button23_Click(object sender, EventArgs e)
+        {
+            groupBox21.Visible = false;
+        }
 
+        private void Txtcttel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button24_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            for (int i = 1; i < dgvcot.Columns.Count + 1; i++)
+            {
+                DataColumn column = new DataColumn(dgvcot.Columns[i - 1].HeaderText);
+                dt.Columns.Add(column);
+            }
+            int columnCount = dgvcot.Columns.Count;
+            foreach (DataGridViewRow dr in dgvcot.Rows)
+            {
+                DataRow dataRow = dt.NewRow();
+                for (int i = 0; i < columnCount; i++)
+                {
+                    //returns checkboxes and dropdowns as string with .value..... nearly got it
+                    dataRow[i] = dr.Cells[i].Value;
+                }
+                dt.Rows.Add(dataRow);
+            }
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+
+
+            XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
+            ds.WriteXml(xmlSave);
+            xmlSave.Close();
+
+
+            cotiz f = new cotiz();
+            CrystalReport5 cr = new CrystalReport5();
+            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txttelcr"];
+            TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+
+
+
+            text.Text = txtcocli.Text;
+            //text1.Text = txtcedcot.Text;
+            //text2.Text = txtpagado.Text;
+            text3.Text = txtcttel.Text;
+            text4.Text = lbpfi.Text;
+            f.crystalReportViewer1.ReportSource = cr;
+            f.Show();
+            dgvcot.Rows.Clear();
+            txtidcred.Clear();
+            txtcocli.Clear();
+            txtcedcli.Clear();
+            txtcedcot.Clear();
+            txtdireccot.Clear();
+            txtcttel.Clear();
+            txtprecot.Clear();
+            txtcantcot.Clear();
+            txtprfcot.Clear();
+            lbpfi.Text = "";
+        }
+
+        private void Button22_Click_1(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            for (int i = 1; i < dgvcot.Columns.Count + 1; i++)
+            {
+                DataColumn column = new DataColumn(dgvcot.Columns[i - 1].HeaderText);
+                dt.Columns.Add(column);
+            }
+            int columnCount = dgvcot.Columns.Count;
+            foreach (DataGridViewRow dr in dgvcot.Rows)
+            {
+                DataRow dataRow = dt.NewRow();
+                for (int i = 0; i < columnCount; i++)
+                {
+                    //returns checkboxes and dropdowns as string with .value..... nearly got it
+                    dataRow[i] = dr.Cells[i].Value;
+                }
+                dt.Rows.Add(dataRow);
+            }
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+
+
+            XmlTextWriter xmlSave = new XmlTextWriter(@"C:\bdd\ctzn/DGVXML.xml", Encoding.UTF8);
+            ds.WriteXml(xmlSave);
+            xmlSave.Close();
+
+
+            cotiz f = new cotiz();
+            CrystalReport5 cr = new CrystalReport5();
+            TextObject text = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
+            //TextObject text2 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
+            TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txttelcr"];
+            TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+            TextObject text6 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdirec"];
+
+
+            text6.Text = txtdireccot.Text;
+            text.Text = txtcocli.Text;
+            //text1.Text = txtcedcot.Text;
+            //text2.Text = txtpagado.Text;
+            text3.Text = txtcttel.Text;
+            text4.Text = lbpfi.Text;
+            f.crystalReportViewer1.ReportSource = cr;
+            f.Show();
+            dgvcot.Rows.Clear();
+            txtidcred.Clear();
+            txtcocli.Clear();
+            txtcedcli.Clear();
+            txtcedcot.Clear();
+            txtdireccot.Clear();
+            txtcttel.Clear();
+            txtprecot.Clear();
+            txtcantcot.Clear();
+            txtprfcot.Clear();
+            lbpfi.Text = "";
+        }
+
+        private void Dgvcot_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
+        private void Dgvcot_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgvcot.Rows)
+                {
+                    if (row.Cells[2].Value == null)
+                    {
+                        break;
+                    }
+
+                    double a = Convert.ToDouble(row.Cells[2].Value.ToString());
+                    double b = Convert.ToDouble(row.Cells[3].Value.ToString());
+
+                    row.Cells[4].Value = (a * b).ToString();
+                    sumtot();
+                }
+            }
+            catch
+            {
+
+
+            }
+        }
+
+        private void sumtot()
+        {
+            double sum = 0;
+            for (int i = 0; i < dgvcot.Rows.Count; ++i)
+            {
+                sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
+            }
+            lbpfi.Text = sum.ToString();
+        }
+
+
+        private void factdevt()
+        {
+            DateTime date = DateTime.Now;
+            var shortDate = date.ToString("dd/MM/yyyy");
+            if (string.IsNullOrEmpty(txxttcd.Text))
+            {
+                cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c,ttdv) values('" + txtnfact.Text + "','" + dtpcot.Text + "','" + shortDate + "','" + txttpag.Text + "')");
             }
 
             else
             {
+                cns.consultasinreaultado("INSERT INTO factura (id_fact,fecha,fec_c,ttdv) values('" + txtnfact.Text + "','" + dtpcot.Text + "','" + shortDate + "','" + txxttcd.Text + "')");
+            }
+        }
+
+        private void Dgvdencar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            DataGridViewRow act = dgvdencar.Rows[e.RowIndex];
+            if (string.IsNullOrEmpty(txtidprodencar.Text))
+            {
+                txtidprodencar.Text = act.Cells["ID"].Value.ToString();
+            }
+            else
+            {
+                txtidcliencar.Text = act.Cells["Id_Cod"].Value.ToString();
+            }
+        }
+
+        private void Txtidprodencar_TextChanged(object sender, EventArgs e)
+        {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            {
+
+                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where id_client ='" + txtidprodencar.Text + "' ", conn);
+
+                conn.Open();
+                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                while (sqlReader.Read())
+                {
+
+                    txtnombencar.Text = sqlReader["nombre"].ToString();
+
+                    txttelenc.Text = sqlReader["tel"].ToString();
+
+
+
+
+
+
+
+
+
+                }
+
+
+
+                sqlReader.Close();
+                dgvdencar.DataSource = cns.cosnsultaconresultado("select id_cod,produc as Producto,precio as Precio,canti_disp as Disponible from inventario");
+            }
+        }
+
+        private void Txtidcliencar_TextChanged(object sender, EventArgs e)
+        {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            {
+
+                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod ='" + txtidcliencar.Text + "' ", conn);
+
+                conn.Open();
+                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                while (sqlReader.Read())
+                {
+
+                    txtpreenc.Text = sqlReader["precio"].ToString();
+
+
+
+
+
+
+
+
+
+
+
+                }
+                txtcantenc.Text = "1";
+
+
+
+
+            }
+        }
+
+        private void Txtcantenc_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double x, y, resulV;
+                x = Convert.ToDouble(txtpreenc.Text);
+                y = Convert.ToDouble(txtcantenc.Text);
+                resulV = x * y;
+                txttprdencar.Text = resulV.ToString();
+            }
+            catch
+            {
 
             }
 
+        }
+
+        private void Txtcantcot_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btnagreencarg_Click(object sender, EventArgs e)
+        {
+            string codigo;
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            {
+                conn.Open();
+                using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtidcliencar.Text + "'", conn))
+                {
+                    codigo = Convert.ToString(dataCommand1.ExecuteScalar());
+
+                }
+                conn.Close();
+
+                string firstColum = txtidcliencar.Text;
+                string secondColum = codigo;
+                string tr3 = txtpreenc.Text;
+                string tr4 = txtcantenc.Text;
+                string tr5 = textBox5.Text;
+                string tr6 = textBox6.Text;
+
+
+
+
+
+
+
+
+                string[] row = { firstColum, secondColum, tr3, tr4, tr5, tr6 };
+                dgvencar.Rows.Add(row);
+
+
+
+
+                if (string.IsNullOrEmpty(txtnecna.Text))
+                {
+                    int codvent;
+                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_encar FROM encar WHERE id_encar IN(SELECT max(id_encar) FROM encar);;'", conn))
+                    {
+                        conn.Open();
+                        codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
+                        txtnecna.Text = (codvent + 1).ToString();
+                        conn.Close();
+
+
+
+
+
+                    }
+                }
+
+                else
+                {
+
+                }
+            }
+        }
+        private void Dgvencar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgvencar.Rows)
+                {
+                    if (row.Cells[2].Value == null)
+                    {
+                        break;
+                    }
+
+                    double a = Convert.ToDouble(row.Cells[2].Value.ToString());
+                    double b = Convert.ToDouble(row.Cells[3].Value.ToString());
+                    double c = Convert.ToDouble(row.Cells[5].Value.ToString());
+
+                    row.Cells[6].Value = ((a * b) + c).ToString();
+
+                }
+            }
+            catch
+            {
+
+
+            }
+        }
+
+        private void Dgvencar_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgvencar.Rows)
+                {
+                    if (row.Cells[2].Value == null)
+                    {
+                        break;
+                    }
+
+                    double a = Convert.ToDouble(row.Cells[2].Value.ToString());
+                    double b = Convert.ToDouble(row.Cells[3].Value.ToString());
+                    double c = Convert.ToDouble(row.Cells[5].Value.ToString());
+
+                    row.Cells[6].Value = ((a * b) + c).ToString();
+
+                }
+            }
+            catch
+            {
+
+
+            }
+
+        }
+        private void geca()
+        {
+            string StrQuery;
+
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            {
+                try
+                {
+
+
+
+
+
+
+                    using (SQLiteCommand comm = new SQLiteCommand())
+                    {
+                        comm.Connection = conn;
+
+                        for (int i = 0; i < dgvencar.Rows.Count - 1; i++)
+                        {
+                            conn.Open();
+                            StrQuery = "INSERT INTO encar(numeencar,id_cli,item,cat,mod,pre) VALUES ('"
+                                + txtnecna.Text + "', '"
+                                + txtidprodencar.Text + "', '"
+                                + dgvencar.Rows[i].Cells[0].Value.ToString() + "', '"
+                                + dgvencar.Rows[i].Cells[3].Value.ToString() + "','"
+                                + dgvencar.Rows[i].Cells[4].Value.ToString() + "','"
+                                + dgvencar.Rows[i].Cells[5].Value.ToString() + "')";
+                            comm.CommandText = StrQuery;
+                            comm.ExecuteNonQuery();
+
+                            conn.Close();
+                            carga();
+                            dgvencar.Rows.Clear();
+
+
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+
+        }
+    
+
+
+
+        private void Button24_Click_1(object sender, EventArgs e)
+        {
+            geca();
+
+        }
+
+        private void Button24_Click_2(object sender, EventArgs e)
+        {
+            geca();
         }
     }
 }
 
 
+
+
+    
+
+
+
+
+        
 
     
     

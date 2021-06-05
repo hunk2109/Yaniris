@@ -39,6 +39,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.rbefec = new System.Windows.Forms.RadioButton();
             this.rbcred = new System.Windows.Forms.RadioButton();
+            this.rbfact = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvrepor)).BeginInit();
             this.SuspendLayout();
@@ -101,8 +105,10 @@
             this.dgvrepor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvrepor.Location = new System.Drawing.Point(6, 19);
             this.dgvrepor.Name = "dgvrepor";
+            this.dgvrepor.ReadOnly = true;
             this.dgvrepor.Size = new System.Drawing.Size(764, 252);
             this.dgvrepor.TabIndex = 0;
+            this.dgvrepor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvrepor_CellContentClick);
             // 
             // label2
             // 
@@ -154,11 +160,60 @@
             this.rbcred.Text = "Entrada por Credito";
             this.rbcred.UseVisualStyleBackColor = true;
             // 
+            // rbfact
+            // 
+            this.rbfact.AutoSize = true;
+            this.rbfact.Location = new System.Drawing.Point(257, 13);
+            this.rbfact.Name = "rbfact";
+            this.rbfact.Size = new System.Drawing.Size(66, 17);
+            this.rbfact.TabIndex = 10;
+            this.rbfact.TabStop = true;
+            this.rbfact.Text = "Facturas";
+            this.rbfact.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(534, 132);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Reimprimir";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(614, 132);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Borrar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(695, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Factura";
+            this.label3.Visible = false;
+            this.label3.TextChanged += new System.EventHandler(this.Label3_TextChanged);
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
+            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.rbfact);
             this.Controls.Add(this.rbcred);
             this.Controls.Add(this.rbefec);
             this.Controls.Add(this.button2);
@@ -192,5 +247,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton rbefec;
         private System.Windows.Forms.RadioButton rbcred;
+        private System.Windows.Forms.RadioButton rbfact;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace sistgre
 {
-    public partial class cotiz : Form
+    public partial class reimpre : Form
     {
-        public cotiz()
+        public reimpre()
         {
             InitializeComponent();
-        }
-
-        private void CrystalReportViewer1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
