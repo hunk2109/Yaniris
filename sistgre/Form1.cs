@@ -839,24 +839,24 @@ namespace sistgre
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
 
-            
 
-                var format = new StringFormat() { Alignment = StringAlignment.Far };
-                var rect = new RectangleF(0, 20, 20, 20);
-                Font ft = new Font("Arial", 7, FontStyle.Bold);
-                Font ft2 = new Font("Arial", 8, FontStyle.Bold);
-                int ancho = 290;
-                int y = 20;
-               
 
-                
+            var format = new StringFormat() { Alignment = StringAlignment.Far };
+            var rect = new RectangleF(0, 20, 20, 20);
+            Font ft = new Font("Arial", 7, FontStyle.Bold);
+            Font ft2 = new Font("Arial", 8, FontStyle.Bold);
+            int ancho = 290;
+            int y = 20;
 
-                e.Graphics.DrawString("ESC d", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
-            }
-        
 
-            private void button3_Click(object sender, EventArgs e)
+
+            e.Graphics.DrawString("ESC d", ft2, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
+        }
+
+
+        private void button3_Click(object sender, EventArgs e)
         {
             button7.Visible = true;
             button8.Visible = true;
@@ -1620,7 +1620,7 @@ namespace sistgre
 
         private void cut2()
         {
-            
+
         }
         private void generar()
         {
@@ -1733,97 +1733,97 @@ namespace sistgre
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
             {
 
-                
-                    if (string.IsNullOrEmpty(txtidcred.Text))
+
+                if (string.IsNullOrEmpty(txtidcred.Text))
+                {
+                    using (SQLiteCommand comm = new SQLiteCommand())
                     {
-                        using (SQLiteCommand comm = new SQLiteCommand())
+                        string cod = Convert.ToString(txtidcred.Text);
+                        comm.Connection = conn;
+
+                        for (int i = 0; i < dgvcot.Rows.Count - 1; i++)
                         {
-                            string cod = Convert.ToString(txtidcred.Text);
-                            comm.Connection = conn;
-                            
-                            for (int i = 0; i < dgvcot.Rows.Count -1; i++)
-                            {
-                                conn.Open();
-                                StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
-                                    + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
-                                    + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
-                                    + cod.ToString() + "','"
-                                    + txtnfact.Text + "','1')";
-                                comm.CommandText = StrQuery;
-                                comm.ExecuteNonQuery();
-                                carga();
-                                conn.Close();
+                            conn.Open();
+                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                                + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                                + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                                + cod.ToString() + "','"
+                                + txtnfact.Text + "','1')";
+                            comm.CommandText = StrQuery;
+                            comm.ExecuteNonQuery();
+                            carga();
+                            conn.Close();
 
 
 
 
 
-                            }
                         }
                     }
+                }
 
-                    else
+                else
+                {
+                    using (SQLiteCommand comm = new SQLiteCommand())
                     {
-                        using (SQLiteCommand comm = new SQLiteCommand())
+                        string cod = Convert.ToString(txtidcred.Text);
+                        comm.Connection = conn;
+
+                        for (int i = 0; i < dgvcot.Rows.Count - 1; i++)
                         {
-                            string cod = Convert.ToString(txtidcred.Text);
-                            comm.Connection = conn;
-                            
-                            for (int i = 0; i < dgvcot.Rows.Count -1; i++)
-                            {
                             conn.Open();
                             StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
                                     + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                     + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
                                     + cod.ToString() + "','"
                                     + txtnfact.Text + "','2')";
-                                comm.CommandText = StrQuery;
-                                comm.ExecuteNonQuery();
-                                carga();
-                                conn.Close();
-                                cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
+                            comm.CommandText = StrQuery;
+                            comm.ExecuteNonQuery();
+                            carga();
+                            conn.Close();
+                            cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
 
 
 
 
-                            }
                         }
-
                     }
 
-
-
-                    //using (SQLiteCommand comm = new SQLiteCommand())
-                    //{
-                    //    string cod = Convert.ToString(txtidcred.Text);
-                    //    comm.Connection = conn;
-                        
-                    //    for (int i = 0; i < dgvcot.Rows.Count -1; i++)
-                    //    {
-                    //    conn.Open();
-                    //    StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
-                    //            + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
-                    //            + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
-                    //            + cod.ToString() + "','"
-                    //            + txtnfact.Text + "','2')";
-                    //        comm.CommandText = StrQuery;
-                    //        comm.ExecuteNonQuery();
-                    //        carga();
-                    //        conn.Close();
-                    //        cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
+                }
 
 
 
+                //using (SQLiteCommand comm = new SQLiteCommand())
+                //{
+                //    string cod = Convert.ToString(txtidcred.Text);
+                //    comm.Connection = conn;
 
-                    //    }
-                    //}
-                
+                //    for (int i = 0; i < dgvcot.Rows.Count -1; i++)
+                //    {
+                //    conn.Open();
+                //    StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                //            + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
+                //            + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
+                //            + cod.ToString() + "','"
+                //            + txtnfact.Text + "','2')";
+                //        comm.CommandText = StrQuery;
+                //        comm.ExecuteNonQuery();
+                //        carga();
+                //        conn.Close();
+                //        cns.consultasinreaultado("insert into pagos (monto_o,monto_p,fecha,client_id_pag)values('" + lbpfi.Text + "','0','" + dtpcot.Text + "','" + txtidcred.Text + "')");
 
 
 
 
+                //    }
+                //}
 
-               
+
+
+
+
+
+
             }
         }
         private void PictureBox2_Click(object sender, EventArgs e)
@@ -2940,7 +2940,7 @@ namespace sistgre
                 {
                     string pass = "12345678";
                     MessageBox.Show("Necesitas Permsisos de admistrador, consulta a Vanesa");
-                                       
+
                     string promptValue = Prompt.ShowDialog("Administrador", "");
                     if (promptValue == pass)
                     {
@@ -2953,7 +2953,7 @@ namespace sistgre
                         MessageBox.Show("Contraseña Incorrecta!, Vulva a intentarlo");
                         cbdesc.Text = "0";
                     }
-                    
+
 
 
                 }
@@ -3416,7 +3416,7 @@ namespace sistgre
 
 
         }
-    
+
 
 
 
@@ -3429,6 +3429,109 @@ namespace sistgre
         private void Button24_Click_2(object sender, EventArgs e)
         {
             geca();
+        }
+
+        private void bac()
+        {
+            if (string.IsNullOrEmpty(txtbarcode.Text))
+            {
+
+            }
+            else
+            {
+                SQLiteDataAdapter ad;
+                DataTable dt = new DataTable();
+                SQLiteCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "select id_Cod from inventario where id_Cod = '" + txtbarcode.Text + "'";
+                ad = new SQLiteDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                ad.Fill(dt);
+                ds.Tables.Add(dt);
+                if (dt.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Este Codigo No Existe");
+                    txtbarcode.Clear();
+                    txtbarcode.Focus();
+                }
+
+                else
+                {
+
+
+
+                    string codigo, produc, precio;
+                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    {
+                        conn.Open();
+                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_Cod from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        {
+                            codigo = Convert.ToString(dataCommand1.ExecuteScalar());
+
+                        }
+                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        {
+                            produc = Convert.ToString(dataCommand2.ExecuteScalar());
+
+                        }
+                        using (SQLiteCommand dataCommand3 = new SQLiteCommand("select precio from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        {
+                            precio = Convert.ToString(dataCommand3.ExecuteScalar());
+
+                        }
+
+                        conn.Close();
+
+                        string firstColum = codigo;
+                        string secondColum = produc;
+                        string tr3 = precio;
+                        string tr4 = "1";
+                        string tr5 = precio;
+
+
+
+
+
+
+
+
+
+                        string[] row = { firstColum, secondColum, tr3, tr4, tr5 };
+                        dgvcot.Rows.Add(row);
+                        double sum = 0;
+                        for (int i = 0; i < dgvcot.Rows.Count; ++i)
+                        {
+                            sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
+                        }
+                        lbpfi.Text = sum.ToString();
+                        txtbarcode.Clear();
+                        txtbarcode.Focus();
+                    }
+                }
+
+            }
+        }
+
+        private void Txtbarcode_TextChanged(object sender, EventArgs e)
+        {
+
+           
+        }
+
+        private void Txtbarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bac();
+            }
+        }
+
+        private void Txtbarcode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
