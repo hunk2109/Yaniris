@@ -26,17 +26,40 @@ namespace sistgre
 
         SQLiteConnection cn = new SQLiteConnection();
         cnxsql cns = new cnxsql();
-        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
         SQLiteCommand cmd = new SQLiteCommand();
         SQLiteDataReader dr;
         SQLiteParameter picture;
         string codicred;
+        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
 
         public Form1()
         {
             InitializeComponent();
         }
+        private void Actprddgv()       {
 
+
+            try
+            {
+
+                for (int i = 0; i <= dgvcot.Rows.Count - 1; i++)
+                {
+                    SQLiteCommand cmd2 = new SQLiteCommand("update inventario set canti_disp = (canti_disp - @canti) where id_cod = @idinv", conn);
+                    cmd2.Parameters.AddWithValue("@canti", dgvcot.Rows[i].Cells[3].Value);
+                    cmd2.Parameters.AddWithValue("@idinv", dgvcot.Rows[i].Cells[0].Value);
+
+                    conn.Open();
+                    cmd2.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch
+            {
+
+            }
+
+
+        }
         private void combo()
         {
             SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
@@ -231,6 +254,8 @@ namespace sistgre
 
         private void button7_Click(object sender, EventArgs e)
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+
             int codigo;
             if (rbcred.Checked == false && rbefec.Checked == false)
             {
@@ -925,6 +950,7 @@ namespace sistgre
 
 
                         }
+                        conn.Close();
                     }
                 }
             }
@@ -1552,7 +1578,7 @@ namespace sistgre
                         sum += Convert.ToDouble(dgvcot.Rows[i].Cells[4].Value);
                     }
                     lbpfi.Text = sum.ToString();
-                    cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtcantcot.Text + "') where id_cod = '" + listViewItem1.Text + "'");
+                    //cns.consultasinreaultado("update inventario set canti_disp = (canti_disp - '" + txtcantcot.Text + "') where id_cod = '" + listViewItem1.Text + "'");
                     ACTPROD();
                 }
 
@@ -1668,7 +1694,7 @@ namespace sistgre
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
             TextObject text6 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
             TextObject text7 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
-            TextObject text8 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
+            TextObject text8 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];            
             vent();
 
             text.Text = txtcocli.Text;
@@ -1726,6 +1752,7 @@ namespace sistgre
             cr.Close();
             cr.Dispose();
         }
+       
         private void vent()
         {
             string StrQuery;
@@ -2120,9 +2147,12 @@ namespace sistgre
                 MessageBox.Show("Seleccione una deuda");
             }
             cns.consultasinreaultado("update pagos set monto_p =(monto_p+'" + txtrealipag.Text + "') where id_p = '" + txtidpag.Text + "'");
+            cns.consultasinreaultado("INSERT INTO factura (fecha,fec_c,ttdv) values('" + dtpcot.Text + "','" +dtpcot.Text + "','" + txtrealipag.Text + "')");
+
             printDocument3 = new PrintDocument();
             PrinterSettings ps = new PrinterSettings();
             printDocument3.PrinterSettings = ps;
+
             //printDocument2.PrinterSettings.PrinterName = "Microsoft Print to PDF";
             printDocument3.PrintPage += PrintDocument3_PrintPage;
             printDocument3.Print();
@@ -2258,6 +2288,8 @@ namespace sistgre
 
         private void Button18_Click(object sender, EventArgs e)
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+
             int codigo;
             using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
             {
@@ -2270,7 +2302,6 @@ namespace sistgre
             string StrQuery2;
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
                 {
                     using (SQLiteCommand comm = new SQLiteCommand())
                     {
@@ -2337,6 +2368,8 @@ namespace sistgre
 
         private void PrintDocument4_PrintPage(object sender, PrintPageEventArgs e)
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+
             SQLiteCommand sqlCmd = new SQLiteCommand("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 and ID ='" + txtidcp.Text + "'", conn);
             string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             conn.Open();
@@ -2802,7 +2835,9 @@ namespace sistgre
         }
         private void Btnpag_Click(object sender, EventArgs e)
         {
+            Actprddgv();
             generar();
+            ACTPROD();
             groupBox21.Visible = false;
             txttpag.Clear();
             txtpagado.Clear();
@@ -3432,7 +3467,10 @@ namespace sistgre
         }
 
         private void bac()
+
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+
             if (string.IsNullOrEmpty(txtbarcode.Text))
             {
 
@@ -3461,7 +3499,6 @@ namespace sistgre
 
 
                     string codigo, produc, precio;
-                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
                     {
                         conn.Open();
                         using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_Cod from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
@@ -3532,6 +3569,14 @@ namespace sistgre
             {
                 e.Handled = true;
             }
+        }
+
+        private void Button25_Click(object sender, EventArgs e)
+        {
+           
+            Actprddgv();
+            ACTPROD();
+            
         }
     }
 }

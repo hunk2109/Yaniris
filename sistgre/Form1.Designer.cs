@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -210,7 +210,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.txxttcd = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
@@ -224,6 +223,8 @@
             this.label59 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button25 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
             this.txtnfact = new System.Windows.Forms.TextBox();
@@ -259,6 +260,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.txtbarcode = new System.Windows.Forms.TextBox();
             this.dtpcot = new System.Windows.Forms.DateTimePicker();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -302,7 +304,6 @@
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
-            this.txtbarcode = new System.Windows.Forms.TextBox();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -339,8 +340,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.groupBox21.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcot)).BeginInit();
@@ -2125,14 +2126,14 @@
             this.dgvventa.Location = new System.Drawing.Point(6, 39);
             this.dgvventa.Name = "dgvventa";
             this.dgvventa.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
@@ -2206,32 +2207,6 @@
             this.tabPage10.Text = "Facturacion";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // groupBox14
-            // 
-            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox14.Controls.Add(this.button22);
-            this.groupBox14.Controls.Add(this.label60);
-            this.groupBox14.Controls.Add(this.txtnfact);
-            this.groupBox14.Controls.Add(this.txtidcred);
-            this.groupBox14.Controls.Add(this.button17);
-            this.groupBox14.Controls.Add(this.button16);
-            this.groupBox14.Controls.Add(this.button15);
-            this.groupBox14.Controls.Add(this.lbpfi);
-            this.groupBox14.Controls.Add(this.label36);
-            this.groupBox14.Controls.Add(this.groupBox16);
-            this.groupBox14.Controls.Add(this.groupBox15);
-            this.groupBox14.Controls.Add(this.button12);
-            this.groupBox14.Controls.Add(this.button13);
-            this.groupBox14.Controls.Add(this.dgvcot);
-            this.groupBox14.Location = new System.Drawing.Point(418, 22);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(898, 469);
-            this.groupBox14.TabIndex = 1;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Cotizacion";
-            // 
             // groupBox21
             // 
             this.groupBox21.Controls.Add(this.txxttcd);
@@ -2246,7 +2221,7 @@
             this.groupBox21.Controls.Add(this.label59);
             this.groupBox21.Controls.Add(this.label58);
             this.groupBox21.Controls.Add(this.label57);
-            this.groupBox21.Location = new System.Drawing.Point(418, 17);
+            this.groupBox21.Location = new System.Drawing.Point(424, 17);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(748, 190);
             this.groupBox21.TabIndex = 25;
@@ -2378,6 +2353,44 @@
             this.label57.Size = new System.Drawing.Size(139, 24);
             this.label57.TabIndex = 0;
             this.label57.Text = "Total  a Pagar";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.button25);
+            this.groupBox14.Controls.Add(this.button22);
+            this.groupBox14.Controls.Add(this.label60);
+            this.groupBox14.Controls.Add(this.txtnfact);
+            this.groupBox14.Controls.Add(this.txtidcred);
+            this.groupBox14.Controls.Add(this.button17);
+            this.groupBox14.Controls.Add(this.button16);
+            this.groupBox14.Controls.Add(this.button15);
+            this.groupBox14.Controls.Add(this.lbpfi);
+            this.groupBox14.Controls.Add(this.label36);
+            this.groupBox14.Controls.Add(this.groupBox16);
+            this.groupBox14.Controls.Add(this.groupBox15);
+            this.groupBox14.Controls.Add(this.button12);
+            this.groupBox14.Controls.Add(this.button13);
+            this.groupBox14.Controls.Add(this.dgvcot);
+            this.groupBox14.Location = new System.Drawing.Point(418, 22);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(898, 469);
+            this.groupBox14.TabIndex = 1;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Cotizacion";
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(382, 421);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(75, 23);
+            this.button25.TabIndex = 12;
+            this.button25.Text = "Pagar";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Visible = false;
+            this.button25.Click += new System.EventHandler(this.Button25_Click);
             // 
             // button22
             // 
@@ -2708,6 +2721,16 @@
             this.groupBox13.TabIndex = 0;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Datos";
+            // 
+            // txtbarcode
+            // 
+            this.txtbarcode.Location = new System.Drawing.Point(247, 9);
+            this.txtbarcode.Name = "txtbarcode";
+            this.txtbarcode.Size = new System.Drawing.Size(100, 20);
+            this.txtbarcode.TabIndex = 7;
+            this.txtbarcode.TextChanged += new System.EventHandler(this.Txtbarcode_TextChanged);
+            this.txtbarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbarcode_KeyDown);
+            this.txtbarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbarcode_KeyPress);
             // 
             // dtpcot
             // 
@@ -3098,16 +3121,6 @@
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
             // 
-            // txtbarcode
-            // 
-            this.txtbarcode.Location = new System.Drawing.Point(247, 9);
-            this.txtbarcode.Name = "txtbarcode";
-            this.txtbarcode.Size = new System.Drawing.Size(100, 20);
-            this.txtbarcode.TabIndex = 7;
-            this.txtbarcode.TextChanged += new System.EventHandler(this.Txtbarcode_TextChanged);
-            this.txtbarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbarcode_KeyDown);
-            this.txtbarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbarcode_KeyPress);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3167,10 +3180,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);
@@ -3466,6 +3479,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.TextBox txtbarcode;
+        private System.Windows.Forms.Button button25;
     }
 }
 
