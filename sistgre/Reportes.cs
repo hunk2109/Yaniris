@@ -63,7 +63,7 @@ namespace sistgre
             {
                DataSet ds = new DataSet();
 
-                DataTable dt = cns.cosnsultaconresultado("select id_fact as ID,fecha as Fecha,ttdv as Total from factura where fecha  >= '" + dateTimePicker1.Text + "' and  fecha <='" + dateTimePicker2.Text + "'");
+                DataTable dt = cns.cosnsultaconresultado("select id_fact as ID,fec_c as Fecha,ttdv as Total from factura where fec_c  >= '" + dateTimePicker1.Text + "' and  fecha <='" + dateTimePicker2.Text + "'");
 
                 ds.Tables.Add(dt);
                 double sum = 0;

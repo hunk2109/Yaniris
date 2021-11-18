@@ -304,6 +304,18 @@
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.groupBox24 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.txtegre = new System.Windows.Forms.TextBox();
+            this.txtconcep = new System.Windows.Forms.TextBox();
+            this.dtpegre = new System.Windows.Forms.DateTimePicker();
+            this.dgvegre = new System.Windows.Forms.DataGridView();
+            this.btnagreen = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -354,6 +366,10 @@
             this.groupBox22.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdencar)).BeginInit();
             this.tabPage6.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.groupBox24.SuspendLayout();
+            this.groupBox25.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvegre)).BeginInit();
             this.SuspendLayout();
             // 
             // printDocument1
@@ -2186,6 +2202,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
@@ -3121,6 +3138,110 @@
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
             // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.groupBox25);
+            this.tabPage12.Controls.Add(this.groupBox24);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage12.TabIndex = 11;
+            this.tabPage12.Text = "Egresos";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // groupBox24
+            // 
+            this.groupBox24.Controls.Add(this.btnagreen);
+            this.groupBox24.Controls.Add(this.dtpegre);
+            this.groupBox24.Controls.Add(this.txtconcep);
+            this.groupBox24.Controls.Add(this.txtegre);
+            this.groupBox24.Controls.Add(this.label72);
+            this.groupBox24.Controls.Add(this.label71);
+            this.groupBox24.Controls.Add(this.label70);
+            this.groupBox24.Location = new System.Drawing.Point(3, 3);
+            this.groupBox24.Name = "groupBox24";
+            this.groupBox24.Size = new System.Drawing.Size(274, 268);
+            this.groupBox24.TabIndex = 0;
+            this.groupBox24.TabStop = false;
+            this.groupBox24.Text = "Datos";
+            // 
+            // groupBox25
+            // 
+            this.groupBox25.Controls.Add(this.dgvegre);
+            this.groupBox25.Location = new System.Drawing.Point(283, 3);
+            this.groupBox25.Name = "groupBox25";
+            this.groupBox25.Size = new System.Drawing.Size(674, 348);
+            this.groupBox25.TabIndex = 1;
+            this.groupBox25.TabStop = false;
+            this.groupBox25.Text = "Egresos";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(7, 31);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(40, 13);
+            this.label70.TabIndex = 0;
+            this.label70.Text = "Egreso";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(10, 68);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(53, 13);
+            this.label71.TabIndex = 1;
+            this.label71.Text = "Concepto";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(13, 108);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(37, 13);
+            this.label72.TabIndex = 2;
+            this.label72.Text = "Fecha";
+            // 
+            // txtegre
+            // 
+            this.txtegre.Location = new System.Drawing.Point(55, 31);
+            this.txtegre.Name = "txtegre";
+            this.txtegre.Size = new System.Drawing.Size(159, 20);
+            this.txtegre.TabIndex = 3;
+            // 
+            // txtconcep
+            // 
+            this.txtconcep.Location = new System.Drawing.Point(69, 65);
+            this.txtconcep.Name = "txtconcep";
+            this.txtconcep.Size = new System.Drawing.Size(159, 20);
+            this.txtconcep.TabIndex = 4;
+            // 
+            // dtpegre
+            // 
+            this.dtpegre.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpegre.Location = new System.Drawing.Point(55, 102);
+            this.dtpegre.Name = "dtpegre";
+            this.dtpegre.Size = new System.Drawing.Size(153, 20);
+            this.dtpegre.TabIndex = 5;
+            // 
+            // dgvegre
+            // 
+            this.dgvegre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvegre.Location = new System.Drawing.Point(6, 19);
+            this.dgvegre.Name = "dgvegre";
+            this.dgvegre.Size = new System.Drawing.Size(662, 329);
+            this.dgvegre.TabIndex = 0;
+            // 
+            // btnagreen
+            // 
+            this.btnagreen.Location = new System.Drawing.Point(10, 150);
+            this.btnagreen.Name = "btnagreen";
+            this.btnagreen.Size = new System.Drawing.Size(75, 23);
+            this.btnagreen.TabIndex = 1;
+            this.btnagreen.Text = "Agregar";
+            this.btnagreen.UseVisualStyleBackColor = true;
+            this.btnagreen.Click += new System.EventHandler(this.Btnagreen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3201,6 +3322,11 @@
             this.groupBox22.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdencar)).EndInit();
             this.tabPage6.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.groupBox24.ResumeLayout(false);
+            this.groupBox24.PerformLayout();
+            this.groupBox25.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvegre)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3480,6 +3606,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.TextBox txtbarcode;
         private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.GroupBox groupBox25;
+        private System.Windows.Forms.DataGridView dgvegre;
+        private System.Windows.Forms.GroupBox groupBox24;
+        private System.Windows.Forms.Button btnagreen;
+        private System.Windows.Forms.DateTimePicker dtpegre;
+        private System.Windows.Forms.TextBox txtconcep;
+        private System.Windows.Forms.TextBox txtegre;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label70;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
 

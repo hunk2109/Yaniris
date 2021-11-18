@@ -43,7 +43,7 @@ namespace sistgre
                 return "";
 
             }
-            catch (Exception ex)
+            catch (SQLiteException ex)
             {
                 return ex.Message;
             }

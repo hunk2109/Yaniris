@@ -93,6 +93,7 @@ namespace sistgre
                 sum += Convert.ToDouble(dgvfact.Rows[i].Cells[4].Value);
             }
             label44.Text = sum.ToString();
+            dgvegre.DataSource = cns.cosnsultaconresultado("select * from engre");
 
         }
 
@@ -1636,8 +1637,11 @@ namespace sistgre
 
         private void button13_Click(object sender, EventArgs e)
         {
+            double preb,prf;
+            preb = Convert.ToDouble(lbpfi.Text);
+            prf = preb + (preb * 0.18);
             groupBox21.Visible = true;
-            txttpag.Text = lbpfi.Text;
+            txttpag.Text = prf.ToString();
             txtpagado.Text = "0";
 
 
@@ -2804,7 +2808,7 @@ namespace sistgre
                 if (des == 0)
 
                 {
-                    resul = pag - tot;
+                    resul = pag - (tot+(tot*0.18));
                     txtdevuelta.Text = resul.ToString();
 
 
@@ -3577,6 +3581,13 @@ namespace sistgre
             Actprddgv();
             ACTPROD();
             
+        }
+
+        private void Btnagreen_Click(object sender, EventArgs e)
+        {
+            cns.consultasinreaultado("insert into engre(egre,consec,fecha)values('"+txtegre.Text+"','"+txtconcep.Text+"','"+dtpegre.Text+"')");
+            cns.consultasinreaultado("insert into factura(fecha,fec_c,ttdv)values('"+dtpegre.Text+ "','" + dtpegre.Text + "','-"+txtegre.Text+"')");
+            dgvegre.DataSource = cns.cosnsultaconresultado("select * from engre");
         }
     }
 }
