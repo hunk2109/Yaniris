@@ -1639,7 +1639,7 @@ namespace sistgre
         {
             double preb,prf;
             preb = Convert.ToDouble(lbpfi.Text);
-            prf = preb + (preb * 0.18);
+            prf = preb /*+ (preb * 0.18)*/;
             groupBox21.Visible = true;
             txttpag.Text = prf.ToString();
             txtpagado.Text = "0";
@@ -1691,8 +1691,8 @@ namespace sistgre
             TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
             TextObject text10 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdescr"];
-            TextObject text11 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrsub"];
-            TextObject text12 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrit"];
+           /* TextObject text11 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrsub"];
+            TextObject text12 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrit"];*/
 
 
 
@@ -1710,12 +1710,12 @@ namespace sistgre
             text2.Text = txtpagado.Text;
             text3.Text = txtdevuelta.Text;
             text10.Text = cbdesc.Text;
-            text11.Text = lbpfi.Text;
+            //text11.Text = lbpfi.Text;
             double des, tot, resul;
             double preb, prf;
             preb = Convert.ToDouble(lbpfi.Text);
-            prf = (preb * 0.18);
-            text12.Text = prf.ToString();
+            prf = (preb /** 0.18*/);
+            //text12.Text = prf.ToString();
             tot = Convert.ToDouble(txttpag.Text);
             des = Convert.ToDouble(cbdesc.Text);
             resul = tot - tot * (des / 100);
@@ -2817,7 +2817,7 @@ namespace sistgre
                 if (des == 0)
 
                 {
-                    resul = pag - (tot+(tot*0.18));
+                    resul = pag - (tot/*+(tot*0.18)*/);
                     txtdevuelta.Text = resul.ToString();
 
 
@@ -2959,7 +2959,7 @@ namespace sistgre
                     if (des == 0)
 
                     {
-                        resul = pag - (tot+tot*0.18);
+                        resul = pag - (tot/*+tot*0.18*/);
                         txtdevuelta.Text = resul.ToString();
 
 
@@ -2967,8 +2967,8 @@ namespace sistgre
 
                     else
                     {
-                        resul2 = ((tot + (tot * 0.18)) - tot * (des / 100));
-                        resul = pag - ((tot+(tot*0.18)) - tot * (des / 100));
+                        resul2 = ((tot + /*(tot * 0.18))*/ -( tot * (des / 100))));
+                        resul = pag - ((tot/*+(tot*0.18)*/) - tot * (des / 100));
                         txtdevuelta.Text = resul.ToString();
                         txxttcd.Text = resul2.ToString();
 
