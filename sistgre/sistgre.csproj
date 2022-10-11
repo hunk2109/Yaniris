@@ -156,6 +156,12 @@
       <DependentUpon>CrystalReport6.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport7.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport7.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,12 @@
     </Compile>
     <Compile Include="imgt.Designer.cs">
       <DependentUpon>imgt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="prinfact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="prinfact.Designer.cs">
+      <DependentUpon>prinfact.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,11 +223,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport6.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport7.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport7.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="imgt.resx">
       <DependentUpon>imgt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="prinfact.resx">
+      <DependentUpon>prinfact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

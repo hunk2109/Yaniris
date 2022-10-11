@@ -99,7 +99,10 @@ namespace sistgre
         {
             
             Reportesf f = new Reportesf();
+
             CrystalReport2 cr = new CrystalReport2();
+            prinfact f2 = new prinfact();
+            CrystalReport7 cr2 = new CrystalReport7();
             if (rbefec.Checked == true)
             {
                 string enc;
@@ -129,8 +132,13 @@ namespace sistgre
 
             else if(rbfact.Checked == true)
             {
+                TextObject text3 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtttccr"];
+                text3.Text = lbto.Text;
 
-            }
+                f2.crystalReportViewer1.ReportSource = cr2;
+                f2.Show();
+            
+        }
         }
 
         private void Dgvrepor_CellContentClick(object sender, DataGridViewCellEventArgs e)
