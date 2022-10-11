@@ -360,7 +360,14 @@ namespace sistgre
                         carga();
                         conn.Close();
                         cargtot();
-                        pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                        try
+                        {
+                            pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                        }catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+
                         txtcodprod.Clear();
                         txtnombprod.Clear();
                         txttipprod.Clear();
