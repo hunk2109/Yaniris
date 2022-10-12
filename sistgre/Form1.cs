@@ -350,67 +350,74 @@ namespace sistgre
 
                     else
                     {
-                        if (chbint.Checked == true)
+                        if (string.IsNullOrEmpty(txtnombprod.Text) && (string.IsNullOrEmpty(txtpre.Text) && (string.IsNullOrEmpty(txtprecomp.Text))))
                         {
-                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
-                            {
-                                conn.Open();
-                                codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
-
-                            }
-                            cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','1','" + codigo + "')");
-                            carga();
-                            conn.Close();
-                            cargtot();
-                            try
-                            {
-                                pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
-
-                            txtcodprod.Clear();
-                            txtnombprod.Clear();
-                            txttipprod.Clear();
-                            txtprodcant.Clear();
-                            txtpre.Clear();
-                            txtinvcant.Clear();
-
+                            MessageBox.Show("Llene todos los campos");
                         }
                         else
                         {
-                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                            if (chbint.Checked == true)
                             {
-                                conn.Open();
-                                codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+                                using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                                {
+                                    conn.Open();
+                                    codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+
+                                }
+                                cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','1','" + codigo + "')");
+                                carga();
+                                conn.Close();
+                                cargtot();
+                                try
+                                {
+                                    pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+
+                                txtcodprod.Clear();
+                                txtnombprod.Clear();
+                                txttipprod.Clear();
+                                txtprodcant.Clear();
+                                txtpre.Clear();
+                                txtinvcant.Clear();
 
                             }
-                            cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','0','" + codigo + "')");
-                            carga();
-                            conn.Close();
-                            cargtot();
-                            try
+                            else
                             {
-                                pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                                using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                                {
+                                    conn.Open();
+                                    codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
 
-                            txtcodprod.Clear();
-                            txtnombprod.Clear();
-                            txttipprod.Clear();
-                            txtprodcant.Clear();
-                            txtpre.Clear();
-                            txtinvcant.Clear();
+                                }
+                                cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','0','" + codigo + "')");
+                                carga();
+                                conn.Close();
+                                cargtot();
+                                try
+                                {
+                                    pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+
+                                txtcodprod.Clear();
+                                txtnombprod.Clear();
+                                txttipprod.Clear();
+                                txtprodcant.Clear();
+                                txtpre.Clear();
+                                txtinvcant.Clear();
+                            }
                         }
                     }
                 }
-            }
 
+            }
         }
         private void lxbprod_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3692,6 +3699,11 @@ namespace sistgre
             txtpre.Clear();
             txtprecomp.Clear();
             txtinvcant.Clear();
+        }
+
+        private void label33_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

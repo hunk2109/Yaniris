@@ -746,9 +746,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Edwin"
+        "ProductName" = "8:Sierra"
         "ProductCode" = "8:{BBE9E9D7-6827-4A9B-ABEA-84BB21618C5B}"
-        "PackageCode" = "8:{A976FCFA-016E-4AB7-8B44-A346F9971FEF}"
+        "PackageCode" = "8:{3462F080-9ACD-49FD-A072-628A7C2FA47E}"
         "UpgradeCode" = "8:{F8A4F7E5-3E2A-492F-AB72-C58D20C11596}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -759,7 +759,7 @@
         "Manufacturer" = "8:HY ALLIANCE"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Ediwn"
+        "Title" = "8:Sierra"
         "Subject" = "8:"
         "ARPCONTACT" = "8:HY ALLIANCE"
         "Keywords" = "8:"
@@ -870,7 +870,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_964A138AC5FD4BC8A88C0D9D6EB68ED8"
             {
-            "Name" = "8:EDWIN"
+            "Name" = "8:SIERRA"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1283,7 +1283,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A9052EE411C4441C9A6CAC9D79FC341A"
             {
-            "SourcePath" = "8:..\\sistgre\\obj\\Debug\\sistgre.exe"
+            "SourcePath" = "8:..\\sistgre\\obj\\Release\\sistgre.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C7662B63F8FE4157847FC0538D4152A5"

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -92,6 +92,12 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chbint = new System.Windows.Forms.CheckBox();
+            this.btnlimoinv = new System.Windows.Forms.Button();
+            this.lblben = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.txtprecomp = new System.Windows.Forms.TextBox();
+            this.label73 = new System.Windows.Forms.Label();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
@@ -316,12 +322,6 @@
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.label73 = new System.Windows.Forms.Label();
-            this.txtprecomp = new System.Windows.Forms.TextBox();
-            this.label74 = new System.Windows.Forms.Label();
-            this.lblben = new System.Windows.Forms.Label();
-            this.btnlimoinv = new System.Windows.Forms.Button();
-            this.chbint = new System.Windows.Forms.CheckBox();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -1018,6 +1018,63 @@
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Producto";
+            // 
+            // chbint
+            // 
+            this.chbint.AutoSize = true;
+            this.chbint.Location = new System.Drawing.Point(135, 40);
+            this.chbint.Name = "chbint";
+            this.chbint.Size = new System.Drawing.Size(58, 17);
+            this.chbint.TabIndex = 30;
+            this.chbint.Text = "Interes";
+            this.chbint.UseVisualStyleBackColor = true;
+            // 
+            // btnlimoinv
+            // 
+            this.btnlimoinv.Location = new System.Drawing.Point(196, 36);
+            this.btnlimoinv.Name = "btnlimoinv";
+            this.btnlimoinv.Size = new System.Drawing.Size(75, 23);
+            this.btnlimoinv.TabIndex = 29;
+            this.btnlimoinv.Text = "Limpiar";
+            this.btnlimoinv.UseVisualStyleBackColor = true;
+            this.btnlimoinv.Click += new System.EventHandler(this.btnlimoinv_Click);
+            // 
+            // lblben
+            // 
+            this.lblben.AutoSize = true;
+            this.lblben.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblben.Location = new System.Drawing.Point(215, 292);
+            this.lblben.Name = "lblben";
+            this.lblben.Size = new System.Drawing.Size(18, 20);
+            this.lblben.TabIndex = 28;
+            this.lblben.Text = "0";
+            this.lblben.TextChanged += new System.EventHandler(this.lblben_TextChanged);
+            this.lblben.Click += new System.EventHandler(this.lblben_Click);
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(158, 296);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(51, 13);
+            this.label74.TabIndex = 27;
+            this.label74.Text = "Beneficio";
+            // 
+            // txtprecomp
+            // 
+            this.txtprecomp.Location = new System.Drawing.Point(94, 190);
+            this.txtprecomp.Name = "txtprecomp";
+            this.txtprecomp.Size = new System.Drawing.Size(96, 20);
+            this.txtprecomp.TabIndex = 26;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(6, 193);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(91, 13);
+            this.label73.TabIndex = 25;
+            this.label73.Text = "Precio de Compra";
             // 
             // groupBox19
             // 
@@ -2155,14 +2212,14 @@
             this.dgvventa.Location = new System.Drawing.Point(6, 39);
             this.dgvventa.Name = "dgvventa";
             this.dgvventa.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
@@ -2251,7 +2308,7 @@
             this.groupBox21.Controls.Add(this.label59);
             this.groupBox21.Controls.Add(this.label58);
             this.groupBox21.Controls.Add(this.label57);
-            this.groupBox21.Location = new System.Drawing.Point(424, 17);
+            this.groupBox21.Location = new System.Drawing.Point(424, 22);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(748, 190);
             this.groupBox21.TabIndex = 25;
@@ -2568,9 +2625,9 @@
             // 
             // txtcedcot
             // 
-            this.txtcedcot.Location = new System.Drawing.Point(59, 50);
+            this.txtcedcot.Location = new System.Drawing.Point(81, 50);
             this.txtcedcot.Name = "txtcedcot";
-            this.txtcedcot.Size = new System.Drawing.Size(211, 20);
+            this.txtcedcot.Size = new System.Drawing.Size(189, 20);
             this.txtcedcot.TabIndex = 3;
             // 
             // label33
@@ -2578,9 +2635,10 @@
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(6, 53);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(43, 13);
+            this.label33.Size = new System.Drawing.Size(71, 13);
             this.label33.TabIndex = 2;
-            this.label33.Text = "Cedula:";
+            this.label33.Text = "Cedula/RNC:";
+            this.label33.Click += new System.EventHandler(this.label33_Click);
             // 
             // label28
             // 
@@ -3255,63 +3313,6 @@
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
             // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(6, 193);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(91, 13);
-            this.label73.TabIndex = 25;
-            this.label73.Text = "Precio de Compra";
-            // 
-            // txtprecomp
-            // 
-            this.txtprecomp.Location = new System.Drawing.Point(94, 190);
-            this.txtprecomp.Name = "txtprecomp";
-            this.txtprecomp.Size = new System.Drawing.Size(96, 20);
-            this.txtprecomp.TabIndex = 26;
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(158, 296);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(51, 13);
-            this.label74.TabIndex = 27;
-            this.label74.Text = "Beneficio";
-            // 
-            // lblben
-            // 
-            this.lblben.AutoSize = true;
-            this.lblben.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblben.Location = new System.Drawing.Point(215, 292);
-            this.lblben.Name = "lblben";
-            this.lblben.Size = new System.Drawing.Size(18, 20);
-            this.lblben.TabIndex = 28;
-            this.lblben.Text = "0";
-            this.lblben.TextChanged += new System.EventHandler(this.lblben_TextChanged);
-            this.lblben.Click += new System.EventHandler(this.lblben_Click);
-            // 
-            // btnlimoinv
-            // 
-            this.btnlimoinv.Location = new System.Drawing.Point(196, 36);
-            this.btnlimoinv.Name = "btnlimoinv";
-            this.btnlimoinv.Size = new System.Drawing.Size(75, 23);
-            this.btnlimoinv.TabIndex = 29;
-            this.btnlimoinv.Text = "Limpiar";
-            this.btnlimoinv.UseVisualStyleBackColor = true;
-            this.btnlimoinv.Click += new System.EventHandler(this.btnlimoinv_Click);
-            // 
-            // chbint
-            // 
-            this.chbint.AutoSize = true;
-            this.chbint.Location = new System.Drawing.Point(135, 40);
-            this.chbint.Name = "chbint";
-            this.chbint.Size = new System.Drawing.Size(58, 17);
-            this.chbint.TabIndex = 30;
-            this.chbint.Text = "Interes";
-            this.chbint.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3319,7 +3320,7 @@
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Edwin";
+            this.Text = "Sierra";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
