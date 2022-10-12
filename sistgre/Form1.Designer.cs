@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -321,6 +321,7 @@
             this.label74 = new System.Windows.Forms.Label();
             this.lblben = new System.Windows.Forms.Label();
             this.btnlimoinv = new System.Windows.Forms.Button();
+            this.chbint = new System.Windows.Forms.CheckBox();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -984,6 +985,7 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.chbint);
             this.groupBox5.Controls.Add(this.btnlimoinv);
             this.groupBox5.Controls.Add(this.lblben);
             this.groupBox5.Controls.Add(this.label74);
@@ -2153,14 +2155,14 @@
             this.dgvventa.Location = new System.Drawing.Point(6, 39);
             this.dgvventa.Name = "dgvventa";
             this.dgvventa.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
@@ -3292,13 +3294,23 @@
             // 
             // btnlimoinv
             // 
-            this.btnlimoinv.Location = new System.Drawing.Point(134, 36);
+            this.btnlimoinv.Location = new System.Drawing.Point(196, 36);
             this.btnlimoinv.Name = "btnlimoinv";
             this.btnlimoinv.Size = new System.Drawing.Size(75, 23);
             this.btnlimoinv.TabIndex = 29;
             this.btnlimoinv.Text = "Limpiar";
             this.btnlimoinv.UseVisualStyleBackColor = true;
             this.btnlimoinv.Click += new System.EventHandler(this.btnlimoinv_Click);
+            // 
+            // chbint
+            // 
+            this.chbint.AutoSize = true;
+            this.chbint.Location = new System.Drawing.Point(135, 40);
+            this.chbint.Name = "chbint";
+            this.chbint.Size = new System.Drawing.Size(58, 17);
+            this.chbint.TabIndex = 30;
+            this.chbint.Text = "Interes";
+            this.chbint.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -3307,7 +3319,7 @@
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Sierra";
+            this.Text = "Edwin";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -3681,6 +3693,7 @@
         private System.Windows.Forms.Label lblben;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Button btnlimoinv;
+        private System.Windows.Forms.CheckBox chbint;
     }
 }
 

@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Sierra"
+"ProjectName" = "8:Edwin"
 "LanguageId" = "3:3082"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:3082"
@@ -206,6 +206,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -738,7 +746,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SIERRA"
+        "ProductName" = "8:Edwin"
         "ProductCode" = "8:{BBE9E9D7-6827-4A9B-ABEA-84BB21618C5B}"
         "PackageCode" = "8:{A976FCFA-016E-4AB7-8B44-A346F9971FEF}"
         "UpgradeCode" = "8:{F8A4F7E5-3E2A-492F-AB72-C58D20C11596}"
@@ -1275,7 +1283,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A9052EE411C4441C9A6CAC9D79FC341A"
             {
-            "SourcePath" = "8:..\\sistgre\\obj\\Release\\sistgre.exe"
+            "SourcePath" = "8:..\\sistgre\\obj\\Debug\\sistgre.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C7662B63F8FE4157847FC0538D4152A5"

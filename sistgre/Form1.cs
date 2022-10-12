@@ -81,7 +81,7 @@ namespace sistgre
         private void carga()
         {
             dgvsup.DataSource = cns.cosnsultaconresultado("select * from Suplidor");
-            dgvinv.DataSource = cns.cosnsultaconresultado("select id_cod , produc,tipo_prod,precio , precio_c ,(precio-precio_c)as Beneficio ,canti_disp ,suplidor_id_supli from inventario");
+            dgvinv.DataSource = cns.cosnsultaconresultado("select id_cod , produc,tipo_prod,precio , precio_c ,(precio-precio_c)as Beneficio ,canti_disp ,itbis as Itebis,suplidor_id_supli from inventario");
             dgvcli.DataSource = cns.cosnsultaconresultado("select * from cliente");
             dgvfact.DataSource = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total  from ventas   join inventario on id_cod = inventario_id_cod ");
             dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 ");
@@ -350,32 +350,63 @@ namespace sistgre
 
                     else
                     {
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                        if (chbint.Checked == true)
                         {
-                            conn.Open();
-                            codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                            {
+                                conn.Open();
+                                codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+
+                            }
+                            cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','1','" + codigo + "')");
+                            carga();
+                            conn.Close();
+                            cargtot();
+                            try
+                            {
+                                pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                            txtcodprod.Clear();
+                            txtnombprod.Clear();
+                            txttipprod.Clear();
+                            txtprodcant.Clear();
+                            txtpre.Clear();
+                            txtinvcant.Clear();
 
                         }
-                        cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','"+txtprecomp.Text+"','" + txtinvcant.Text + "','" + codigo + "')");
-                        carga();
-                        conn.Close();
-                        cargtot();
-                        try
+                        else
                         {
-                            pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
-                        }catch(Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
+                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                            {
+                                conn.Open();
+                                codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
+
+                            }
+                            cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,itbis,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtprecomp.Text + "','" + txtinvcant.Text + "','0','" + codigo + "')");
+                            carga();
+                            conn.Close();
+                            cargtot();
+                            try
+                            {
+                                pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                            txtcodprod.Clear();
+                            txtnombprod.Clear();
+                            txttipprod.Clear();
+                            txtprodcant.Clear();
+                            txtpre.Clear();
+                            txtinvcant.Clear();
                         }
-
-                        txtcodprod.Clear();
-                        txtnombprod.Clear();
-                        txttipprod.Clear();
-                        txtprodcant.Clear();
-                        txtpre.Clear();
-                        txtinvcant.Clear();
-
-
                     }
                 }
             }
