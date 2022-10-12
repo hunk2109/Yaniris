@@ -316,6 +316,11 @@
             this.printDocument3 = new System.Drawing.Printing.PrintDocument();
             this.printDocument4 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.label73 = new System.Windows.Forms.Label();
+            this.txtprecomp = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.lblben = new System.Windows.Forms.Label();
+            this.btnlimoinv = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -392,7 +397,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage5.Size = new System.Drawing.Size(1337, 698);
             this.tabPage5.TabIndex = 8;
             this.tabPage5.Text = "Cuentas";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -780,7 +785,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage7.Size = new System.Drawing.Size(1337, 698);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Clientes";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -969,7 +974,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage4.Size = new System.Drawing.Size(1337, 698);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Inventario";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -979,6 +984,11 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.btnlimoinv);
+            this.groupBox5.Controls.Add(this.lblben);
+            this.groupBox5.Controls.Add(this.label74);
+            this.groupBox5.Controls.Add(this.txtprecomp);
+            this.groupBox5.Controls.Add(this.label73);
             this.groupBox5.Controls.Add(this.groupBox19);
             this.groupBox5.Controls.Add(this.groupBox18);
             this.groupBox5.Controls.Add(this.label38);
@@ -1243,10 +1253,11 @@
             // 
             // txtpre
             // 
-            this.txtpre.Location = new System.Drawing.Point(62, 186);
+            this.txtpre.Location = new System.Drawing.Point(94, 219);
             this.txtpre.Name = "txtpre";
-            this.txtpre.Size = new System.Drawing.Size(128, 20);
+            this.txtpre.Size = new System.Drawing.Size(96, 20);
             this.txtpre.TabIndex = 10;
+            this.txtpre.TextChanged += new System.EventHandler(this.txtpre_TextChanged);
             // 
             // txtinvcant
             // 
@@ -1272,11 +1283,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 189);
+            this.label12.Location = new System.Drawing.Point(6, 222);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 13);
+            this.label12.Size = new System.Drawing.Size(82, 13);
             this.label12.TabIndex = 5;
-            this.label12.Text = "Precio";
+            this.label12.Text = "Precio de venta";
             // 
             // label11
             // 
@@ -1405,7 +1416,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage3.Size = new System.Drawing.Size(1337, 698);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Suplidores";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1574,7 +1585,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage2.Size = new System.Drawing.Size(1337, 698);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Factura";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1673,7 +1684,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage1.Size = new System.Drawing.Size(1337, 698);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Venta";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2825,7 +2836,7 @@
             this.tabPage11.Controls.Add(this.groupBox22);
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage11.Size = new System.Drawing.Size(1337, 698);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "Encargos";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -3111,7 +3122,7 @@
             this.tabPage12.Controls.Add(this.groupBox24);
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage12.Size = new System.Drawing.Size(1337, 698);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Egresos";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -3215,7 +3226,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1442, 806);
+            this.tabPage6.Size = new System.Drawing.Size(1337, 698);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Generar Reporte";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -3242,6 +3253,53 @@
             // 
             this.printDocument4.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument4_PrintPage);
             // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(6, 193);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(91, 13);
+            this.label73.TabIndex = 25;
+            this.label73.Text = "Precio de Compra";
+            // 
+            // txtprecomp
+            // 
+            this.txtprecomp.Location = new System.Drawing.Point(94, 190);
+            this.txtprecomp.Name = "txtprecomp";
+            this.txtprecomp.Size = new System.Drawing.Size(96, 20);
+            this.txtprecomp.TabIndex = 26;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(158, 296);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(51, 13);
+            this.label74.TabIndex = 27;
+            this.label74.Text = "Beneficio";
+            // 
+            // lblben
+            // 
+            this.lblben.AutoSize = true;
+            this.lblben.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblben.Location = new System.Drawing.Point(215, 292);
+            this.lblben.Name = "lblben";
+            this.lblben.Size = new System.Drawing.Size(18, 20);
+            this.lblben.TabIndex = 28;
+            this.lblben.Text = "0";
+            this.lblben.TextChanged += new System.EventHandler(this.lblben_TextChanged);
+            this.lblben.Click += new System.EventHandler(this.lblben_Click);
+            // 
+            // btnlimoinv
+            // 
+            this.btnlimoinv.Location = new System.Drawing.Point(134, 36);
+            this.btnlimoinv.Name = "btnlimoinv";
+            this.btnlimoinv.Size = new System.Drawing.Size(75, 23);
+            this.btnlimoinv.TabIndex = 29;
+            this.btnlimoinv.Text = "Limpiar";
+            this.btnlimoinv.UseVisualStyleBackColor = true;
+            this.btnlimoinv.Click += new System.EventHandler(this.btnlimoinv_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3249,7 +3307,7 @@
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Edwin";
+            this.Text = "Sierra";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -3618,6 +3676,11 @@
         private System.Windows.Forms.Label label71;
         private System.Windows.Forms.Label label70;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.TextBox txtprecomp;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label lblben;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Button btnlimoinv;
     }
 }
 

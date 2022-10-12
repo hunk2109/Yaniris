@@ -81,7 +81,7 @@ namespace sistgre
         private void carga()
         {
             dgvsup.DataSource = cns.cosnsultaconresultado("select * from Suplidor");
-            dgvinv.DataSource = cns.cosnsultaconresultado("Select * from inventario");
+            dgvinv.DataSource = cns.cosnsultaconresultado("select id_cod , produc,tipo_prod,precio , precio_c ,(precio-precio_c)as Beneficio ,canti_disp ,suplidor_id_supli from inventario");
             dgvcli.DataSource = cns.cosnsultaconresultado("select * from cliente");
             dgvfact.DataSource = cns.cosnsultaconresultado("select ven_id_fac as Codigo, produc as Producto,precio as Precio, cant as Cantidad, (precio * cant) as Total  from ventas   join inventario on id_cod = inventario_id_cod ");
             dgvcp.DataSource = cns.cosnsultaconresultado("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 ");
@@ -356,7 +356,7 @@ namespace sistgre
                             codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
 
                         }
-                        cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','" + txtinvcant.Text + "','" + codigo + "')");
+                        cns.consultasinreaultado("insert into inventario(produc,tipo_prod,precio,precio_c,canti_disp,Suplidor_id_supli)values('" + txtnombprod.Text + "','" + txttipprod.Text + "','" + txtpre.Text + "','"+txtprecomp.Text+"','" + txtinvcant.Text + "','" + codigo + "')");
                         carga();
                         conn.Close();
                         cargtot();
@@ -1028,6 +1028,8 @@ namespace sistgre
                 txttipprod.Text = act.Cells["tipo_prod"].Value.ToString();
                 txtpre.Text = act.Cells["precio"].Value.ToString();
                 txtinvcant.Text = act.Cells["canti_disp"].Value.ToString();
+                txtprecomp.Text = act.Cells["precio_c"].Value.ToString();
+                lblben.Text = act.Cells["Beneficio"].Value.ToString();
                 Image image = Image.FromFile(@"C:\bdd\img\" + txtnombprod.Text + ".jpg");
                 this.pictureBox1.Image = image;
             }
@@ -1096,7 +1098,7 @@ namespace sistgre
                     try
                     {
 
-                        cns.consultasinreaultado("Update inventario set produc = '" + txtnombprod.Text + "', tipo_prod = '" + txttipprod.Text + "', precio ='" + txtpre.Text + "', canti_disp = '" + txtinvcant.Text + "' where id_cod = '" + txtcodprod.Text + "'");
+                        cns.consultasinreaultado("Update inventario set produc = '" + txtnombprod.Text + "', tipo_prod = '" + txttipprod.Text + "', precio ='" + txtpre.Text + "',precio_c ='"+txtprecomp.Text+"', canti_disp = '" + txtinvcant.Text + "' where id_cod = '" + txtcodprod.Text + "'");
                         pictureBox1.Image.Save(@"C:/bdd/img/" + txtnombprod.Text + ".jpg");
                         carga();
                         txtcodprod.Clear();
@@ -1104,6 +1106,7 @@ namespace sistgre
                         txttipprod.Clear();
                         txtprodcant.Clear();
                         txtpre.Clear();
+                        txtprecomp.Clear();
                         txtinvcant.Clear();
                     }
                     catch (Exception ex)
@@ -3604,6 +3607,60 @@ namespace sistgre
             cns.consultasinreaultado("insert into engre(egre,consec,fecha)values('"+txtegre.Text+"','"+txtconcep.Text+"','"+dtpegre.Text+"')");
             cns.consultasinreaultado("insert into factura(fecha,fec_c,ttdv)values('"+dtpegre.Text+ "','" + dtpegre.Text + "','-"+txtegre.Text+"')");
             dgvegre.DataSource = cns.cosnsultaconresultado("select * from engre");
+        }
+
+        private void txtpre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtpre.Text.Trim() == string.Empty && txtprecomp.Text.Trim() == string.Empty)
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    double prec, prev, ben;
+                    prec = Convert.ToDouble(txtprecomp.Text.Trim());
+                    prev = Convert.ToDouble(txtpre.Text.Trim());
+                    ben = (prev - prec);
+                    lblben.Text = ben.ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        private void lblben_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblben_TextChanged(object sender, EventArgs e)
+        {
+            double ben;
+            ben = Convert.ToDouble(lblben.Text.Trim());
+            if(ben >= 0)
+            {
+                lblben.ForeColor = Color.Green;
+            }
+            else
+            {
+                lblben.ForeColor = Color.Red;
+
+            }
+        }
+
+        private void btnlimoinv_Click(object sender, EventArgs e)
+        {
+            txtcodprod.Clear();
+            txtnombprod.Clear();
+            txttipprod.Clear();
+            txtprodcant.Clear();
+            txtpre.Clear();
+            txtprecomp.Clear();
+            txtinvcant.Clear();
         }
     }
 }
