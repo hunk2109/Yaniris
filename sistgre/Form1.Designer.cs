@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -216,6 +216,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.txxttcd = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
@@ -229,7 +230,6 @@
             this.label59 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.button25 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
@@ -358,8 +358,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            this.groupBox21.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcot)).BeginInit();
@@ -2212,14 +2212,14 @@
             this.dgvventa.Location = new System.Drawing.Point(6, 39);
             this.dgvventa.Name = "dgvventa";
             this.dgvventa.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvventa.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvventa.Size = new System.Drawing.Size(923, 681);
             this.dgvventa.TabIndex = 0;
             this.dgvventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvventa_CellContentClick);
@@ -2283,7 +2283,6 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.groupBox21);
             this.tabPage10.Controls.Add(this.groupBox14);
             this.tabPage10.Controls.Add(this.groupBox13);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
@@ -2293,6 +2292,34 @@
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Facturacion";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.groupBox21);
+            this.groupBox14.Controls.Add(this.button25);
+            this.groupBox14.Controls.Add(this.button22);
+            this.groupBox14.Controls.Add(this.label60);
+            this.groupBox14.Controls.Add(this.txtnfact);
+            this.groupBox14.Controls.Add(this.txtidcred);
+            this.groupBox14.Controls.Add(this.button17);
+            this.groupBox14.Controls.Add(this.button16);
+            this.groupBox14.Controls.Add(this.button15);
+            this.groupBox14.Controls.Add(this.lbpfi);
+            this.groupBox14.Controls.Add(this.label36);
+            this.groupBox14.Controls.Add(this.groupBox16);
+            this.groupBox14.Controls.Add(this.groupBox15);
+            this.groupBox14.Controls.Add(this.button12);
+            this.groupBox14.Controls.Add(this.button13);
+            this.groupBox14.Controls.Add(this.dgvcot);
+            this.groupBox14.Location = new System.Drawing.Point(418, 22);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(793, 361);
+            this.groupBox14.TabIndex = 1;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Cotizacion";
             // 
             // groupBox21
             // 
@@ -2308,9 +2335,9 @@
             this.groupBox21.Controls.Add(this.label59);
             this.groupBox21.Controls.Add(this.label58);
             this.groupBox21.Controls.Add(this.label57);
-            this.groupBox21.Location = new System.Drawing.Point(424, 22);
+            this.groupBox21.Location = new System.Drawing.Point(0, 0);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(748, 190);
+            this.groupBox21.Size = new System.Drawing.Size(787, 190);
             this.groupBox21.TabIndex = 25;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Devuelta";
@@ -2440,33 +2467,6 @@
             this.label57.Size = new System.Drawing.Size(139, 24);
             this.label57.TabIndex = 0;
             this.label57.Text = "Total  a Pagar";
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox14.Controls.Add(this.button25);
-            this.groupBox14.Controls.Add(this.button22);
-            this.groupBox14.Controls.Add(this.label60);
-            this.groupBox14.Controls.Add(this.txtnfact);
-            this.groupBox14.Controls.Add(this.txtidcred);
-            this.groupBox14.Controls.Add(this.button17);
-            this.groupBox14.Controls.Add(this.button16);
-            this.groupBox14.Controls.Add(this.button15);
-            this.groupBox14.Controls.Add(this.lbpfi);
-            this.groupBox14.Controls.Add(this.label36);
-            this.groupBox14.Controls.Add(this.groupBox16);
-            this.groupBox14.Controls.Add(this.groupBox15);
-            this.groupBox14.Controls.Add(this.button12);
-            this.groupBox14.Controls.Add(this.button13);
-            this.groupBox14.Controls.Add(this.dgvcot);
-            this.groupBox14.Location = new System.Drawing.Point(418, 22);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(793, 361);
-            this.groupBox14.TabIndex = 1;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Cotizacion";
             // 
             // button25
             // 
@@ -3373,10 +3373,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);

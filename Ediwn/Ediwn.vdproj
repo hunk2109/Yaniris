@@ -236,8 +236,13 @@
                 {
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 y x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:SAP.CrystalReports14.NET.2.0"
+                    {
+                    "Name" = "8:SAP Crystal Reports Runtime Engine for .NET Framework"
+                    "ProductCode" = "8:SAP.CrystalReports14.NET.2.0"
                     }
                 }
             }
@@ -722,7 +727,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sierra"
         "ProductCode" = "8:{BBE9E9D7-6827-4A9B-ABEA-84BB21618C5B}"
-        "PackageCode" = "8:{3462F080-9ACD-49FD-A072-628A7C2FA47E}"
+        "PackageCode" = "8:{A8B6CB85-E4A9-44F9-8B76-E0C0E6068B49}"
         "UpgradeCode" = "8:{F8A4F7E5-3E2A-492F-AB72-C58D20C11596}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

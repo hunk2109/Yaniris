@@ -1604,6 +1604,7 @@ namespace sistgre
                     p = Convert.ToDouble(txtprecot.Text);
                     c = Convert.ToDouble(txtcantcot.Text);
                     pf = p * c;
+
                     txtprfcot.Text = pf.ToString();
 
 
@@ -1687,7 +1688,7 @@ namespace sistgre
         {
             double preb,prf;
             preb = Convert.ToDouble(lbpfi.Text);
-            prf = preb /*+ (preb * 0.18)*/;
+            prf = preb + (preb * 0.18);
             groupBox21.Visible = true;
             txttpag.Text = prf.ToString();
             txtpagado.Text = "0";
@@ -1739,8 +1740,8 @@ namespace sistgre
             TextObject text3 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
             TextObject text4 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];
             TextObject text10 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtdescr"];
-           /* TextObject text11 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrsub"];
-            TextObject text12 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtcrit"];*/
+            TextObject text11 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtit"];
+            TextObject text12 = (TextObject)cr.ReportDefinition.Sections["Section4"].ReportObjects["txtsubt"];
 
 
 
@@ -1749,8 +1750,8 @@ namespace sistgre
             TextObject text5 = (TextObject)cr2.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
             //TextObject text1 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];
             TextObject text6 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtpagcr"];
-            TextObject text7 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtdevcr"];
-            TextObject text8 = (TextObject)cr2.ReportDefinition.Sections["Section4"].ReportObjects["txtcrtt"];            
+            TextObject text7 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtclicr"];
+            TextObject text8 = (TextObject)cr.ReportDefinition.Sections["Section2"].ReportObjects["txtcrced"];            
             vent();
 
             text.Text = txtcocli.Text;
@@ -1758,16 +1759,21 @@ namespace sistgre
             text2.Text = txtpagado.Text;
             text3.Text = txtdevuelta.Text;
             text10.Text = cbdesc.Text;
+            text7.Text = txtcocli.Text;
+            text8.Text = txtcedcot.Text;
+
             //text11.Text = lbpfi.Text;
             double des, tot, resul;
-            double preb, prf;
+            double preb, prf,itb;
             preb = Convert.ToDouble(lbpfi.Text);
-            prf = (preb /** 0.18*/);
-            //text12.Text = prf.ToString();
+            prf = (preb+(preb * 0.18) - preb *0.18);
+            text12.Text = prf.ToString();
             tot = Convert.ToDouble(txttpag.Text);
             des = Convert.ToDouble(cbdesc.Text);
             resul = tot - tot * (des / 100);
             text4.Text = resul.ToString();
+            itb = preb * 0.18;
+            text11.Text = itb.ToString();
             f.crystalReportViewer1.ReportSource = cr;
             cr.PrintToPrinter(2, false, 0, 0);
 
@@ -2865,7 +2871,7 @@ namespace sistgre
                 if (des == 0)
 
                 {
-                    resul = pag - (tot/*+(tot*0.18)*/);
+                    resul = pag - (tot +(tot*0.18));
                     txtdevuelta.Text = resul.ToString();
 
 
