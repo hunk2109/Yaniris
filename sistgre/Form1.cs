@@ -1784,7 +1784,7 @@ namespace sistgre
                         for (int i = 0; i < dgvcot.Rows.Count - 1; i++)
                         {
                             conn.Open();
-                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,ven_id_fac,tipo_vent) VALUES ('"
+                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,ven_id_fac,tipo_vent ) VALUES ('"
                                 + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                 + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
                                 + txtnfact.Text + "','1')";
