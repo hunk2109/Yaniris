@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace sistgre
@@ -12,7 +12,7 @@ namespace sistgre
     {
         public string conectar()
         {
-            SQLiteConnection cnx = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection cnx = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             try
             {
                 cnx.Open();
@@ -34,16 +34,16 @@ namespace sistgre
 
         public string consultasinreaultado(string sql)
         {
-            SQLiteConnection cnx = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection cnx = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             try
             {
                 cnx.Open();
-                SQLiteCommand comand = new SQLiteCommand(sql, cnx);
+                MySqlCommand comand = new MySqlCommand(sql, cnx);
                 comand.ExecuteNonQuery();
                 return "";
 
             }
-            catch (SQLiteException ex)
+            catch (MySqlException ex)
             {
                 return ex.Message;
             }
@@ -54,21 +54,21 @@ namespace sistgre
         }
         public DataTable cosnsultaconresultado(string sql)
         {
-            SQLiteDataAdapter ad;
+            MySqlDataAdapter ad;
             DataTable dt = new DataTable();
-            SQLiteConnection cnx = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection cnx = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             try
             {
                 cnx.Open();
 
-                SQLiteCommand cmd;
+                MySqlCommand cmd;
                 cmd = cnx.CreateCommand();
                 cmd.CommandText = sql;
-                ad = new SQLiteDataAdapter(cmd);
+                ad = new MySqlDataAdapter(cmd);
                 ad.Fill(dt);
             }
 
-            catch (SQLiteException ex)
+            catch (MySqlException ex)
 
 
             {

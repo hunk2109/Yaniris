@@ -165,6 +165,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2C8430F862394DD69D5419ECF60A08CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3503404A7ED47665CFCAB5F41DCCAE8F"
         "OwnerKey" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
         "MsmSig" = "8:_UNDEFINED"
@@ -449,12 +455,6 @@
         {
         "MsmKey" = "8:_C530FE6A9EC53905FFA00B8E604EA4EB"
         "OwnerKey" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DC25AF51C5434905ABD4D4E249416BC3"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1065,6 +1065,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C8430F862394DD69D5419ECF60A08CC"
+            {
+            "SourcePath" = "8:C:\\bdd\\factura.s3db"
+            "TargetName" = "8:factura.s3db"
+            "Tag" = "8:"
+            "Folder" = "8:_A2448C27F0E24895AAA167360A8D42EE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3503404A7ED47665CFCAB5F41DCCAE8F"
             {
             "AssemblyRegister" = "3:1"
@@ -1590,26 +1610,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC25AF51C5434905ABD4D4E249416BC3"
-            {
-            "SourcePath" = "8:..\\..\\..\\Desktop\\screenshot_2021_04_13_ez_printt___ez_printt_pdf_krO_icon.ico"
-            "TargetName" = "8:screenshot_2021_04_13_ez_printt___ez_printt_pdf_krO_icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_3D5BB02F245B44A08C42D1003D084064"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E786DDAC51D4F8651EA0C8F9B67ED969"
             {
             "AssemblyRegister" = "3:1"
@@ -1771,16 +1771,38 @@
         }
         "Folder"
         {
-            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_3D5BB02F245B44A08C42D1003D084064"
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_2936D950E82445CEBBE756843E72D81D"
             {
             "DefaultLocation" = "8:C:\\"
             "Name" = "8:bdd"
-            "AlwaysCreate" = "11:TRUE"
+            "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:NEWPROPERTY1"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A2448C27F0E24895AAA167360A8D42EE"
+                    {
+                    "Name" = "8:bdd"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_FAF0F12DE94C44BFB06CA9D5A57295EC"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_FCBBB28B679F4A1BB076252336911C19"
+                            {
+                            "Name" = "8:ctnz"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_7F5A523A8B0D4265AAC3710EA754C54F"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_8B9A558469914C7FBA18D799D7B3DDAB"
@@ -1854,9 +1876,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:VANESSA"
+        "ProductName" = "8:Tu Estilo"
         "ProductCode" = "8:{2F3FCD35-DFB2-46CC-83CC-31B3CC1796B6}"
-        "PackageCode" = "8:{EDA11F30-CC4A-49E8-BDB4-0CA211BB9A0D}"
+        "PackageCode" = "8:{AC51A38A-938B-43F1-92FD-357939E5F9B7}"
         "UpgradeCode" = "8:{BF651266-B523-44C2-B429-877E4A733226}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1867,7 +1889,7 @@
         "Manufacturer" = "8:HYC Alianza"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Vanessa"
+        "Title" = "8:Yniris"
         "Subject" = "8:"
         "ARPCONTACT" = "8:HYC Alianza"
         "Keywords" = "8:"
@@ -1978,7 +2000,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4CEE87BAD39F40ACA53C09DC9B35F871"
             {
-            "Name" = "8:E-Z Print"
+            "Name" = "8:Tu Estilo"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1987,7 +2009,7 @@
             "Target" = "8:_FB1ACB0C43CA4C1A9EA7A0033BD4CC35"
             "Folder" = "8:_8B9A558469914C7FBA18D799D7B3DDAB"
             "WorkingFolder" = "8:_FCD31A1809774A52902050D8DACB183A"
-            "Icon" = "8:_DC25AF51C5434905ABD4D4E249416BC3"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }

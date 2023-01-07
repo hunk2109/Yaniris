@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 using System.Drawing.Printing;
 using System.IO;
 using System.Xml;
@@ -24,13 +24,13 @@ namespace sistgre
     {
 
 
-        SQLiteConnection cn = new SQLiteConnection();
+        MySqlConnection cn = new MySqlConnection();
         cnxsql cns = new cnxsql();
-        SQLiteCommand cmd = new SQLiteCommand();
-        SQLiteDataReader dr;
-        SQLiteParameter picture;
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
+        MySqlParameter picture;
         string codicred;
-        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+        MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
 
         public Form1()
         {
@@ -44,7 +44,7 @@ namespace sistgre
 
                 for (int i = 0; i <= dgvcot.Rows.Count - 1; i++)
                 {
-                    SQLiteCommand cmd2 = new SQLiteCommand("update inventario set canti_disp = (canti_disp - @canti) where id_cod = @idinv", conn);
+                    MySqlCommand cmd2 = new MySqlCommand("update inventario set canti_disp = (canti_disp - @canti) where id_cod = @idinv", conn);
                     cmd2.Parameters.AddWithValue("@canti", dgvcot.Rows[i].Cells[3].Value);
                     cmd2.Parameters.AddWithValue("@idinv", dgvcot.Rows[i].Cells[0].Value);
 
@@ -62,11 +62,11 @@ namespace sistgre
         }
         private void combo()
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
-                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Suplidor", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Suplidor", conn);
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
@@ -99,11 +99,11 @@ namespace sistgre
 
         private void cotprod()
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
-                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 lvcoprod.Columns.Clear(); // Clear previously added columns
                 lvcoprod.Items.Clear(); // Clear previously populated items
@@ -133,11 +133,11 @@ namespace sistgre
         private void prod()
         {
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvprod.Columns.Clear(); // Clear previously added columns
                     lvprod.Items.Clear(); // Clear previously populated items
@@ -167,11 +167,11 @@ namespace sistgre
 
         private void carcmb()
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
-                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Suplidor where nombre = '" + cmbsup.Text + "'", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Suplidor where nombre = '" + cmbsup.Text + "'", conn);
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
@@ -190,7 +190,7 @@ namespace sistgre
             }
             int codigo;
 
-            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+            using (MySqlCommand dataCommand1 = new MySqlCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
             {
                 codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
 
@@ -255,7 +255,7 @@ namespace sistgre
 
         private void button7_Click(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
 
             int codigo;
             if (rbcred.Checked == false && rbefec.Checked == false)
@@ -278,7 +278,7 @@ namespace sistgre
                     else
                     {
 
-                        /* using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                        /* using (MySqlCommand dataCommand1 = new MySqlCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
                          {
                              conn.Open();
                              codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
@@ -334,11 +334,11 @@ namespace sistgre
 
                 else if (rbefec.Checked == true)
                 {
-                    SQLiteDataAdapter ad;
+                    MySqlDataAdapter ad;
                     DataTable dt = new DataTable();
-                    SQLiteCommand cmd = conn.CreateCommand();
+                    MySqlCommand cmd = conn.CreateCommand();
                     cmd.CommandText = "select id_Cod from inventario where id_Cod = '" + txtcodprod.Text + "'";
-                    ad = new SQLiteDataAdapter(cmd);
+                    ad = new MySqlDataAdapter(cmd);
 
                     DataSet ds = new DataSet();
                     ad.Fill(dt);
@@ -350,7 +350,7 @@ namespace sistgre
 
                     else
                     {
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+                        using (MySqlCommand dataCommand1 = new MySqlCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
                         {
                             conn.Open();
                             codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
@@ -392,13 +392,13 @@ namespace sistgre
 
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
 
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_Cod ='" + listViewItem.Text + "' ", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where id_Cod ='" + listViewItem.Text + "' ", conn);
 
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     while (sqlReader.Read())
                     {
@@ -447,13 +447,13 @@ namespace sistgre
 
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
 
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_Cod ='" + listViewItem.Text + "' ", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where id_Cod ='" + listViewItem.Text + "' ", conn);
 
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     while (sqlReader.Read())
                     {
@@ -512,11 +512,11 @@ namespace sistgre
             {
                 try
                 {
-                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                     {
-                        SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
+                        MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where produc like '%" + txtbuspord.Text + "%'and canti_disp > 0", conn);
                         conn.Open();
-                        SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                        MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                         lvprod.Columns.Clear(); // Clear previously added columns
                         lvprod.Items.Clear(); // Clear previously populated items
@@ -552,11 +552,11 @@ namespace sistgre
             {
                 try
                 {
-                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                     {
-                        SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod like '" + txtbuspord.Text + "%'and canti_disp > 0", conn);
+                        MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where id_cod like '" + txtbuspord.Text + "%'and canti_disp > 0", conn);
                         conn.Open();
-                        SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                        MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                         lvprod.Columns.Clear(); // Clear previously added columns
                         lvprod.Items.Clear(); // Clear previously populated items
@@ -605,11 +605,11 @@ namespace sistgre
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvclient.Columns.Clear(); // Clear previously added columns
                     lvclient.Items.Clear(); // Clear previously populated items
@@ -667,16 +667,16 @@ namespace sistgre
                     string codigo, codvent;
 
 
-                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                     {
                         conn.Open();
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
+                        using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
                         {
                             codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
                         }
 
-                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(id_fac) FROM factura);'", conn))
+                        using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(id_fac) FROM factura);'", conn))
                         {
                             codvent = Convert.ToString(dataCommand2.ExecuteScalar());
                             txtidstore.Text = codvent;
@@ -762,16 +762,16 @@ namespace sistgre
                     ListViewItem lv2 = new ListViewItem();
                     listViewItem1 = lvprod.SelectedItems[0];
                     string codigo, codvent;
-                    SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                    MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                     {
                         conn.Open();
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
+                        using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
                         {
                             codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
                         }
 
-                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                        using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
                         {
                             codvent = Convert.ToString(dataCommand2.ExecuteScalar());
 
@@ -932,9 +932,9 @@ namespace sistgre
             string StrQuery;
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         comm.Connection = conn;
                         conn.Open();
@@ -1060,9 +1060,9 @@ namespace sistgre
 
         private void carimg()
         {
-            cn.ConnectionString = "Data Source=C:\\bdd\\factura.s3db; Version=3;";
+            cn.ConnectionString = "server = 127.0.0.1; uid=root;pwd=muerete66;database=factura;";
             cmd.Connection = cn;
-            picture = new SQLiteParameter("@picture", SqlDbType.Image);
+            picture = new MySqlParameter("@picture", SqlDbType.Image);
 
 
         }
@@ -1143,11 +1143,11 @@ namespace sistgre
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvclient.Columns.Clear(); // Clear previously added columns
                     lvclient.Items.Clear(); // Clear previously populated items
@@ -1198,13 +1198,13 @@ namespace sistgre
 
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
 
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where id_client ='" + listViewItem.Text + "' ", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where id_client ='" + listViewItem.Text + "' ", conn);
 
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     while (sqlReader.Read())
                     {
@@ -1260,7 +1260,7 @@ namespace sistgre
             string StrQuery;
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
 
 
@@ -1268,7 +1268,7 @@ namespace sistgre
 
 
 
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         comm.Connection = conn;
                         conn.Open();
@@ -1399,13 +1399,13 @@ namespace sistgre
 
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
 
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where id_client ='" + listViewItem.Text + "' ", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where id_client ='" + listViewItem.Text + "' ", conn);
 
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     while (sqlReader.Read())
                     {
@@ -1447,11 +1447,11 @@ namespace sistgre
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where nombre like '%" + txtbuspord.Text + "%'", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvclicot.Columns.Clear(); // Clear previously added columns
                     lvclicot.Items.Clear(); // Clear previously populated items
@@ -1519,10 +1519,10 @@ namespace sistgre
                 int codvent;
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
                     conn.Open();
-                    using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
+                    using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + listViewItem1.Text + "'", conn))
                     {
                         codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
@@ -1530,7 +1530,7 @@ namespace sistgre
 
                     if (string.IsNullOrEmpty(txtnfact.Text))
                     {
-                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE id_fact IN(SELECT max(id_fact) FROM factura);;'", conn))
+                        using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE id_fact IN(SELECT max(id_fact) FROM factura);", conn))
                         {
                             codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
                             txtnfact.Text = (codvent + 1).ToString();
@@ -1591,7 +1591,7 @@ namespace sistgre
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Seleccione un producto");
+                MessageBox.Show( ex.Message, "Seleccione un producto");
             }
         }
         private void ACTPROD()
@@ -1599,11 +1599,11 @@ namespace sistgre
 
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where  canti_disp > 0", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where  canti_disp > 0", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvcoprod.Columns.Clear(); // Clear previously added columns
                     lvcoprod.Items.Clear(); // Clear previously populated items
@@ -1770,13 +1770,13 @@ namespace sistgre
         {
             string StrQuery;
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
 
 
                 if (string.IsNullOrEmpty(txtidcred.Text))
                 {
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         string cod = Convert.ToString(txtidcred.Text);
                         comm.Connection = conn;
@@ -1784,10 +1784,9 @@ namespace sistgre
                         for (int i = 0; i < dgvcot.Rows.Count - 1; i++)
                         {
                             conn.Open();
-                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,Cliente_id_client,ven_id_fac,tipo_vent) VALUES ('"
+                            StrQuery = "INSERT INTO Ventas(cant,inventario_id_cod,ven_id_fac,tipo_vent) VALUES ('"
                                 + dgvcot.Rows[i].Cells[3].Value.ToString() + "', '"
                                 + dgvcot.Rows[i].Cells[0].Value.ToString() + "','"
-                                + cod.ToString() + "','"
                                 + txtnfact.Text + "','1')";
                             comm.CommandText = StrQuery;
                             comm.ExecuteNonQuery();
@@ -1804,7 +1803,7 @@ namespace sistgre
 
                 else
                 {
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         string cod = Convert.ToString(txtidcred.Text);
                         comm.Connection = conn;
@@ -1833,7 +1832,7 @@ namespace sistgre
 
 
 
-                //using (SQLiteCommand comm = new SQLiteCommand())
+                //using (MySqlCommand comm = new MySqlCommand())
                 //{
                 //    string cod = Convert.ToString(txtidcred.Text);
                 //    comm.Connection = conn;
@@ -1979,14 +1978,14 @@ namespace sistgre
 
         private void PrintDocument2_PrintPage(object sender, PrintPageEventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
 
-                SQLiteCommand sqlCmd = new SQLiteCommand("select id_cod as Codigo, produc as Producto, precio as Precio, cant as Cantidad,Cliente_id_client as Cliente, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod  join factura on id_fact = ven_id_fac   where  ven_id_fac ='" + txtidstore.Text + "'  ", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("select id_cod as Codigo, produc as Producto, precio as Precio, cant as Cantidad,Cliente_id_client as Cliente, (precio * cant) as Total from ventas   join inventario on id_cod = inventario_id_cod  join factura on id_fact = ven_id_fac   where  ven_id_fac ='" + txtidstore.Text + "'  ", conn);
                 string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 var format = new StringFormat() { Alignment = StringAlignment.Far };
                 var rect = new RectangleF(0, 20, 20, 20);
@@ -2051,11 +2050,11 @@ namespace sistgre
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where nombre like '%" + txtbusclicot.Text + "%'", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where nombre like '%" + txtbusclicot.Text + "%'", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvclicot.Columns.Clear(); // Clear previously added columns
                     lvclicot.Items.Clear(); // Clear previously populated items
@@ -2093,11 +2092,11 @@ namespace sistgre
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
-                    SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where produc like '%" + txtbusclicot.Text + "%'and canti_disp > 0", conn);
+                    MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where produc like '%" + txtbusclicot.Text + "%'and canti_disp > 0", conn);
                     conn.Open();
-                    SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                    MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     lvcoprod.Columns.Clear(); // Clear previously added columns
                     lvcoprod.Items.Clear(); // Clear previously populated items
@@ -2180,13 +2179,13 @@ namespace sistgre
 
         private void PrintDocument3_PrintPage(object sender, PrintPageEventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
 
-                SQLiteCommand sqlCmd = new SQLiteCommand(" select  id_p as ID, nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o - monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where id_p='" + txtidpag.Text + "'", conn);
+                MySqlCommand sqlCmd = new MySqlCommand(" select  id_p as ID, nombre,apell, cedula, fecha,monto_o as Original,monto_p as Pagado,(monto_o - monto_p) as Restante from Cliente inner join pagos on id_client = client_id_pag where id_p='" + txtidpag.Text + "'", conn);
                 string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 var format = new StringFormat() { Alignment = StringAlignment.Far };
                 var rect = new RectangleF(0, 20, 20, 20);
@@ -2301,10 +2300,10 @@ namespace sistgre
 
         private void Button18_Click(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
 
             int codigo;
-            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
+            using (MySqlCommand dataCommand1 = new MySqlCommand("select id_supli from Suplidor where nombre ='" + cmbsup.Text + "'", conn))
             {
                 conn.Open();
                 codigo = Convert.ToInt32(dataCommand1.ExecuteScalar());
@@ -2316,7 +2315,7 @@ namespace sistgre
             try
             {
                 {
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         comm.Connection = conn;
                         conn.Open();
@@ -2381,12 +2380,12 @@ namespace sistgre
 
         private void PrintDocument4_PrintPage(object sender, PrintPageEventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
 
-            SQLiteCommand sqlCmd = new SQLiteCommand("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 and ID ='" + txtidcp.Text + "'", conn);
+            MySqlCommand sqlCmd = new MySqlCommand("select id_cp as ID, monto_o as Monto, fecha as Fecha,mont_pag as Pagado ,nombre as Nombre, comp as Compañia, (monto_o - mont_pag) as Restante from cp join Suplidor on id_supli = id_supli_cp  where Restante > 0 and ID ='" + txtidcp.Text + "'", conn);
             string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             conn.Open();
-            SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+            MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
             var format = new StringFormat() { Alignment = StringAlignment.Far };
             var rect = new RectangleF(0, 20, 20, 20);
@@ -2460,16 +2459,16 @@ namespace sistgre
                         string codigo, codvent;
 
 
-                        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                        MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                         {
                             conn.Open();
-                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
+                            using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
                             {
                                 codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
                             }
 
-                            using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                            using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
                             {
                                 codvent = Convert.ToString(dataCommand2.ExecuteScalar());
                                 txtidstore.Text = codvent;
@@ -2555,16 +2554,16 @@ namespace sistgre
                         ListViewItem lv2 = new ListViewItem();
                         listViewItem1 = lvprod.SelectedItems[0];
                         string codigo, codvent;
-                        SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                        MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                         {
                             conn.Open();
-                            using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
+                            using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + txtbuspord.Text + "'", conn))
                             {
                                 codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
                             }
 
-                            using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                            using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
                             {
                                 codvent = Convert.ToString(dataCommand2.ExecuteScalar());
 
@@ -2713,12 +2712,12 @@ namespace sistgre
                 string codigo, codvent;
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
                     conn.Open();
 
 
-                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                    using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
                     {
                         codvent = Convert.ToString(dataCommand2.ExecuteScalar());
                         txtidstore.Text = codvent;
@@ -2758,12 +2757,12 @@ namespace sistgre
                 string codigo, codvent;
 
 
-                SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+                MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
                 {
                     conn.Open();
 
 
-                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
+                    using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_fact FROM factura WHERE fecha IN(SELECT max(fecha) FROM factura);'", conn))
                     {
                         codvent = Convert.ToString(dataCommand2.ExecuteScalar());
                         txtidstore.Text = codvent;
@@ -3220,13 +3219,13 @@ namespace sistgre
 
         private void Txtidprodencar_TextChanged(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
 
-                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM Cliente where id_client ='" + txtidprodencar.Text + "' ", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Cliente where id_client ='" + txtidprodencar.Text + "' ", conn);
 
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
@@ -3254,13 +3253,13 @@ namespace sistgre
 
         private void Txtidcliencar_TextChanged(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
 
-                SQLiteCommand sqlCmd = new SQLiteCommand("SELECT * FROM inventario where id_cod ='" + txtidcliencar.Text + "' ", conn);
+                MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM inventario where id_cod ='" + txtidcliencar.Text + "' ", conn);
 
                 conn.Open();
-                SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
@@ -3311,10 +3310,10 @@ namespace sistgre
         private void Btnagreencarg_Click(object sender, EventArgs e)
         {
             string codigo;
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
                 conn.Open();
-                using (SQLiteCommand dataCommand1 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtidcliencar.Text + "'", conn))
+                using (MySqlCommand dataCommand1 = new MySqlCommand("select produc from inventario where id_Cod ='" + txtidcliencar.Text + "'", conn))
                 {
                     codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
@@ -3344,7 +3343,7 @@ namespace sistgre
                 if (string.IsNullOrEmpty(txtnecna.Text))
                 {
                     int codvent;
-                    using (SQLiteCommand dataCommand2 = new SQLiteCommand("SELECT id_encar FROM encar WHERE id_encar IN(SELECT max(id_encar) FROM encar);;'", conn))
+                    using (MySqlCommand dataCommand2 = new MySqlCommand("SELECT id_encar FROM encar WHERE id_encar IN(SELECT max(id_encar) FROM encar);;'", conn))
                     {
                         conn.Open();
                         codvent = Convert.ToInt32(dataCommand2.ExecuteScalar());
@@ -3420,7 +3419,7 @@ namespace sistgre
         {
             string StrQuery;
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
             {
                 try
                 {
@@ -3430,7 +3429,7 @@ namespace sistgre
 
 
 
-                    using (SQLiteCommand comm = new SQLiteCommand())
+                    using (MySqlCommand comm = new MySqlCommand())
                     {
                         comm.Connection = conn;
 
@@ -3482,7 +3481,7 @@ namespace sistgre
         private void bac()
 
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=C:\\bdd\\factura.s3db; Version=3;");
+            MySqlConnection conn = new MySqlConnection("server = 127.0.0.1; uid=root;pwd=muerete66;database=factura");
 
             if (string.IsNullOrEmpty(txtbarcode.Text))
             {
@@ -3490,11 +3489,11 @@ namespace sistgre
             }
             else
             {
-                SQLiteDataAdapter ad;
+                MySqlDataAdapter ad;
                 DataTable dt = new DataTable();
-                SQLiteCommand cmd = conn.CreateCommand();
+                MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "select id_Cod from inventario where id_Cod = '" + txtbarcode.Text + "'";
-                ad = new SQLiteDataAdapter(cmd);
+                ad = new MySqlDataAdapter(cmd);
 
                 DataSet ds = new DataSet();
                 ad.Fill(dt);
@@ -3514,17 +3513,17 @@ namespace sistgre
                     string codigo, produc, precio;
                     {
                         conn.Open();
-                        using (SQLiteCommand dataCommand1 = new SQLiteCommand("select id_Cod from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        using (MySqlCommand dataCommand1 = new MySqlCommand("select id_Cod from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
                         {
                             codigo = Convert.ToString(dataCommand1.ExecuteScalar());
 
                         }
-                        using (SQLiteCommand dataCommand2 = new SQLiteCommand("select produc from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        using (MySqlCommand dataCommand2 = new MySqlCommand("select produc from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
                         {
                             produc = Convert.ToString(dataCommand2.ExecuteScalar());
 
                         }
-                        using (SQLiteCommand dataCommand3 = new SQLiteCommand("select precio from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
+                        using (MySqlCommand dataCommand3 = new MySqlCommand("select precio from inventario where id_Cod ='" + txtbarcode.Text + "'", conn))
                         {
                             precio = Convert.ToString(dataCommand3.ExecuteScalar());
 

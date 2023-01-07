@@ -210,6 +210,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.txxttcd = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
@@ -223,7 +224,6 @@
             this.label59 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.button25 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
@@ -352,8 +352,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            this.groupBox21.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcot)).BeginInit();
@@ -2213,7 +2213,6 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.groupBox21);
             this.tabPage10.Controls.Add(this.groupBox14);
             this.tabPage10.Controls.Add(this.groupBox13);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
@@ -2223,6 +2222,34 @@
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Facturacion";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.groupBox21);
+            this.groupBox14.Controls.Add(this.button25);
+            this.groupBox14.Controls.Add(this.button22);
+            this.groupBox14.Controls.Add(this.label60);
+            this.groupBox14.Controls.Add(this.txtnfact);
+            this.groupBox14.Controls.Add(this.txtidcred);
+            this.groupBox14.Controls.Add(this.button17);
+            this.groupBox14.Controls.Add(this.button16);
+            this.groupBox14.Controls.Add(this.button15);
+            this.groupBox14.Controls.Add(this.lbpfi);
+            this.groupBox14.Controls.Add(this.label36);
+            this.groupBox14.Controls.Add(this.groupBox16);
+            this.groupBox14.Controls.Add(this.groupBox15);
+            this.groupBox14.Controls.Add(this.button12);
+            this.groupBox14.Controls.Add(this.button13);
+            this.groupBox14.Controls.Add(this.dgvcot);
+            this.groupBox14.Location = new System.Drawing.Point(418, 22);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(898, 469);
+            this.groupBox14.TabIndex = 1;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Cotizacion";
             // 
             // groupBox21
             // 
@@ -2238,7 +2265,7 @@
             this.groupBox21.Controls.Add(this.label59);
             this.groupBox21.Controls.Add(this.label58);
             this.groupBox21.Controls.Add(this.label57);
-            this.groupBox21.Location = new System.Drawing.Point(424, 22);
+            this.groupBox21.Location = new System.Drawing.Point(18, 225);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(748, 190);
             this.groupBox21.TabIndex = 25;
@@ -2371,33 +2398,6 @@
             this.label57.TabIndex = 0;
             this.label57.Text = "Total  a Pagar";
             // 
-            // groupBox14
-            // 
-            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox14.Controls.Add(this.button25);
-            this.groupBox14.Controls.Add(this.button22);
-            this.groupBox14.Controls.Add(this.label60);
-            this.groupBox14.Controls.Add(this.txtnfact);
-            this.groupBox14.Controls.Add(this.txtidcred);
-            this.groupBox14.Controls.Add(this.button17);
-            this.groupBox14.Controls.Add(this.button16);
-            this.groupBox14.Controls.Add(this.button15);
-            this.groupBox14.Controls.Add(this.lbpfi);
-            this.groupBox14.Controls.Add(this.label36);
-            this.groupBox14.Controls.Add(this.groupBox16);
-            this.groupBox14.Controls.Add(this.groupBox15);
-            this.groupBox14.Controls.Add(this.button12);
-            this.groupBox14.Controls.Add(this.button13);
-            this.groupBox14.Controls.Add(this.dgvcot);
-            this.groupBox14.Location = new System.Drawing.Point(418, 22);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(898, 469);
-            this.groupBox14.TabIndex = 1;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Cotizacion";
-            // 
             // button25
             // 
             this.button25.Location = new System.Drawing.Point(382, 421);
@@ -2422,7 +2422,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(574, 166);
+            this.label60.Location = new System.Drawing.Point(418, 171);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(68, 13);
             this.label60.TabIndex = 27;
@@ -2431,7 +2431,7 @@
             // txtnfact
             // 
             this.txtnfact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnfact.Location = new System.Drawing.Point(648, 161);
+            this.txtnfact.Location = new System.Drawing.Point(492, 166);
             this.txtnfact.Name = "txtnfact";
             this.txtnfact.ReadOnly = true;
             this.txtnfact.Size = new System.Drawing.Size(100, 22);
@@ -2594,7 +2594,7 @@
             this.groupBox15.Controls.Add(this.txtprfcot);
             this.groupBox15.Controls.Add(this.txtprecot);
             this.groupBox15.Controls.Add(this.txtcantcot);
-            this.groupBox15.Location = new System.Drawing.Point(342, 19);
+            this.groupBox15.Location = new System.Drawing.Point(291, 19);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(251, 137);
             this.groupBox15.TabIndex = 18;
@@ -3249,7 +3249,7 @@
             this.ClientSize = new System.Drawing.Size(1475, 857);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "E-Z Print";
+            this.Text = "Tu Estilo";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -3301,10 +3301,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);
